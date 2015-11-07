@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="plugin.program.Devil666" name="Devils Origin Wizard" version="1.0.1" provider-name="Devils Origin Wizard">
+  <requires>
+	<import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.addon.common" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Devils Origin</summary>
+	<description>Thanks to whufclee for the original Community Builds code used in this add-on.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.DKTV" name="DKTV" version="1.0.0" provider-name="DKTV">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">DKTV Live and On Demand</summary>
+    <description lang="en">DKTV Live and On Demand</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon
+  id="plugin.video.SportsDevil"
+  version="1.8.8.0"
+  name="SportsDevil"
+  provider-name="MaxMustermann">
+  <requires>
+   <import addon="xbmc.python" version="2.14.0"/>
+   <import addon="script.module.requests" />
+  </requires>
+  <extension
+    point="xbmc.python.pluginsource"
+    library="default.py">
+   <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Play videos of different sports streaming sites</summary>
+    <description>Play videos of different sports streaming sites</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+    <addon id="repository.DKTV" name="DKTV Repo" version="0.1.0" provider-name="DKTV">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="DKTV Repo">
+            <info compressed="false">https://raw.github.com/dharrison1703/DKTV/master/_repo/addons.xml</info>
+            <checksum>https://raw.github.com/dharrison1703/DKTV/master/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.github.com/dharrison1703/DKTV/master/_repo/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>Keep Your DKTV Build Upto Date</summary>
+            <description>Keep Your DKTV Build Upto Date</description>
+            <platform>all</platform>
+    </extension>
+</addon>
+</addons>
