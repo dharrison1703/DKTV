@@ -12,6 +12,7 @@ fanart = Addon.getAddonInfo('fanart')
 
 EntertainmentTVURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvEnTeRtAiNmEnT.m3u'
 SportsTVURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvSpOrTs.m3u'
+MusicTVURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvMuSiC.m3u'
 MoviesURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvMoViEs.m3u'
 ShowsURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvShOwS.m3u'
 
@@ -37,6 +38,7 @@ if  not (os.path.isfile(favoritesFile)):
 def Categories():
 	AddDir('[B]DKTV Entertainment[/B]' ,EntertainmentTVURL, 2,os.path.join(addonDir, "resources", "images", "Live.png"), isFolder=True)
 	AddDir('[B]DKTV Sports[/B]' ,SportsTVURL, 2,os.path.join(addonDir, "resources", "images", "Live.png"), isFolder=True)
+	AddDir('[B]DKTV Music[/B]' ,MusicTVURL, 2,os.path.join(addonDir, "resources", "images", "Live.png"), isFolder=True)
 	AddDir('[B]DKTV Movies[/B]' ,MoviesURL, 2,os.path.join(addonDir, "resources", "images", "Movies.png"), isFolder=True)
 	AddDir('[B]DKTV Shows[/B]' ,ShowsURL, 2,os.path.join(addonDir, "resources", "images", "Tv Shows.png"), isFolder=True)
 	
