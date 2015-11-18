@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #code by Avigdor 
 import urllib, sys, xbmcplugin ,xbmcgui, xbmcaddon, xbmc, os, json
+from resources.lib.parsers import parser
 
 
 AddonID = 'plugin.video.DKTV'
@@ -9,11 +10,10 @@ localizedString = Addon.getLocalizedString
 AddonName = Addon.getAddonInfo("name")
 icon = Addon.getAddonInfo('icon')
 fanart = Addon.getAddonInfo('fanart')
+ART = xbmc.translatePath(os.path.join('special://home/addons/' + AddonID + '/resources/images/'))
 
-EntertainmentTVURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvEnTeRtAiNmEnT.m3u'
-SportsTVURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvSpOrTs.m3u'
-MusicTVURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvMuSiC.m3u'
-MoviesURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvMoViEs.m3u'
+SEventsURL = 'http://entertainmentlists.x10host.com/Lists/?mode=SportsEvents&list=GetEvents'
+MoviesURL = 'http://entertainmentlists.x10host.com/Lists/?mode=Movies&list=GetGenres'
 ShowsURL = 'http://chameleon.x10host.com/test/links/DkTv/DkTvShOwS.m3u'
 
 
@@ -36,12 +36,39 @@ if  not (os.path.isfile(favoritesFile)):
 	f.close() 
 	
 def Categories():
-	AddDir('[B]DKTV Entertainment[/B]' ,EntertainmentTVURL, 2,os.path.join(addonDir, "resources", "images", "Live.png"), isFolder=True)
-	AddDir('[B]DKTV Sports[/B]' ,SportsTVURL, 2,os.path.join(addonDir, "resources", "images", "Live.png"), isFolder=True)
-	AddDir('[B]DKTV Music[/B]' ,MusicTVURL, 2,os.path.join(addonDir, "resources", "images", "Live.png"), isFolder=True)
-	AddDir('[B]DKTV Movies[/B]' ,MoviesURL, 2,os.path.join(addonDir, "resources", "images", "Movies.png"), isFolder=True)
-	AddDir('[B]DKTV Shows[/B]' ,ShowsURL, 2,os.path.join(addonDir, "resources", "images", "Tv Shows.png"), isFolder=True)
+	AddDir('DKTV Channels' ,'http://urlhere.com', 42,os.path.join(addonDir, "resources", "images", "icon.png"), isFolder=True, background=ART+'fanart.jpg')
+	AddDir('DKTV Sport Events' ,SEventsURL, 49,os.path.join(addonDir, "resources", "images", "Sports.png"), isFolder=True, background=ART+'fanart.jpg')
+	AddDir('DKTV Movies' ,MoviesURL, 51,os.path.join(addonDir, "resources", "images", "Movies.png"), isFolder=True, background=ART+'fanart.jpg')
+	AddDir('DKTV Shows' ,ShowsURL, 2,os.path.join(addonDir, "resources", "images", "TVShows.png"), isFolder=True, background=ART+'fanart.jpg')
 	
+
+def TVChannels():
+	AddDir('All Channels' ,'http://entertainmentlists.x10host.com/Lists/?mode=LiveTV&list=GetCat', 48,os.path.join(addonDir, "resources", "images", "All_Channels.png"), isFolder=True, background=ART+'fanart.jpg')
+	
+	parser.TVCategories('mode=LiveTV&list=GetCat')
+
+def SportEvents(url):
+	parser.Category('Live Sports', url)
+	
+
+def AllLiveTV(url):
+	parser.Category('Entertainment', url)
+	parser.Category('Kids', url)
+	parser.Category('Music', url)
+	parser.Category('Movies', url)
+	parser.Category('Sports', url)
+	parser.Category('News', url)
+	parser.Category('Radio', url)
+	parser.Category('Other', url)
+
+	
+def ALLMOVIES(url):
+	parser.Category('Christmas', url)
+
+def MOVIES():
+	AddDir('All Movies' ,MoviesURL, 50,os.path.join(addonDir, "resources", "images", "All_Movies.png"), isFolder=True, background=ART+'fanart.jpg')
+	parser.MovieCategories('mode=Movies&list=GetGenres')
+
 
 
 def AddNewList():
@@ -276,5 +303,15 @@ elif mode == 40:
 elif mode == 41:
 	common.DelFile(favoritesFile)
 	sys.exit()
+elif mode == 42:	TVChannels()
+elif mode == 43:	parser.MovieCategories(url)
+elif mode == 44:	parser.LiveSportCategories(url)
+elif mode == 45:	parser.ChannelLinks(name, url)
+elif mode == 46:	parser.Category(name, url)
+elif mode == 47:	parser.TVCategories(url)
+elif mode == 48:	AllLiveTV(url)
+elif mode == 49:	SportEvents(url)
+elif mode == 50:	ALLMOVIES(url)
+elif mode == 51:	MOVIES()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
