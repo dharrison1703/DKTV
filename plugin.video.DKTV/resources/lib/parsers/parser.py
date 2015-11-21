@@ -202,10 +202,14 @@ def Category(name, url):
 			else:
 				info = 'Sorry this description is currently unavailable'
 		          
-			
+			if mode == 41:
+				finalMode = 52
+			else:
+				finalMode = 3
+				
 			if len(UrlList) == 1:
 				urllink = UrlList[0]
-				AddTestDir(title,urllink,3,icon,description=info,isFolder=False, background=fanart)
+				AddTestDir(title,urllink,finalMode,icon,description=info,isFolder=False, background=fanart)
 
 			elif len(UrlList) > 1:
 				AddTestDir(title,ChannelURL,45,icon,description=info,isFolder=True, background=fanart)
@@ -294,31 +298,34 @@ def ChannelLinks(name, url):
                 Description = re.findall(r'<p class="Description">(.*?)</p>',str(Desc))
                 for description in Description:
                     DataList.append(description)
-        
+                    
             title = DataList[0]
             mode = int(DataList[1])
             icon = DataList[2]
             fanart = DataList[3]
+            
+            if mode == 41 : finalMode = 52
+            elif mode == 28 : finalMode = 3
+            
             if len(DataList)>=5:
                     info = DataList[4]
             else:
                 info = 'Sorry this description is currently unavailable'
-        
-        
+
             if len(UrlList) == 2:
                 urllink1 = UrlList[0]
                 urllink2 = UrlList[1]
-                AddTestDir('Link 1: '+title,urllink1,3,icon,description=info,isFolder=False, background=fanart)
-                AddTestDir('Link 2: '+title,urllink2,3,icon,description=info,isFolder=False, background=fanart)
-                
+                AddTestDir('Link 1: '+title,urllink1,finalMode,icon,description=info,isFolder=False, background=fanart)
+                AddTestDir('Link 2: '+title,urllink2,finalMode,icon,description=info,isFolder=False, background=fanart)
+
 
             elif len(UrlList) == 3:
                 urllink1 = UrlList[0]
                 urllink2 = UrlList[1]
                 urllink3 = UrlList[2]
-                AddTestDir('Link 1: '+title,urllink1,3,icon,description=info,isFolder=False, background=fanart)
-                AddTestDir('Link 2: '+title,urllink2,3,icon,description=info,isFolder=False, background=fanart)
-                AddTestDir('Link 3: '+title,urllink3,3,icon,description=info,isFolder=False, background=fanart)
+                AddTestDir('Link 1: '+title,urllink1,finalMode,icon,description=info,isFolder=False, background=fanart)
+                AddTestDir('Link 2: '+title,urllink2,finalMode,icon,description=info,isFolder=False, background=fanart)
+                AddTestDir('Link 3: '+title,urllink3,finalMode,icon,description=info,isFolder=False, background=fanart)
                 
             
         
@@ -327,9 +334,9 @@ def ChannelLinks(name, url):
         else:
             pass
 
-	
-	
-	setView('livetv', 'TV-Guide')
+    
+    
+    setView('livetv', 'TV-Guide')
 	
 def addDir(name,url,mode,iconimage,fanart,description):
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)+"&description="+urllib.quote_plus(description)

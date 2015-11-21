@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #code by Avigdor 
-import urllib, sys, xbmcplugin ,xbmcgui, xbmcaddon, xbmc, os, json
+import urllib, sys, xbmcplugin ,xbmcgui, xbmcaddon, xbmc, os, json, urlresolver
 from resources.lib.parsers import parser
 
 
@@ -63,6 +63,8 @@ def AllLiveTV(url):
 
 	
 def ALLMOVIES(url):
+	parser.Category('Cinema', url)
+	parser.Category('Kids', url)
 	parser.Category('Christmas', url)
 
 def MOVIES():
@@ -230,6 +232,45 @@ def AddNewFavortie():
 	if common.SaveList(favoritesFile, favList):
 		xbmc.executebuiltin("XBMC.Container.Update('plugin://{0}?mode=30&url=favorites')".format(AddonID))
 
+#-------------------------------------------------------------------------------------------------------------------------------------
+	
+def Resolve(name, url): 
+    play=xbmc.Player(GetPlayerCore())
+    import urlresolver
+    try: play.play(url)
+    except: pass
+    from urlresolver import common
+    dp = xbmcgui.DialogProgress()
+    dp.create('LOADING','Opening %s Now'%(name))
+    play=xbmc.Player(GetPlayerCore())
+    url=urlresolver.HostedMediaFile(url).resolve() 
+    if dp.iscanceled(): 
+        print "[COLORred]STREAM CANCELLED[/COLOR]" # need to get this part working    
+        dialog = xbmcgui.Dialog()
+        if dialog.yesno("[B]CANCELLED[/B]", '[B]Was There A Problem[/B]','', "",'Yes','No'):
+            dialog.ok("Message Send", "Your Message Has Been Sent")
+        else:
+	         return
+    else:
+        try: play.play(url)
+        except: pass
+        try: ADDON.resolve_url(url) 
+        except: pass 
+        dp.close()
+
+def GetPlayerCore(): 
+    try: 
+        PlayerMethod=getSet("core-player") 
+        if   (PlayerMethod=='DVDPLAYER'): PlayerMeth=xbmc.PLAYER_CORE_DVDPLAYER 
+        elif (PlayerMethod=='MPLAYER'): PlayerMeth=xbmc.PLAYER_CORE_MPLAYER 
+        elif (PlayerMethod=='PAPLAYER'): PlayerMeth=xbmc.PLAYER_CORE_PAPLAYER 
+        else: PlayerMeth=xbmc.PLAYER_CORE_AUTO 
+    except: PlayerMeth=xbmc.PLAYER_CORE_AUTO 
+    return PlayerMeth 
+    return True 
+
+#-------------------------------------------------------------------------------------------------------------------------------------
+
 def get_params():
 	param = []
 	paramstring = sys.argv[2]
@@ -313,5 +354,6 @@ elif mode == 48:	AllLiveTV(url)
 elif mode == 49:	SportEvents(url)
 elif mode == 50:	ALLMOVIES(url)
 elif mode == 51:	MOVIES()
+elif mode == 52:	Resolve(name, url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
