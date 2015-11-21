@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #code by Avigdor 
 import urllib, sys, xbmcplugin ,xbmcgui, xbmcaddon, xbmc, os, json, urlresolver
-from resources.lib.parsers import parser
+from resources.lib.parsers import parser, premierleague
 
 
 AddonID = 'plugin.video.DKTV'
@@ -38,6 +38,7 @@ if  not (os.path.isfile(favoritesFile)):
 def Categories():
 	AddDir('DKTV Channels' ,'http://urlhere.com', 42,os.path.join(addonDir, "resources", "images", "icon.png"), isFolder=True, background=ART+'fanart.jpg')
 	AddDir('DKTV Sport Events' ,SEventsURL, 49,os.path.join(addonDir, "resources", "images", "Sports.png"), isFolder=True, background=ART+'fanart.jpg')
+	AddDir('DKTV Premier League Table' ,SEventsURL, 53,os.path.join(addonDir, "resources", "images", "premtable.png"), isFolder=False, background=ART+'fanart.jpg')
 	AddDir('DKTV Movies' ,MoviesURL, 51,os.path.join(addonDir, "resources", "images", "Movies.png"), isFolder=True, background=ART+'fanart.jpg')
 	AddDir('DKTV Shows' ,ShowsURL, 2,os.path.join(addonDir, "resources", "images", "TVShows.png"), isFolder=True, background=ART+'fanart.jpg')
 	
@@ -51,6 +52,8 @@ def SportEvents(url):
 	parser.Category('Live Sports', url)
 	
 
+
+	
 def AllLiveTV(url):
 	parser.Category('Entertainment', url)
 	parser.Category('Kids', url)
@@ -355,5 +358,6 @@ elif mode == 49:	SportEvents(url)
 elif mode == 50:	ALLMOVIES(url)
 elif mode == 51:	MOVIES()
 elif mode == 52:	Resolve(name, url)
+elif mode == 53: 	premierleague.Premier_League_Table()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
