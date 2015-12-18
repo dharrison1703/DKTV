@@ -15,19 +15,23 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.DKTV" name="DKTV" version="1.1.3" provider-name="DKTV">
+<addon id="plugin.video.dktvlounge" name="DKTV Lounge" version="0.1.0" provider-name="Devils Origin Builds">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.beautifulsoup" version="3.2.1"/>
 	<import addon="script.module.beautifulsoup4" />
-	<import addon="script.module.urlresolver"  version="2.1.2"/>
+	<import addon="script.module.httplib2" />
+	<import addon="script.module.urlresolver"/>
 	<import addon="script.module.requests" />
+
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">DKTV Live and On Demand</summary>
-    <description lang="en">DKTV Live and On Demand</description>
+    <summary lang="en">DKTV</summary>
+    <description lang="en">DKTV</description>
     <platform>all</platform>
   </extension>
 </addon>
