@@ -46,10 +46,11 @@ BaseURL = 'http://devil66wizard.x10host.com/addon/'
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def Home_Menu():
+	modules.addDir('Live TV','',14,ART+'LiveTv.png',FANART,'')
 	modules.addDir('Sports Centre','',2,ART+'SportsCentre.png',FANART,'')
 	
 def Live_TV():
-	modules.addDir()
+    modules.addDir('Live Tv','',14,ART+'LiveTv.png','','')
 	
 def Sports_Centre():
 	modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png','','')
@@ -988,6 +989,67 @@ def infoDialog(message, heading=addonInfo('name'), icon=addonIcon(), time=3000):
     try: dialog.notification(heading, message, icon, time, sound=False)
     except: execute("Notification(%s,%s, %s, %s)" % (heading, message, time, icon))
 
+def OPEN_URL(url):
+    req = urllib2.Request(url)
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+    response = urllib2.urlopen(req)
+    link=response.read()
+    response.close()
+    return link
+
+Dialog = xbmcgui.Dialog()
+
+def List_LiveTVCats():
+    modules.addDir('All Channels','',13,ART+'Icon.png','','')
+    modules.addDir('Entertainment','',13,ART+'Icon.png','','')
+    modules.addDir('Movies','',13,ART+'Icon.png','','')
+    modules.addDir('Music','',13,ART+'Icon.png','','')
+    modules.addDir('News','',13,ART+'Icon.png','','')
+    modules.addDir('Sports','',13,ART+'Icon.png','','')
+    modules.addDir('Documentary','',13,ART+'Icon.png','','')
+    modules.addDir('Kids','',13,ART+'Icon.png','','')
+    modules.addDir('Food','',13,ART+'Icon.png','','')
+    modules.addDir('Religious','',13,ART+'Icon.png','','')
+    modules.addDir('USA Channels','',13,ART+'Icon.png','','')
+    modules.addDir('Other','',13,ART+'Icon.png','','')
+
+def List_LiveTVFull(Cat_Name):
+    Find_all = False
+    cat_id = '0'
+    if Cat_Name == 'All Channels': Find_all = True
+    if Cat_Name == 'Entertainment': cat_id = '1'
+    if Cat_Name == 'Movies': cat_id = '2'
+    if Cat_Name == 'Music': cat_id = '3'
+    if Cat_Name == 'News': cat_id = '4'
+    if Cat_Name == 'Sports': cat_id = '5'
+    if Cat_Name == 'Documentary': cat_id = '6'
+    if Cat_Name == 'Kids': cat_id = '7'
+    if Cat_Name == 'Food': cat_id = '8'
+    if Cat_Name == 'Religious': cat_id = '9'
+    if Cat_Name == 'USA Channels': cat_id = '10'
+    if Cat_Name == 'Other': cat_id = '11'
+
+    html=OPEN_URL(Decode('aHR0cDovL3VrdHZub3cuZGVzaXN0cmVhbXMudHYvRGVzaVN0cmVhbXMvaW5kZXgyMDIucGhwP3RhZz1nZXRfYWxsX2NoYW5uZWwmdXNlcm5hbWU9YnlwYXNz'))
+    match = re.compile('"id":".+?","name":"(.+?)","img":"(.+?)","stream_url3":".+?","cat_id":"(.+?)","stream_url2":".+?","stream_url":".+?"}',re.DOTALL).findall(html)
+    print 'Len Match: >>>' + str(len(match))
+    for name,img, CatNO in match:
+        Image = 'http://uktvnow.desistreams.tv/' + (img).replace('\\','')
+        if CatNO == cat_id:
+		    modules.addDir(name,'',12,Image,Image,'')
+        elif Find_all == True:
+		    modules.addDir(name,'',12,Image,Image,'')
+        else: pass
+		
+	xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);
+
+def LiveTVFull(Search_Name):
+    html=OPEN_URL(Decode('aHR0cDovL3VrdHZub3cuZGVzaXN0cmVhbXMudHYvRGVzaVN0cmVhbXMvaW5kZXgyMDIucGhwP3RhZz1nZXRfYWxsX2NoYW5uZWwmdXNlcm5hbWU9YnlwYXNz'))
+    match = re.compile('"id":".+?","name":"'+Search_Name+'","img":"(.+?)","stream_url3":"(.+?)","cat_id":".+?","stream_url2":"(.+?)","stream_url":"(.+?)"}',re.DOTALL).findall(html)
+    for img,url,url2,url3 in match:
+		Image = 'http://uktvnow.desistreams.tv/' + (img).replace('\\','')
+		modules.AddTestDir(Search_Name + ': Link 1', (url).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)
+		modules.AddTestDir(Search_Name + ': Link 2', (url2).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)
+		modules.AddTestDir(Search_Name + ': Link 3', (url3).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)
 
 
 	
@@ -1410,6 +1472,12 @@ elif mode == 11:
         playsetresolved(url,name,iconimage,setresolved)
     else:
         xbmc.executebuiltin("XBMC.Notification(E.L.,Failed to extract regex. - "+"this"+",4000,"+icon+")")
+elif mode == 12		: LiveTVFull(name)
+elif mode == 13		: List_LiveTVFull(name)
+elif mode == 14		: List_LiveTVCats()
+elif mode == 15: 
+	#print '***** PLP Resolve'
+	Plp.resolveUrl(name, url, audio, image, fanart, playable, content)
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON FINISH **********
