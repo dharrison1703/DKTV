@@ -4,13 +4,15 @@ import re, urlparse, json, hashlib, CNF_Studio_Indexer
 
 import server, config, load_channels
 
-from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
+from BeautifulSoup import BeautifulStoneSoup, BeautifulSOAP
+from resources.modules.bs4 import BeautifulSoup
 from resources.modules import modules, yt, premierleague, speedtest
 from resources.modules.parsers import parser
 from resources.menus import LiveTvMenu, ODMenu
 from resources.scrapers import Wsimpsons
 from addon.common.addon import Addon
 from addon.common.net import Net
+from HTMLParser import HTMLParser
 
 #---------------------------------------------------------------------------------------------------------------
 addon       = xbmcaddon.Addon()
@@ -48,6 +50,7 @@ BaseURL = 'http://devil66wizard.x10host.com/addon/'
 def Home_Menu():
 	modules.addDir('Live TV','',14,ART+'LiveTv.png',FANART,'')
 	modules.addDir('Sports Centre','',2,ART+'SportsCentre.png',FANART,'')
+	modules.addDir('Replays','',4,'','','')
 	
 def Live_TV():
     modules.addDir('Live Tv','',14,ART+'LiveTv.png','','')
@@ -56,6 +59,87 @@ def Sports_Centre():
 	modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png','','')
 	modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png','','')
 	modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png','','')
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#********** Replays **********
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def replay_Menu():
+	modules.addDir('Premier League','http://www.fullmatchesandshows.com/premier-league/',3,'','','')
+	modules.addDir('Champions League','http://www.fullmatchesandshows.com/champions-league/',3,'','','')
+	modules.addDir('Shows','http://www.fullmatchesandshows.com/category/show/',3,'','','')
+	modules.addDir('Ligue 1','http://www.fullmatchesandshows.com/category/ligue-1/',3,'','','')
+	modules.addDir('La Liga','http://www.fullmatchesandshows.com/la-liga/',3,'','','')
+	modules.addDir('Bundesliga','http://www.fullmatchesandshows.com/bundesliga/',3,'','','')
+	modules.addDir('Serie A','http://www.fullmatchesandshows.com/category/serie-a/',3,'','','')
+
+def get_Vids(url):
+	HTML = OPEN_URL(url)
+	get_Rows = re.compile('<div class="td-block-row">(.+?)</div>',re.DOTALL).findall(HTML)
+	
+	#~~~~~~~~~~~~~~~~~~~~
+	#print 'Find Rows End: ' + str(len(get_Rows))
+	#~~~~~~~~~~~~~~~~~~~~
+	
+	for row in get_Rows:
+		#print row
+		#print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+		row_Item = re.compile('<div class="td-block-span4">(.*?)</a>',re.DOTALL).findall(row)
+		#print 'Find Row Item End. No Rows: ' + str(len(row_Item))
+		
+		for item in row_Item:
+			page_LINK = re.findall(r'<a href="(.+?)" rel="bookmark" title="(.+?)">',str(item))
+			img_Link = re.compile('<img width=".+?" height=".+?" itemprop=".+?" class="entry-thumb" src="(.+?)" alt=".+?" title=".+?"/>',re.DOTALL).findall(item)
+			if len(img_Link) < 1:
+				img_Link = re.findall(r'<img width=".+?" height=".+?" itemprop="image" class=".+?" src="(.+?)" alt="" title=".+?"/>',str(row))
+		
+			#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			#print 'Images: ' + str(len(img_Link))
+			#print 'Pages: ' + str(len(page_LINK))
+			#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			URL = ''
+			NAME = ''
+			IMAGE = ''
+			for url, name in page_LINK:
+				name = name.decode("utf-8")
+				name = name.replace('&#8211;', '-').replace('&#038;', '&')
+				URL = url
+				NAME = name
+				#~~~~~~~~~~~~~~~~~~~~
+				#print 'URL: ' + url
+				#print 'Name: ' + name
+				#print '-----------------------------------------------------------------------------------------------------------------------------------\n'
+				#~~~~~~~~~~~~~~~~~~~~
+			
+			for img in img_Link:
+				IMAGE = img
+				#~~~~~~~~~~~~~~~~~~~~
+				#print 'Image: ' + img
+				#print '-----------------------------------------------------------------------------------------------------------------------------------\n'
+				#~~~~~~~~~~~~~~~~~~~~
+				
+			get_Json(URL, NAME, IMAGE)
+		
+		
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
+# Build Video Link
+def get_Json(url, name, img):
+	HTML = OPEN_URL(url)
+	Json_Link = re.compile('<script data-config="(.+?)" data-css=".+?" data-height=".+?" data-width=".+?" src=".+?" type="text/javascript"></script>',re.DOTALL).findall(HTML)
+	for Link in Json_Link:
+		build_Url(Link, name, img)
+		
+
+def build_Url(url, name, img):
+	Build = url.replace('/v2', '').replace('zeus.json', 'video-sd.mp4?hosting_id=21772').replace('config.playwire.com', 'cdn.video.playwire.com')
+	
+	final_Url = 'http:' + Build
+	addLink(final_Url, name, img,'','','','','',None,'',1)
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Structure **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1444,8 +1528,8 @@ print "Regexs: "+str(regexs)
 if mode == None		: Home_Menu()
 elif mode == 1		: Live_TV()
 elif mode == 2		: Sports_Centre()
-elif mode == 3		: ()
-elif mode == 4		: ()
+elif mode == 3		: get_Vids(url)
+elif mode == 4		: replay_Menu()
 elif mode == 5		: ()
 elif mode == 6		: ()
 elif mode == 7		: ()
