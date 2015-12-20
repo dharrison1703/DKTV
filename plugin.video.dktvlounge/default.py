@@ -1,12 +1,13 @@
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon, os, sys, control, Plp
 import time, urllib, urllib2, base64
 import re, urlparse, json, hashlib, CNF_Studio_Indexer
+import urlresolver
 
 import server, config, load_channels
 
 from BeautifulSoup import BeautifulStoneSoup, BeautifulSOAP
 from resources.modules.bs4 import BeautifulSoup
-from resources.modules import modules, yt, premierleague, speedtest
+from resources.modules import modules, yt, premierleague, speedtest, lists, streams
 from resources.modules.parsers import parser
 from resources.menus import LiveTvMenu, ODMenu
 from resources.scrapers import Wsimpsons
@@ -35,7 +36,6 @@ VERSION = "0.1.0"
 ADDON_ID = 'plugin.video.dktvlounge'
 ADDON = xbmcaddon.Addon(id=ADDON_ID)
 
-
 HOME = ADDON.getAddonInfo('path')
 FANART = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID , 'fanart.jpg'))
 ICON = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID, 'icon.png'))
@@ -50,15 +50,26 @@ BaseURL = 'http://devil66wizard.x10host.com/addon/'
 def Home_Menu():
 	modules.addDir('Live TV','',14,ART+'LiveTv.png',FANART,'')
 	modules.addDir('Sports Centre','',2,ART+'SportsCentre.png',FANART,'')
-	modules.addDir('Replays','',4,'','','')
+	modules.addDir('Movies','',1,ART+'MoviesIcon.png','','')
+	modules.addDir('TV Shows','',5,ART+'TvShows.png','','')
 	
-def Live_TV():
-    modules.addDir('Live Tv','',14,ART+'LiveTv.png','','')
+def Movies():
+    modules.addDir('All Movies A-Z','',24,ART+'MoviesIcon.png','','')
+    modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png','','')
+
+
+def TV_Shows():
+    Recent_Url = Decode('aHR0cDovL2JhY2syYmFzaWNzLngxMGhvc3QuY29tL2JhY2syYmFzaWNzL3Rlc3QvcmVjZW50ZXBpc29kZXMucGhw')
+    modules.addDir('Recent Episodes',Recent_Url,400,ART+'MoviesIcon.png','','')
+    modules.addDir('All Shows','',23,ART+'MoviesIcon.png','','')
+
 	
 def Sports_Centre():
 	modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png','','')
 	modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png','','')
+	modules.addDir('Football Replays','',4,ART+'footballod.png',FANART,'')
 	modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png','','')
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Replays **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -141,6 +152,11 @@ def build_Url(url, name, img):
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#********** Movies **********
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Structure **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 import traceback
@@ -183,6 +199,9 @@ def getData(url,fanart):
                 if lcount>1: linkedUrl=''
 
                 name = channel('name')[0].string
+                print '~~~~~~~~~~~~~~~~~~'
+                print name
+                print '~~~~~~~~~~~~~~~~~~'
                 thumbnail = channel('thumbnail')[0].string
                 if thumbnail == None:
                     thumbnail = ''
@@ -230,9 +249,11 @@ def getData(url,fanart):
 
                 try:
                     if linkedUrl=='':
+                        print name.encode('utf-8', 'ignore')
                         addDir(name.encode('utf-8', 'ignore'),url.encode('utf-8'),48,thumbnail,fanArt,desc,genre,date,credits,True)
                     else:
                         #print linkedUrl
+                        print name.encode('utf-8')
                         addDir(name.encode('utf-8'),linkedUrl.encode('utf-8'),47,thumbnail,fanArt,desc,genre,date,None,'source')
                 except:
                     addon_log('There was a problem adding directory from getData(): '+name.encode('utf-8', 'ignore'))
@@ -256,6 +277,9 @@ def getItems(items,fanart):
             isJsonrpc = False
             try:
                 name = item('title')[0].string
+                print '~~~~~~~~~~~~~~~~~~'
+                print name
+                print '~~~~~~~~~~~~~~~~~~'
                 if name is None:
                     name = 'unknown?'
             except:
@@ -446,16 +470,21 @@ def getItems(items,fanart):
                                 #print 'ADDLINK 1'
                                 addLink(i,'%s) %s' %(alt, name.encode('utf-8', 'ignore')),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)                            
                     else:
+                        print name
                         addLink('', name.encode('utf-8', 'ignore'),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)
                 else:
                     if isXMLSource:
+                        print name
                     	addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),47,thumbnail,fanart,desc,genre,date,None,'source')
                     elif isJsonrpc:
+                        print name
                         addDir(name.encode('utf-8'),ext_url[0],53,thumbnail,fanart,desc,genre,date,None,'source')
                     elif url[0].find('sublink') > 0:
+                        print name
                         addDir(name.encode('utf-8'),url[0],30,thumbnail,fanArt,desc,regexs,'','','')
                         #addDir(name.encode('utf-8'),url[0],30,thumbnail,fanart,desc,genre,date,'sublink')				
                     else: 
+                        print name
                         addLink(url[0],name.encode('utf-8', 'ignore'),thumbnail,fanArt,desc,genre,date,True,None,regexs,total)
 
                     #print 'success'
@@ -693,6 +722,7 @@ def getChannelItems(name,url,fanart):
             fanArt = fanart
         for channel in channel_list('subchannel'):
             name = channel('name')[0].string
+            print name
             try:
                 thumbnail = channel('thumbnail')[0].string
                 if thumbnail == None:
@@ -782,6 +812,7 @@ def ClearCachedData():
 #----------------------------------------------- GetSublinks(name,url,iconimage,fanart)-----------------------------------------------
 
 def GetSublinks(name,url,iconimage,fanart):
+    print name
     List=[]; ListU=[]; c=0
     all_videos = regex_get_all(url, 'sublink:', '--#')
     for a in all_videos:
@@ -933,9 +964,13 @@ def parse_m3u(data):
     total = len(match)
     #print 'total m3u links',total
     for other,channel_name,stream_url in match:
+        channel_name = channel_name.replace('[COLOR green][B]', '[COLOR blue]').replace('[COLOR blue][B]', '[COLOR green]').replace('[/B][/COLOR]', '[/COLOR]').replace('[COLOR yellow][B]', '[COLOR black]')
         if 'tvg-logo' in other:
             thumbnail = re_me(other,'tvg-logo=[\'"](.*?)[\'"]')
-            if thumbnail:
+            if 'apple_itunes_like_hd_icon_by_phjellming.jpg' in thumbnail:
+                thumbnail = 'https://footballseasons.files.wordpress.com/2013/05/premier-league.png'
+            '''
+			if thumbnail:
                 if thumbnail.startswith('http'):
                     thumbnail = thumbnail
                 
@@ -946,7 +981,7 @@ def parse_m3u(data):
                 else:
                     thumbnail = thumbnail
             #else:
-            
+            '''
         else:
             thumbnail = ''
         if 'type' in other:
@@ -957,7 +992,6 @@ def parse_m3u(data):
                 url = stream_url.split('&regexs=')
                 #print url[0] getSoup(url,data=None)
                 regexs = parse_regex(getSoup('',data=url[1]))
-                
                 addLink(url[0], channel_name,thumbnail,'','','','','',None,regexs,total)
                 continue
         addLink(stream_url, channel_name,thumbnail,'','','','','',None,'',total)
@@ -1526,11 +1560,11 @@ print "Regexs: "+str(regexs)
 
 
 if mode == None		: Home_Menu()
-elif mode == 1		: Live_TV()
+elif mode == 1		: Movies()
 elif mode == 2		: Sports_Centre()
 elif mode == 3		: get_Vids(url)
 elif mode == 4		: replay_Menu()
-elif mode == 5		: ()
+elif mode == 5		: TV_Shows()
 elif mode == 6		: ()
 elif mode == 7		: ()
 
@@ -1562,6 +1596,22 @@ elif mode == 14		: List_LiveTVCats()
 elif mode == 15: 
 	#print '***** PLP Resolve'
 	Plp.resolveUrl(name, url, audio, image, fanart, playable, content)
+elif mode == 16    : Resolve(name, url)
+elif mode == 17    : LISTS(url)
+elif mode == 18    : LISTS2(url)
+elif mode == 19    : LISTS3(url)
+elif mode == 20    : lists.Lists()
+elif mode == 21    : lists.TESTCATS2()
+elif mode == 22    : streams.ParseURL(url)
+elif mode == 23    : lists.TESTCATS3()
+elif mode == 24	   : lists.Build_MenuMovies()
+elif mode == 25    : lists.TESTCATS4()
+elif mode == 400   : lists.Live(url)
+elif mode == 404   : lists.TestPlayUrl(name, url, iconimage)
+
+
+
+
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON FINISH **********
