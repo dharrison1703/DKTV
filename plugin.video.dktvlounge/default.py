@@ -964,7 +964,7 @@ def parse_m3u(data):
     total = len(match)
     #print 'total m3u links',total
     for other,channel_name,stream_url in match:
-        channel_name = channel_name.replace('[COLOR green][B]', '[COLOR blue]').replace('[COLOR blue][B]', '[COLOR green]').replace('[/B][/COLOR]', '[/COLOR]').replace('[COLOR yellow][B]', '[COLOR black]')
+        channel_name = channel_name.replace('[COLOR green][B]', '[B]').replace('[COLOR blue][B]', '[B]').replace('[/B][/COLOR]', '[/B]').replace('[COLOR yellow][B]', '[B]').replace('HD Footy list - only active when PL games on', 'Live Football By DKTV Lounge').replace('Next match will be available', '')
         if 'tvg-logo' in other:
             thumbnail = re_me(other,'tvg-logo=[\'"](.*?)[\'"]')
             if 'apple_itunes_like_hd_icon_by_phjellming.jpg' in thumbnail:
