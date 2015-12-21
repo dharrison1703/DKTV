@@ -50,104 +50,107 @@ BaseURL = 'http://devil66wizard.x10host.com/addon/'
 def Home_Menu():
 	modules.addDir('Live TV','',14,ART+'LiveTv.png',FANART,'')
 	modules.addDir('Sports Centre','',2,ART+'SportsCentre.png',FANART,'')
-	modules.addDir('Movies','',1,ART+'MoviesIcon.png','','')
-	modules.addDir('TV Shows','',5,ART+'TvShows.png','','')
+	modules.addDir('Movies','',1,ART+'MoviesIcon.png',FANART,'')
+	modules.addDir('TV Shows','',5,ART+'TvShows.png',FANART,'')
 	
 def Movies():
-    modules.addDir('All Movies A-Z','',24,ART+'MoviesIcon.png','','')
-    modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png','','')
+    modules.addDir('All Movies A-Z','',24,ART+'MoviesIcon.png',FANART,'')
+    modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png',FANART,'')
+    modules.addDir('Coming Soon','',26,ART+'MoviesIcon.png',FANART,'')
 
 
 def TV_Shows():
     Recent_Url = Decode('aHR0cDovL2JhY2syYmFzaWNzLngxMGhvc3QuY29tL2JhY2syYmFzaWNzL3Rlc3QvcmVjZW50ZXBpc29kZXMucGhw')
-    modules.addDir('Recent Episodes',Recent_Url,400,ART+'MoviesIcon.png','','')
-    modules.addDir('All Shows','',23,ART+'MoviesIcon.png','','')
+    modules.addDir('Recent Episodes',Recent_Url,400,ART+'MoviesIcon.png',FANART,'')
+    modules.addDir('All Shows','',23,ART+'MoviesIcon.png',FANART,'')
 
 	
 def Sports_Centre():
-	modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png','','')
-	modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png','','')
+	modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png',FANART,'')
+	modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
 	modules.addDir('Football Replays','',4,ART+'footballod.png',FANART,'')
-	modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png','','')
+	modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Replays **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def replay_Menu():
-	modules.addDir('Premier League','http://www.fullmatchesandshows.com/premier-league/',3,'','','')
-	modules.addDir('Champions League','http://www.fullmatchesandshows.com/champions-league/',3,'','','')
-	modules.addDir('Shows','http://www.fullmatchesandshows.com/category/show/',3,'','','')
-	modules.addDir('Ligue 1','http://www.fullmatchesandshows.com/category/ligue-1/',3,'','','')
-	modules.addDir('La Liga','http://www.fullmatchesandshows.com/la-liga/',3,'','','')
-	modules.addDir('Bundesliga','http://www.fullmatchesandshows.com/bundesliga/',3,'','','')
-	modules.addDir('Serie A','http://www.fullmatchesandshows.com/category/serie-a/',3,'','','')
+	modules.addDir('Shows',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9zaG93Lw=='),3,'https://upload.wikimedia.org/wikipedia/en/8/84/Match_of_the_Day.png',FANART,'')
+	modules.addDir('Premier League',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9wcmVtaWVyLWxlYWd1ZS8='),3,'https://footballseasons.files.wordpress.com/2013/05/premier-league.png',FANART,'')
+	modules.addDir('Champions League',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jaGFtcGlvbnMtbGVhZ3VlLw=='),3,'http://www.ecursuri.ro/images/teste/test-champions-league.jpg',FANART,'')
+	modules.addDir('La Liga',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9sYS1saWdhLw=='),3,'http://1.bp.blogspot.com/-c6kQ40ryhyo/U19cUlz25sI/AAAAAAAABak/qtn5chSFZm0/s1600/la-liga-logo_display_image.png',FANART,'')
+	modules.addDir('Bundesliga',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9idW5kZXNsaWdhLw=='),3,'http://m.img.brothersoft.com/iphone/189/518670189_icon175x175.jpg',FANART,'')
+	modules.addDir('Serie A',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9zZXJpZS1hLw=='),3,'http://files.jcriccione.it/200000223-2484526782/serie%20a.png',FANART,'')
+	modules.addDir('Ligue 1',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9saWd1ZS0xLw=='),3,'http://a1.mzstatic.com/us/r30/Purple5/v4/37/c7/44/37c744ae-5824-42b7-6ce0-5f471f52baab/icon180x180.jpeg',FANART,'')
 
-def get_Vids(url):
-	HTML = OPEN_URL(url)
-	get_Rows = re.compile('<div class="td-block-row">(.+?)</div>',re.DOTALL).findall(HTML)
-	
-	#~~~~~~~~~~~~~~~~~~~~
-	#print 'Find Rows End: ' + str(len(get_Rows))
-	#~~~~~~~~~~~~~~~~~~~~
-	
+#_________________________________________________________________________________________________________________________________________________________
+
+# Get All Rows
+
+def get_All_Rows(url):
+	request_HTML = OPEN_URL(url)
+	get_Rows = re.compile('<div class="td-block-row">(.*?)</div><!--./row-fluid-->',re.DOTALL).findall(request_HTML)
 	for row in get_Rows:
-		#print row
-		#print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-		row_Item = re.compile('<div class="td-block-span4">(.*?)</a>',re.DOTALL).findall(row)
-		#print 'Find Row Item End. No Rows: ' + str(len(row_Item))
-		
-		for item in row_Item:
-			page_LINK = re.findall(r'<a href="(.+?)" rel="bookmark" title="(.+?)">',str(item))
-			img_Link = re.compile('<img width=".+?" height=".+?" itemprop=".+?" class="entry-thumb" src="(.+?)" alt=".+?" title=".+?"/>',re.DOTALL).findall(item)
-			if len(img_Link) < 1:
-				img_Link = re.findall(r'<img width=".+?" height=".+?" itemprop="image" class=".+?" src="(.+?)" alt="" title=".+?"/>',str(row))
-		
-			#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			#print 'Images: ' + str(len(img_Link))
-			#print 'Pages: ' + str(len(page_LINK))
-			#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			URL = ''
-			NAME = ''
-			IMAGE = ''
-			for url, name in page_LINK:
-				name = name.decode("utf-8")
-				name = name.replace('&#8211;', '-').replace('&#038;', '&')
-				URL = url
-				NAME = name
-				#~~~~~~~~~~~~~~~~~~~~
-				#print 'URL: ' + url
-				#print 'Name: ' + name
-				#print '-----------------------------------------------------------------------------------------------------------------------------------\n'
-				#~~~~~~~~~~~~~~~~~~~~
-			
-			for img in img_Link:
-				IMAGE = img
-				#~~~~~~~~~~~~~~~~~~~~
-				#print 'Image: ' + img
-				#print '-----------------------------------------------------------------------------------------------------------------------------------\n'
-				#~~~~~~~~~~~~~~~~~~~~
-				
-			get_Json(URL, NAME, IMAGE)
-		
-		
+		for_Each_Row(row)
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------
+# Get Each Video From The Row
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------
-# Build Video Link
-def get_Json(url, name, img):
-	HTML = OPEN_URL(url)
-	Json_Link = re.compile('<script data-config="(.+?)" data-css=".+?" data-height=".+?" data-width=".+?" src=".+?" type="text/javascript"></script>',re.DOTALL).findall(HTML)
-	for Link in Json_Link:
-		build_Url(Link, name, img)
-		
+def for_Each_Row(row):
+	Get_Row_Item = re.compile('<div class="td-block-span4">(.+?)<!-- ./td-block-span4 -->',re.DOTALL).findall(row)
+	for row_Item in Get_Row_Item:
+		get_Each_Item_Data(row_Item)
 
-def build_Url(url, name, img):
-	Build = url.replace('/v2', '').replace('zeus.json', 'video-sd.mp4?hosting_id=21772').replace('config.playwire.com', 'cdn.video.playwire.com')
+# For Each Video In Row Get Link & Title
+
+def get_Each_Item_Data(row_Item):
+	get_item_Data = re.findall(r'<a href="(.+?)" rel="bookmark" title="(.+?)">',str(row_Item))
+	item_Data = []
+	link = ''
+	for link, title in get_item_Data:
+		item_Data.append(title)
+		link = link
 	
-	final_Url = 'http:' + Build
-	addLink(final_Url, name, img,'','','','','',None,'',1)
+	get_Each_Item_Image(item_Data, row_Item, link)
+
+# For Each Video In Row Get Image
+
+def get_Each_Item_Image(item_Data, row_Item, link):
+	get_Item_Image = re.compile('<img width=".+?" height=".+?" itemprop=".+?" class="entry-thumb" src="(.+?)" alt=".+?" title=".+?"/>',re.DOTALL).findall(row_Item)
+	for image in get_Item_Image:
+		item_Data.append(image)
+	
+	get_Each_Item_PLink(item_Data, link)
+
+# For Each Video In Row Get Play Link
+	
+def get_Each_Item_PLink(item_Data, link):
+	get_HTML = OPEN_URL(link)
+	get_Play_Link = re.compile('<script data-config="(.+?)" data-css=".+?" data-height=".+?" data-width=".+?" src=".+?" type="text/javascript"></script>',re.DOTALL).findall(get_HTML)
+	for pLink in get_Play_Link:
+		item_Data.append(pLink)
+		
+	clean_And_Build_Item(item_Data)
+
+# For Each Video In Row Clean And Build Item
+
+def clean_And_Build_Item(item_Data):
+	Name = item_Data[0]
+	Image = item_Data[1]
+	Play_Link = item_Data[2]
+	
+	Name = Name.decode("utf-8")
+	Name = Name.replace('&#8211;', '-').replace('&#038;', '&')
+	Play_Link = Play_Link.replace('/v2', '').replace('zeus.json', 'video-sd.mp4?hosting_id=21772').replace('config.playwire.com', 'cdn.video.playwire.com')
+	
+	addLink('http:' + Play_Link, Name, Image,'','','','','',None,'',1)
+#_________________________________________________________________________________________________________________________________________________________
+
+
+
+
+
+	
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -1117,57 +1120,6 @@ def OPEN_URL(url):
 
 Dialog = xbmcgui.Dialog()
 
-def List_LiveTVCats():
-    modules.addDir('All Channels','',13,ART+'Icon.png','','')
-    modules.addDir('Entertainment','',13,ART+'Icon.png','','')
-    modules.addDir('Movies','',13,ART+'Icon.png','','')
-    modules.addDir('Music','',13,ART+'Icon.png','','')
-    modules.addDir('News','',13,ART+'Icon.png','','')
-    modules.addDir('Sports','',13,ART+'Icon.png','','')
-    modules.addDir('Documentary','',13,ART+'Icon.png','','')
-    modules.addDir('Kids','',13,ART+'Icon.png','','')
-    modules.addDir('Food','',13,ART+'Icon.png','','')
-    modules.addDir('Religious','',13,ART+'Icon.png','','')
-    modules.addDir('USA Channels','',13,ART+'Icon.png','','')
-    modules.addDir('Other','',13,ART+'Icon.png','','')
-
-def List_LiveTVFull(Cat_Name):
-    Find_all = False
-    cat_id = '0'
-    if Cat_Name == 'All Channels': Find_all = True
-    if Cat_Name == 'Entertainment': cat_id = '1'
-    if Cat_Name == 'Movies': cat_id = '2'
-    if Cat_Name == 'Music': cat_id = '3'
-    if Cat_Name == 'News': cat_id = '4'
-    if Cat_Name == 'Sports': cat_id = '5'
-    if Cat_Name == 'Documentary': cat_id = '6'
-    if Cat_Name == 'Kids': cat_id = '7'
-    if Cat_Name == 'Food': cat_id = '8'
-    if Cat_Name == 'Religious': cat_id = '9'
-    if Cat_Name == 'USA Channels': cat_id = '10'
-    if Cat_Name == 'Other': cat_id = '11'
-
-    html=OPEN_URL(Decode('aHR0cDovL3VrdHZub3cuZGVzaXN0cmVhbXMudHYvRGVzaVN0cmVhbXMvaW5kZXgyMDIucGhwP3RhZz1nZXRfYWxsX2NoYW5uZWwmdXNlcm5hbWU9YnlwYXNz'))
-    match = re.compile('"id":".+?","name":"(.+?)","img":"(.+?)","stream_url3":".+?","cat_id":"(.+?)","stream_url2":".+?","stream_url":".+?"}',re.DOTALL).findall(html)
-    print 'Len Match: >>>' + str(len(match))
-    for name,img, CatNO in match:
-        Image = 'http://uktvnow.desistreams.tv/' + (img).replace('\\','')
-        if CatNO == cat_id:
-		    modules.addDir(name,'',12,Image,Image,'')
-        elif Find_all == True:
-		    modules.addDir(name,'',12,Image,Image,'')
-        else: pass
-		
-	xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);
-
-def LiveTVFull(Search_Name):
-    html=OPEN_URL(Decode('aHR0cDovL3VrdHZub3cuZGVzaXN0cmVhbXMudHYvRGVzaVN0cmVhbXMvaW5kZXgyMDIucGhwP3RhZz1nZXRfYWxsX2NoYW5uZWwmdXNlcm5hbWU9YnlwYXNz'))
-    match = re.compile('"id":".+?","name":"'+Search_Name+'","img":"(.+?)","stream_url3":"(.+?)","cat_id":".+?","stream_url2":"(.+?)","stream_url":"(.+?)"}',re.DOTALL).findall(html)
-    for img,url,url2,url3 in match:
-		Image = 'http://uktvnow.desistreams.tv/' + (img).replace('\\','')
-		modules.AddTestDir(Search_Name + ': Link 1', (url).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)
-		modules.AddTestDir(Search_Name + ': Link 2', (url2).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)
-		modules.AddTestDir(Search_Name + ': Link 3', (url3).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)
 
 
 	
@@ -1562,7 +1514,7 @@ print "Regexs: "+str(regexs)
 if mode == None		: Home_Menu()
 elif mode == 1		: Movies()
 elif mode == 2		: Sports_Centre()
-elif mode == 3		: get_Vids(url)
+elif mode == 3		: get_All_Rows(url)
 elif mode == 4		: replay_Menu()
 elif mode == 5		: TV_Shows()
 elif mode == 6		: ()
@@ -1590,9 +1542,9 @@ elif mode == 11:
         playsetresolved(url,name,iconimage,setresolved)
     else:
         xbmc.executebuiltin("XBMC.Notification(E.L.,Failed to extract regex. - "+"this"+",4000,"+icon+")")
-elif mode == 12		: LiveTVFull(name)
-elif mode == 13		: List_LiveTVFull(name)
-elif mode == 14		: List_LiveTVCats()
+elif mode == 12		: lists.LiveTVFull(name)
+elif mode == 13		: lists.List_LiveTVFull(name)
+elif mode == 14		: lists.List_LiveTVCats()
 elif mode == 15: 
 	#print '***** PLP Resolve'
 	Plp.resolveUrl(name, url, audio, image, fanart, playable, content)
@@ -1606,6 +1558,7 @@ elif mode == 22    : streams.ParseURL(url)
 elif mode == 23    : lists.TESTCATS3()
 elif mode == 24	   : lists.Build_MenuMovies()
 elif mode == 25    : lists.TESTCATS4()
+elif mode == 26	   : lists.Build_MenuTrailers()
 elif mode == 400   : lists.Live(url)
 elif mode == 404   : lists.TestPlayUrl(name, url, iconimage)
 
