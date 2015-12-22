@@ -4,13 +4,13 @@ from resources.modules.parsers import parser
 
 ADDON_ID = 'plugin.video.dktvlounge'
 ADDON = xbmcaddon.Addon(id=ADDON_ID)
-BaseURL = 'http://chameleon.x10host.com/test/links/'
+BaseURL = 'http://devil666wizard.x10host.com/addon/'
 ART = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID + '/resources/icons/'))
 FANART = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID , 'fanart.jpg'))
 
 #********** Test Text Files YouTube**********
 TwentyFS = 'ONDeMaND/TWENTYFOURSEVEN.m3u'
-NrlYTGames = 'ONDeMaND/NRLGAMESYT.m3u'
+Boxing = 'Replays/Boxing.m3u'
 YTMatchOfTheDay = 'ONDeMaND/YTMatchOfTheDay.m3u'
 WSimpsons = 'ONDeMaND/WSimpsons.m3u'
 
@@ -28,8 +28,8 @@ def TwentyFour_Seven():
 	modules.TestMenuDIR(url)
 	modules.AUTO_VIEW('518')
 
-def NRL_YT_RP():
-	url = BaseURL + NrlYTGames
+def BoxingYT():
+	url = BaseURL + Boxing
 	modules.TestMenuDIR(url)
 	modules.AUTO_VIEW('518')
 

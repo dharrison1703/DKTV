@@ -108,12 +108,12 @@ def PlayVideo(id, forcePlayer=False):
 
 
 def GetVideoInformation(id):
-    #id = 'H7iQ4sAf0OE' #test for HLSVP
-    #id = 'ofHlUJuw8Ak' #test for stereo
-    #id = 'ifZkeuSrNRc' #account closed
-    #id = 'M7FIvfx5J10'
-    #id = 'n-D1EB74Ckg' #vevo
-    #id = 'lVMWEheQ2hU' #vevo
+    id = 'H7iQ4sAf0OE' #test for HLSVP
+    id = 'ofHlUJuw8Ak' #test for stereo
+    id = 'ifZkeuSrNRc' #account closed
+    id = 'M7FIvfx5J10'
+    id = 'n-D1EB74Ckg' #vevo
+    id = 'lVMWEheQ2hU' #vevo
 
     video  = {}
     links  = []

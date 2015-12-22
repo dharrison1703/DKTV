@@ -103,7 +103,6 @@ def Build_MenuTrailers():
 	streams.ParseURL(url1)
 	streams.ParseURL(url2)
 
-
 def Live(url):
         xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_TITLE )
         vidlocation=('%s%s'%(BASE,url))

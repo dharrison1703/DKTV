@@ -67,10 +67,14 @@ def TV_Shows():
 	
 def Sports_Centre():
 	modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png',FANART,'')
+	modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
 	modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
-	modules.addDir('Football Replays','',4,ART+'footballod.png',FANART,'')
 	modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
 
+def Sports_Replays():
+	modules.addDir('Football Replays','',4,ART+'footballod.png',FANART,'')
+	modules.addDir('Boxing Replays','http://devil666wizard.x10host.com/addon/Replays/Boxing.m3u',29,ART+'BoxingOD.png',FANART,'')
+	
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Replays **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -967,7 +971,7 @@ def parse_m3u(data):
     total = len(match)
     #print 'total m3u links',total
     for other,channel_name,stream_url in match:
-        channel_name = channel_name.replace('[COLOR green][B]', '[B]').replace('[COLOR blue][B]', '[B]').replace('[/B][/COLOR]', '[/B]').replace('[COLOR yellow][B]', '[B]').replace('HD Footy list - only active when PL games on', 'Live Football By DKTV Lounge').replace('Next match will be available', '')
+        channel_name = channel_name.replace('[COLOR green][B]', '[B]').replace('[COLOR blue][B]', '[B]').replace('[COLOR white][B]', '[B]').replace('[/B][/COLOR]', '[/B]').replace('[COLOR yellow][B]', '[B]').replace('HD Footy list - only active when PL games on', 'Live Football By DKTV Lounge').replace('Next match will be available', '')
         if 'tvg-logo' in other:
             thumbnail = re_me(other,'tvg-logo=[\'"](.*?)[\'"]')
             if 'apple_itunes_like_hd_icon_by_phjellming.jpg' in thumbnail:
@@ -1517,7 +1521,7 @@ elif mode == 2		: Sports_Centre()
 elif mode == 3		: get_All_Rows(url)
 elif mode == 4		: replay_Menu()
 elif mode == 5		: TV_Shows()
-elif mode == 6		: ()
+elif mode == 6		: Sports_Replays()
 elif mode == 7		: ()
 
 elif mode == 8 	: 
@@ -1548,19 +1552,22 @@ elif mode == 14		: lists.List_LiveTVCats()
 elif mode == 15: 
 	#print '***** PLP Resolve'
 	Plp.resolveUrl(name, url, audio, image, fanart, playable, content)
-elif mode == 16    : Resolve(name, url)
-elif mode == 17    : LISTS(url)
-elif mode == 18    : LISTS2(url)
-elif mode == 19    : LISTS3(url)
-elif mode == 20    : lists.Lists()
-elif mode == 21    : lists.TESTCATS2()
-elif mode == 22    : streams.ParseURL(url)
-elif mode == 23    : lists.TESTCATS3()
-elif mode == 24	   : lists.Build_MenuMovies()
-elif mode == 25    : lists.TESTCATS4()
-elif mode == 26	   : lists.Build_MenuTrailers()
-elif mode == 400   : lists.Live(url)
-elif mode == 404   : lists.TestPlayUrl(name, url, iconimage)
+elif mode == 16  	: Resolve(name, url)
+elif mode == 17  	: LISTS(url)
+elif mode == 18  	: LISTS2(url)
+elif mode == 19  	: LISTS3(url)
+elif mode == 20  	: lists.Lists()
+elif mode == 21  	: lists.TESTCATS2()
+elif mode == 22  	: streams.ParseURL(url)
+elif mode == 23  	: lists.TESTCATS3()
+elif mode == 24	 	: lists.Build_MenuMovies()
+elif mode == 25  	: lists.TESTCATS4()
+elif mode == 26	 	: lists.Build_MenuTrailers()
+elif mode == 27		: yt.PlayVideo(url)
+elif mode == 28		: ODMenu.BoxingYT()
+elif mode == 29		: modules.TestPlayUrl(name, url, iconimage)
+elif mode == 400 	: lists.Live(url)
+elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
 
 
 
