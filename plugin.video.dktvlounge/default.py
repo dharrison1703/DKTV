@@ -116,29 +116,140 @@ def Home_Menu(PASSCODE, PASSWORD):
 
     
 	
-def Movies():
-	modules.addDir('All Movies A-Z','',24,ART+'MoviesIcon.png',FANART,'')
-	modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png',FANART,'')
-	modules.addDir('Coming Soon','',26,ART+'MoviesIcon.png',FANART,'')
+def Movies(PASSCODE, PASSWORD): # add this into ()
+    
+	input_Failed = False
+    
+	if PASSWORD != '':
+		if PASSCODE != '':
+			if os.path.exists(SKIN):
+				if os.path.exists(HERE):
+					if sys_Check.system_Check(PASSWORD, PASSCODE):
+					
+						modules.addDir('All Movies A-Z','',24,ART+'MoviesIcon.png',FANART,'')
+						modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png',FANART,'')
+						modules.addDir('Coming Soon','',26,ART+'MoviesIcon.png',FANART,'')
+						
+					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
+				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+		else:
+			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
+			input_Failed = True
+	else:
+		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
+		input_Failed = True
+	
+	if input_Failed:
+		code_Input()
+		pass_Input()
+		PASSCODE = ADDON.getSetting('passcode')
+		PASSWORD = ADDON.getSetting('password')
+		Movies(PASSCODE, PASSWORD) #This line will change depending on where you are mate
+		input_Failed = False
+	else: pass
 
 
-
-def TV_Shows():
-    Recent_Url = Decode('aHR0cDovL2JhY2syYmFzaWNzLngxMGhvc3QuY29tL2JhY2syYmFzaWNzL3Rlc3QvcmVjZW50ZXBpc29kZXMucGhw')
-    modules.addDir('Recent Episodes',Recent_Url,400,ART+'MoviesIcon.png',FANART,'')
-    modules.addDir('All Shows','',23,ART+'MoviesIcon.png',FANART,'')
+def TV_Shows(PASSCODE, PASSWORD): # add this into ()
+    
+	input_Failed = False
+    
+	if PASSWORD != '':
+		if PASSCODE != '':
+			if os.path.exists(SKIN):
+				if os.path.exists(HERE):
+					if sys_Check.system_Check(PASSWORD, PASSCODE):
+					
+						Recent_Url = Decode('aHR0cDovL2JhY2syYmFzaWNzLngxMGhvc3QuY29tL2JhY2syYmFzaWNzL3Rlc3QvcmVjZW50ZXBpc29kZXMucGhw')
+						modules.addDir('Recent Episodes',Recent_Url,400,ART+'MoviesIcon.png',FANART,'')
+						modules.addDir('All Shows','',23,ART+'MoviesIcon.png',FANART,'')
+						
+					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
+				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+		else:
+			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
+			input_Failed = True
+	else:
+		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
+		input_Failed = True
+	
+	if input_Failed:
+		code_Input()
+		pass_Input()
+		PASSCODE = ADDON.getSetting('passcode')
+		PASSWORD = ADDON.getSetting('password')
+		TV_Shows(PASSCODE, PASSWORD) #This line will change depending on where you are mate
+		input_Failed = False
+	else: pass
 
 	
-def Sports_Centre():
-	modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png',FANART,'')
-	modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
-	modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
+def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
+    
+	input_Failed = False
+    
+	if PASSWORD != '':
+		if PASSCODE != '':
+			if os.path.exists(SKIN):
+				if os.path.exists(HERE):
+					if sys_Check.system_Check(PASSWORD, PASSCODE):
+					
+						modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png',FANART,'')
+						modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
+						modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
+						
+					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
+				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+		else:
+			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
+			input_Failed = True
+	else:
+		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
+		input_Failed = True
+	
+	if input_Failed:
+		code_Input()
+		pass_Input()
+		PASSCODE = ADDON.getSetting('passcode')
+		PASSWORD = ADDON.getSetting('password')
+		Sports_Centre(PASSCODE, PASSWORD) #This line will change depending on where you are mate
+		input_Failed = False
+	else: pass
 
-def Sports_Replays():
-	modules.addDir('Football','',4,ART+'footballod.png',FANART,'')
-	modules.addDir('Boxing',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvQm9YaU5nLnBocA=='),39,ART+'BoxingOD.png',FANART,'')
-	modules.addDir('UFC',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvVWZDckVwTGFZcy5waHA='),39,ART+'icon.png',FANART,'')
-	modules.addDir('WWE','',29,ART+'icon.png',FANART,'')
+def Sports_Replays(PASSCODE, PASSWORD): # add this into ()
+    
+	input_Failed = False
+    
+	if PASSWORD != '':
+		if PASSCODE != '':
+			if os.path.exists(SKIN):
+				if os.path.exists(HERE):
+					if sys_Check.system_Check(PASSWORD, PASSCODE):
+					
+						modules.addDir('Football','',4,ART+'footballod.png',FANART,'')
+						modules.addDir('Boxing',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvQm9YaU5nLnBocA=='),39,ART+'BoxingOD.png',FANART,'')
+						modules.addDir('UFC',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvVWZDckVwTGFZcy5waHA='),39,ART+'icon.png',FANART,'')
+						modules.addDir('WWE','',29,ART+'icon.png',FANART,'')
+						
+					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
+				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+		else:
+			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
+			input_Failed = True
+	else:
+		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
+		input_Failed = True
+	
+	if input_Failed:
+		code_Input()
+		pass_Input()
+		PASSCODE = ADDON.getSetting('passcode')
+		PASSWORD = ADDON.getSetting('password')
+		Sports_Replays(PASSCODE, PASSWORD) #This line will change depending on where you are mate
+		input_Failed = False
+	else: pass
 	
 def WWE_Home():
 	modules.addDir('Raw',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvUmF3LnBocA=='),39,ART+'icon.png',FANART,'')
@@ -146,9 +257,37 @@ def WWE_Home():
 	modules.addDir('PPVs',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvV3dFcFB2Uy5waHA='),39,ART+'icon.png',FANART,'')
 	modules.addDir('Other',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvV3dFLnBocA=='),39,ART+'icon.png',FANART,'')
 
-def Live_Today():
-	modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
-	modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
+def Live_Today(PASSCODE, PASSWORD): # add this into ()
+    
+	input_Failed = False
+    
+	if PASSWORD != '':
+		if PASSCODE != '':
+			if os.path.exists(SKIN):
+				if os.path.exists(HERE):
+					if sys_Check.system_Check(PASSWORD, PASSCODE):
+					
+						modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
+						modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
+						
+					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
+				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+		else:
+			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
+			input_Failed = True
+	else:
+		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
+		input_Failed = True
+	
+	if input_Failed:
+		code_Input()
+		pass_Input()
+		PASSCODE = ADDON.getSetting('passcode')
+		PASSWORD = ADDON.getSetting('password')
+		Live_Today(PASSCODE, PASSWORD) #This line will change depending on where you are mate
+		input_Failed = False
+	else: pass
 	
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Replays **********
@@ -1591,12 +1730,12 @@ print "Regexs: "+str(regexs)
 
 
 if mode == None		: Home_Menu(PASSCODE, PASSWORD)
-elif mode == 1		: Movies()
-elif mode == 2		: Sports_Centre()
+elif mode == 1		: Movies(PASSCODE, PASSWORD)
+elif mode == 2		: Sports_Centre(PASSCODE, PASSWORD)
 elif mode == 3		: get_All_Rows(url)
 elif mode == 4		: replay_Menu()
-elif mode == 5		: TV_Shows()
-elif mode == 6		: Sports_Replays()
+elif mode == 5		: TV_Shows(PASSCODE, PASSWORD)
+elif mode == 6		: Sports_Replays(PASSCODE, PASSWORD)
 elif mode == 7		: ODMenu.MOVIES_OD()
 
 elif mode == 8 	: 
@@ -1650,7 +1789,7 @@ elif mode == 36		: parser.ChannelLinks(name, url)
 elif mode == 37		: parser.MovieCategories(url)
 elif mode == 38		: parser.Category(name, url)
 elif mode == 39		: ODMenu.ALLMOVIES_OD(url)
-elif mode == 40		: Live_Today()
+elif mode == 40		: Live_Today(PASSCODE, PASSWORD)
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
 
