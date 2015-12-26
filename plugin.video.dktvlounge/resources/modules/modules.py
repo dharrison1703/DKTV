@@ -27,7 +27,7 @@ def TestMenuDIR(url):
 
 	for channel in list:
 		name = common.GetEncodeString(channel["display_name"])
-		AddTestDir(name ,channel["url"], 28, "", isFolder=False)
+		AddTestDir(name ,channel["url"], 32, "", isFolder=False)
 		tmpList.append({"url": channel["url"], "image": "", "name": name.decode("utf-8")})
 
 	common.SaveList(tmpListFile, tmpList)

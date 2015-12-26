@@ -49,7 +49,8 @@ def KidsMOVIES_OD(url):
 
 def MOVIES_OD():
 	try:
-		modules.addDir('All Movies','http://entertainmentlists.x10host.com/Lists/?mode=Movies&list=GetGenres',39,ART+'LiveTv.png',FANART,'')
+		modules.addDir('Kids','http://devil666wizard.x10host.com/addon/106912_3MoVIeS8_1405223/7574920_244849_563_12_007101/KidSMOvies.php',39,ART+'LiveTv.png',FANART,'')
+		modules.addDir('Cinema Releases','http://devil666wizard.x10host.com/addon/106912_3MoVIeS8_1405223/7574920_244849_563_12_007101/IncINeMA.php',39,ART+'LiveTv.png',FANART,'')
 	except:
 		pass
 	

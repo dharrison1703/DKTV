@@ -7,7 +7,7 @@ import server, config, load_channels
 
 from BeautifulSoup import BeautifulStoneSoup, BeautifulSOAP
 from resources.modules.bs4 import BeautifulSoup
-from resources.modules import modules, yt, premierleague, speedtest, lists, streams
+from resources.modules import modules, yt, premierleague, speedtest, lists, streams, SoapsOD, sys_Check
 from resources.modules.parsers import parser
 from resources.menus import LiveTvMenu, ODMenu
 from resources.scrapers import Wsimpsons
@@ -26,6 +26,7 @@ args = urlparse.parse_qs(sys.argv[2][1:])
 go = True;
 Decode = base64.decodestring
 dp = xbmcgui.DialogProgress()
+
 #---------------------------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -43,20 +44,83 @@ ART = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID + '/re
 ADDON_DATA = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + ADDON_ID + '/'))
 PROFILE_DATA = xbmc.translatePath(os.path.join('special://home/userdata/'))
 BaseURL = 'http://devil66wizard.x10host.com/addon/'
+SKIN = xbmc.translatePath(os.path.join('special://home/addons/skin.aeon.nox.5/'))
+HERE = xbmc.translatePath(os.path.join('special://home/addons/plugin.program.Devil666/'))
+PASSCODE = ADDON.getSetting('passcode')
+PASSWORD = ADDON.getSetting('password')
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Menu's **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def Home_Menu():
-	modules.addDir('Live TV','',14,ART+'LiveTv.png',FANART,'')
-	modules.addDir('Sports Centre','',2,ART+'SportsCentre.png',FANART,'')
-	modules.addDir('Movies','',1,ART+'MoviesIcon.png',FANART,'')
-	modules.addDir('TV Shows','',5,ART+'TvShows.png',FANART,'')
+def hidden_Input(action):
+	dialog = xbmcgui.Dialog()
+	input = ''
+	if action == 'PWord':
+		input = dialog.input('Enter Password', type=xbmcgui.INPUT_ALPHANUM, option=xbmcgui.ALPHANUM_HIDE_INPUT)
+	elif action == 'PCode':
+		input = dialog.input('Enter Passcode', type=xbmcgui.INPUT_ALPHANUM, option=xbmcgui.ALPHANUM_HIDE_INPUT)
+	else: pass
+	
+	return input
+	
+def code_Input():
+	if PASSCODE == '': 
+		action = 'PCode'
+		passcode = hidden_Input(action)
+		ADDON.setSetting(id='passcode', value = passcode)
+	else: pass
+
+def pass_Input():
+	if PASSWORD == '': 
+		action = 'PWord'
+		password = hidden_Input(action)
+		ADDON.setSetting(id='password', value = password)
+	else: pass
+	#xbmc.sleep(500)
+	
+def Home_Menu(PASSCODE, PASSWORD):
+    
+    input_Failed = False
+    
+    if PASSWORD != '':
+        if PASSCODE != '':
+            if os.path.exists(SKIN):
+                if os.path.exists(HERE):
+                    if sys_Check.system_Check(PASSWORD, PASSCODE):
+        
+                        modules.addDir('Live TV','',14,ART+'LiveTv.png',FANART,'')
+                        modules.addDir('Sports Centre','',2,ART+'SportsCentre.png',FANART,'')
+                        modules.addDir('Movies','',1,ART+'MoviesIcon.png',FANART,'')
+                        modules.addDir('TV Shows','',5,ART+'TvShows.png',FANART,'')
+                        #modules.addDir('Soaps','http://uksoapshare.blogspot.co.uk/',30,ART+'TvShows.png',FANART,'')
+                    
+                    else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
+                else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+            else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+        else:
+            eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
+            input_Failed = True
+    else: 
+        eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
+        input_Failed = True
+    
+    if input_Failed:
+        code_Input()
+        pass_Input()
+        PASSCODE = ADDON.getSetting('passcode')
+        PASSWORD = ADDON.getSetting('password')
+        Home_Menu(PASSCODE, PASSWORD)
+        input_Failed = False
+    else: pass
+
+
+    
 	
 def Movies():
-    modules.addDir('All Movies A-Z','',24,ART+'MoviesIcon.png',FANART,'')
-    modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png',FANART,'')
-    modules.addDir('Coming Soon','',26,ART+'MoviesIcon.png',FANART,'')
+	modules.addDir('All Movies A-Z','',24,ART+'MoviesIcon.png',FANART,'')
+	modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png',FANART,'')
+	modules.addDir('Coming Soon','',26,ART+'MoviesIcon.png',FANART,'')
+
 
 
 def TV_Shows():
@@ -68,12 +132,23 @@ def TV_Shows():
 def Sports_Centre():
 	modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png',FANART,'')
 	modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
-	modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
-	modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
+	modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
 
 def Sports_Replays():
-	modules.addDir('Football Replays','',4,ART+'footballod.png',FANART,'')
-	modules.addDir('Boxing Replays','http://devil666wizard.x10host.com/addon/Replays/Boxing.m3u',29,ART+'BoxingOD.png',FANART,'')
+	modules.addDir('Football','',4,ART+'footballod.png',FANART,'')
+	modules.addDir('Boxing',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvQm9YaU5nLnBocA=='),39,ART+'BoxingOD.png',FANART,'')
+	modules.addDir('UFC',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvVWZDckVwTGFZcy5waHA='),39,ART+'icon.png',FANART,'')
+	modules.addDir('WWE','',29,ART+'icon.png',FANART,'')
+	
+def WWE_Home():
+	modules.addDir('Raw',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvUmF3LnBocA=='),39,ART+'icon.png',FANART,'')
+	modules.addDir('Smackdown',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvU21hY2tkb3duLnBocA=='),39,ART+'icon.png',FANART,'')
+	modules.addDir('PPVs',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvV3dFcFB2Uy5waHA='),39,ART+'icon.png',FANART,'')
+	modules.addDir('Other',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvV3dFLnBocA=='),39,ART+'icon.png',FANART,'')
+
+def Live_Today():
+	modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
+	modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
 	
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Replays **********
@@ -1515,14 +1590,14 @@ print "Regexs: "+str(regexs)
 
 
 
-if mode == None		: Home_Menu()
+if mode == None		: Home_Menu(PASSCODE, PASSWORD)
 elif mode == 1		: Movies()
 elif mode == 2		: Sports_Centre()
 elif mode == 3		: get_All_Rows(url)
 elif mode == 4		: replay_Menu()
 elif mode == 5		: TV_Shows()
 elif mode == 6		: Sports_Replays()
-elif mode == 7		: ()
+elif mode == 7		: ODMenu.MOVIES_OD()
 
 elif mode == 8 	: 
 	getData(url,fanart)
@@ -1565,7 +1640,17 @@ elif mode == 25  	: lists.TESTCATS4()
 elif mode == 26	 	: lists.Build_MenuTrailers()
 elif mode == 27		: yt.PlayVideo(url)
 elif mode == 28		: ODMenu.BoxingYT()
-elif mode == 29		: modules.TestPlayUrl(name, url, iconimage)
+elif mode == 29		: WWE_Home()
+elif mode == 30 	: SoapsOD.Test_Regex(url)
+elif mode == 31		: Wsimpsons.ParseURL(url)
+elif mode == 32		: modules.TestPlayUrl(name, url, iconimage)
+elif mode == 33		: modules.Resolve(name, url)
+elif mode == 34		: modules.TestMenuDIR(url)
+elif mode == 36		: parser.ChannelLinks(name, url)
+elif mode == 37		: parser.MovieCategories(url)
+elif mode == 38		: parser.Category(name, url)
+elif mode == 39		: ODMenu.ALLMOVIES_OD(url)
+elif mode == 40		: Live_Today()
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
 

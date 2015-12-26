@@ -233,7 +233,7 @@ def Category(name, url):
 			mode = int(DataList[1])
 			icon = DataList[2]
 			fanart = DataList[3]
-			
+			'''
 			html=OPEN_URL(Guide_URL)
 			match = re.compile('<div class="div-epg-channel-name">(.+?)</div>.+?<a qt-title="(.+?)"',re.DOTALL).findall(html)
 			info = 'No Data Currently Available'
@@ -251,7 +251,8 @@ def Category(name, url):
 					info = whatson
 				else:
 					pass
-
+			'''
+			info = 'No Available Data'
 			if len(UrlList) == 1:
 				urllink = UrlList[0]
 				modules.AddTestDir(title,urllink,mode,icon,description=info,isFolder=False, background=fanart)				
