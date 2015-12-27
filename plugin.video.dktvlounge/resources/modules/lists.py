@@ -170,4 +170,3 @@ def LiveTVFull(Search_Name):
 		Image = 'http://uktvnow.desistreams.tv/' + (img).replace('\\','')
 		modules.AddTestDir(Search_Name + ': Link 1', (url).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)
 		modules.AddTestDir(Search_Name + ': Link 2', (url2).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)
-		modules.AddTestDir(Search_Name + ': Link 3', (url3).replace('\\',''), 15, Image, description="", isFolder=False, background=Image)

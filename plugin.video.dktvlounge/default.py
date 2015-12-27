@@ -88,10 +88,10 @@ def Home_Menu(PASSCODE, PASSWORD):
                 if os.path.exists(HERE):
                     if sys_Check.system_Check(PASSWORD, PASSCODE):
         
-                        modules.addDir('Live TV','',14,ART+'LiveTv.png',FANART,'')
-                        modules.addDir('Sports Centre','',2,ART+'SportsCentre.png',FANART,'')
-                        modules.addDir('Movies','',1,ART+'MoviesIcon.png',FANART,'')
-                        modules.addDir('TV Shows','',5,ART+'TvShows.png',FANART,'')
+                        modules.addDir('Live TV','',14,ART+'icon.png',FANART,'')
+                        modules.addDir('Sports Centre','',2,ART+'icon.png',FANART,'')
+                        modules.addDir('Movies','',1,ART+'icon.png',FANART,'')
+                        modules.addDir('TV Shows','',5,ART+'icon.png',FANART,'')
                         #modules.addDir('Soaps','http://uksoapshare.blogspot.co.uk/',30,ART+'TvShows.png',FANART,'')
                     
                     else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
