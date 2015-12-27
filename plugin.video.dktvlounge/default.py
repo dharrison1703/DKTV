@@ -194,7 +194,7 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Sports Channels',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png',FANART,'')
+						modules.addDir('Sports Channels',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png',FANART,'')
 						modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
 						modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
 						
@@ -268,6 +268,8 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
 						modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
+						modules.addDir('NFL',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVTcG9ydHMvTGl2ZU5GTC5waHA='),42,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('Rugby',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVSdWdieS5waHA='),42,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
@@ -1638,6 +1640,8 @@ def playsetresolved(url,name,iconimage,setresolved=True):
 	print 'Else Resolved Url'
         xbmc.executebuiltin('XBMC.RunPlugin('+url+')')    
 
+def AllLiveTV(url):
+	parser.Category('Entertainment', url)
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON SWITCH **********
@@ -1790,6 +1794,8 @@ elif mode == 37		: parser.MovieCategories(url)
 elif mode == 38		: parser.Category(name, url)
 elif mode == 39		: ODMenu.ALLMOVIES_OD(url)
 elif mode == 40		: Live_Today(PASSCODE, PASSWORD)
+elif mode == 41		: parser.Category(name, url)
+elif mode == 42		: AllLiveTV(url)
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
 
