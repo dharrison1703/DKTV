@@ -194,7 +194,7 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Sports Channels',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'SportHubChannels.png',FANART,'')
+						modules.addDir('Sports Channels',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
 						modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
 						
@@ -1642,6 +1642,7 @@ def playsetresolved(url,name,iconimage,setresolved=True):
 
 def AllLiveTV(url):
 	parser.Category('Entertainment', url)
+	parser.Category('Sports', url)
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON SWITCH **********
@@ -1782,11 +1783,11 @@ elif mode == 24	 	: lists.Build_MenuMovies()
 elif mode == 25  	: lists.TESTCATS4()
 elif mode == 26	 	: lists.Build_MenuTrailers()
 elif mode == 27		: yt.PlayVideo(url)
-elif mode == 28		: ODMenu.BoxingYT()
+elif mode == 28		: modules.TestPlayUrl(name, url, iconimage)
 elif mode == 29		: WWE_Home()
 elif mode == 30 	: SoapsOD.Test_Regex(url)
 elif mode == 31		: Wsimpsons.ParseURL(url)
-elif mode == 32		: modules.TestPlayUrl(name, url, iconimage)
+elif mode == 32		:()
 elif mode == 33		: modules.Resolve(name, url)
 elif mode == 34		: modules.TestMenuDIR(url)
 elif mode == 36		: parser.ChannelLinks(name, url)
