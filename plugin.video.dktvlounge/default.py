@@ -8,6 +8,7 @@ import server, config, load_channels
 from BeautifulSoup import BeautifulStoneSoup, BeautifulSOAP
 from resources.modules.bs4 import BeautifulSoup
 from resources.modules import modules, yt, premierleague, speedtest, lists, streams, SoapsOD, sys_Check
+from resources.lib.libraries import client
 from resources.modules.parsers import parser
 from resources.menus import LiveTvMenu, ODMenu
 from resources.scrapers import Wsimpsons
@@ -194,7 +195,7 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Sports Channels',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('Sports Channels','',43,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
 						modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
 						
@@ -216,6 +217,11 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 		Sports_Centre(PASSCODE, PASSWORD) #This line will change depending on where you are mate
 		input_Failed = False
 	else: pass
+	
+def Sports_Channels():
+	modules.addDir('UK Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
+	modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'LiveFootball.png',FANART,'')						
+
 
 def Sports_Replays(PASSCODE, PASSWORD): # add this into ()
     
@@ -1644,6 +1650,7 @@ def AllLiveTV(url):
 	parser.Category('Entertainment', url)
 	parser.Category('Sports', url)
 
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON SWITCH **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1797,6 +1804,7 @@ elif mode == 39		: ODMenu.ALLMOVIES_OD(url)
 elif mode == 40		: Live_Today(PASSCODE, PASSWORD)
 elif mode == 41		: parser.Category(name, url)
 elif mode == 42		: AllLiveTV(url)
+elif mode == 43		: Sports_Channels()
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
 

@@ -1,25 +1,4 @@
 # -*- coding: utf-8 -*-
-
-'''
-    Phoenix Add-on
-    Copyright (C) 2015 Blazetamer
-    Copyright (C) 2015 lambda
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
-
-
 import os,re,sys,urllib,urlparse
 
 from resources.lib.libraries import cache
@@ -30,7 +9,7 @@ from resources.lib.libraries import workers
 from resources.lib.libraries import views
 
 
-phLink = 'http://mecca.watchkodi.com/phstreams.xml'
+phLink = 'http://deviloriginbuild.x10host.com/addon/SPOrtS.php'
 phNews = 'http://mecca.watchkodi.com/news.xml'
 phSearch = 'http://%s/search/search.xml'
 phTest = 'testings.xml'
