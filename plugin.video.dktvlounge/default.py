@@ -218,9 +218,37 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 		input_Failed = False
 	else: pass
 	
-def Sports_Channels():
-	modules.addDir('UK Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
-	modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'LiveFootball.png',FANART,'')						
+def Sports_Channels(PASSCODE, PASSWORD): # add this into ()
+    
+	input_Failed = False
+    
+	if PASSWORD != '':
+		if PASSCODE != '':
+			if os.path.exists(SKIN):
+				if os.path.exists(HERE):
+					if sys_Check.system_Check(PASSWORD, PASSCODE):
+					
+						modules.addDir('UK Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'LiveFootball.png',FANART,'')						
+						
+					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
+				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+		else:
+			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
+			input_Failed = True
+	else:
+		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
+		input_Failed = True
+	
+	if input_Failed:
+		code_Input()
+		pass_Input()
+		PASSCODE = ADDON.getSetting('passcode')
+		PASSWORD = ADDON.getSetting('password')
+		Sports_Channels(PASSCODE, PASSWORD) #This line will change depending on where you are mate
+		input_Failed = False
+	else: pass
 
 
 def Sports_Replays(PASSCODE, PASSWORD): # add this into ()
@@ -273,7 +301,8 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Live Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
+						modules.addDir('Live Premier League',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
+						modules.addDir('ROW Football',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0FsbEZvb3RiYWxsLnBocA=='),42,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('NFL',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVTcG9ydHMvTGl2ZU5GTC5waHA='),42,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('Rugby',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVSdWdieS5waHA='),42,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
@@ -1198,8 +1227,7 @@ def parse_m3u(data):
             thumbnail = re_me(other,'tvg-logo=[\'"](.*?)[\'"]')
             if 'apple_itunes_like_hd_icon_by_phjellming.jpg' in thumbnail:
                 thumbnail = 'https://footballseasons.files.wordpress.com/2013/05/premier-league.png'
-            '''
-			if thumbnail:
+            if thumbnail:
                 if thumbnail.startswith('http'):
                     thumbnail = thumbnail
                 
@@ -1210,7 +1238,7 @@ def parse_m3u(data):
                 else:
                     thumbnail = thumbnail
             #else:
-            '''
+           
         else:
             thumbnail = ''
         if 'type' in other:
@@ -1804,7 +1832,7 @@ elif mode == 39		: ODMenu.ALLMOVIES_OD(url)
 elif mode == 40		: Live_Today(PASSCODE, PASSWORD)
 elif mode == 41		: parser.Category(name, url)
 elif mode == 42		: AllLiveTV(url)
-elif mode == 43		: Sports_Channels()
+elif mode == 43		: Sports_Channels(PASSCODE, PASSWORD)
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
 
