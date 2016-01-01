@@ -304,7 +304,7 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 						modules.addDir('Live Premier League',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
 						modules.addDir('ROW Football',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0FsbEZvb3RiYWxsLnBocA=='),42,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('NFL',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVTcG9ydHMvTGl2ZU5GTC5waHA='),42,ART+'LiveFootball.png',FANART,'')						
-						modules.addDir('Rugby',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVSdWdieS5waHA='),42,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('Rugby',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVSdWdieS54bWw='),8,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
