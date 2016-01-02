@@ -49,9 +49,31 @@ SKIN = xbmc.translatePath(os.path.join('special://home/addons/skin.aeon.nox.5/')
 HERE = xbmc.translatePath(os.path.join('special://home/addons/plugin.program.Devil666/'))
 PASSCODE = ADDON.getSetting('passcode')
 PASSWORD = ADDON.getSetting('password')
+u_tube = 'http://www.youtube.com'
+online_movielist = ADDON.getSetting('online_movielist')
+online_m3u = ADDON.getSetting('online_m3u')
+m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
+m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
+
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Menu's **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def make_request(url):
+	try:
+		req = urllib2.Request(url)
+		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0')
+		response = urllib2.urlopen(req)	  
+		link = response.read()
+		response.close()  
+		return link
+	except urllib2.URLError, e:
+		print 'We failed to open "%s".' % url
+		if hasattr(e, 'code'):
+			print 'We failed with error code - %s.' % e.code	
+		if hasattr(e, 'reason'):
+			print 'We failed to reach a server.'
+			print 'Reason: ', e.reason
 
 def hidden_Input(action):
 	dialog = xbmcgui.Dialog()
@@ -127,7 +149,7 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('All Movies A-Z','',24,ART+'MoviesIcon.png',FANART,'')
+						modules.addDir('All Movies A-Z',u_tube,46,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png',FANART,'')
 						modules.addDir('Coming Soon','',26,ART+'MoviesIcon.png',FANART,'')
 						
@@ -230,6 +252,7 @@ def Sports_Channels(PASSCODE, PASSWORD): # add this into ()
 					
 						modules.addDir('UK Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'LiveFootball.png',FANART,'')						
+						#modules.addDir('Test',u_tube,44,ART+'LiveFootball.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -1678,6 +1701,74 @@ def AllLiveTV(url):
 	parser.Category('Entertainment', url)
 	parser.Category('Sports', url)
 
+def m3u_online():		
+	content = make_request(online_m3u)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+
+def m3u_onlinemovie():		
+	content = make_request(online_movielist)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+
+def m3u_playlist(name, url, thumb):	
+	name = re.sub('\s+', ' ', name).strip()			
+	url = url.replace('"', ' ').replace('&amp;', '&').strip()
+	if ('youtube.com/user/' in url) or ('youtube.com/channel/' in url) or ('youtube/user/' in url) or ('youtube/channel/' in url):
+		if 'tvg-logo' in thumb:
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')			
+			add_dir1(name, url, '', thumb, thumb)			
+		else:	
+			add_dir1(name, url, '', ICON, FANART)
+	else:
+		if 'youtube.com/watch?v=' in url:
+			url = 'plugin://plugin.video.youtube/play/?video_id=%s' % (url.split('=')[-1])
+		elif 'dailymotion.com/video/' in url:
+			url = url.split('/')[-1].split('_')[0]
+			url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url	
+		else:			
+			url = url
+		if 'tvg-logo' in thumb:				
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+			add_link1(name, url, 45, thumb, thumb)			
+		else:				
+			add_link1(name, url, 45, ICON, FANART)	
+
+def play_video(url):
+	media_url = url
+	item = xbmcgui.ListItem(name, path = media_url)
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
+	return
+
+def add_dir1(name, url, mode, iconimage, fanart):
+	u = sys.argv[0] + "?url=" + urllib.quote_plus(url) + "&mode=" + str(mode) + "&name=" + urllib.quote_plus(name) + "&iconimage=" + urllib.quote_plus(iconimage)
+	ok = True
+	liz = xbmcgui.ListItem(name, iconImage = "DefaultFolder.png", thumbnailImage = iconimage)
+	liz.setInfo( type = "Video", infoLabels = { "Title": name } )
+	liz.setProperty('fanart_image', fanart)
+	if ('youtube.com/user/' in url) or ('youtube.com/channel/' in url) or ('youtube/user/' in url) or ('youtube/channel/' in url):
+		u = 'plugin://plugin.video.youtube/%s/%s/' % (url.split( '/' )[-2], url.split( '/' )[-1])
+		ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz, isFolder = True)
+		return ok		
+	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz, isFolder = True)
+	return ok
+	
+def add_link1(name, url, mode, iconimage, fanart):
+	u = sys.argv[0] + "?url=" + urllib.quote_plus(url) + "&mode=" + str(mode) + "&name=" + urllib.quote_plus(name) + "&iconimage=" + urllib.quote_plus(iconimage)	
+	liz = xbmcgui.ListItem(name, iconImage = "DefaultVideo.png", thumbnailImage = iconimage)
+	liz.setInfo( type = "Video", infoLabels = { "Title": name } )
+	liz.setProperty('fanart_image', fanart)
+	liz.setProperty('IsPlayable', 'true') 
+	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz)  
+
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON SWITCH **********
@@ -1833,6 +1924,10 @@ elif mode == 40		: Live_Today(PASSCODE, PASSWORD)
 elif mode == 41		: parser.Category(name, url)
 elif mode == 42		: AllLiveTV(url)
 elif mode == 43		: Sports_Channels(PASSCODE, PASSWORD)
+elif mode == 44		: m3u_online()
+elif mode == 45		: play_video(url)
+elif mode == 46		: m3u_onlinemovie()
+
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
 

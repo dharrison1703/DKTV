@@ -14,5 +14,9 @@
 		<setting id="password" label="Password" type="text" option="hidden"  enable="!eq(-1,)" default="" />
 		<setting id="passcode" label="Passcode" type="text" option="hidden"  enable="!eq(-1,)" default="" />
 	</category>
-	
+
+	<category label="[COLOR red][B]ADD PATHS[/B][/COLOR]">
+		<setting label="[B]URL to m3u playlist[/B]" type="text"  id="online_m3u" default="https://sites.google.com/site/championiptv/playlist/championiptv.m3u" />
+		<setting label="[B]URL to m3u MovieList[/B]" type="text"  id="online_movielist" default="http://devilsoriginbuild.x10host.com/addon/MovieList/MovieList.m3u" />
+	</category>
 </settings>
