@@ -45,13 +45,15 @@ ART = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID + '/re
 ADDON_DATA = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + ADDON_ID + '/'))
 PROFILE_DATA = xbmc.translatePath(os.path.join('special://home/userdata/'))
 BaseURL = 'http://devil66wizard.x10host.com/addon/'
-SKIN = xbmc.translatePath(os.path.join('special://home/addons/skin.aeon.nox.5/'))
+SKIN = xbmc.translatePath(os.path.join('special://home/addons/skin.aeon.nox.silvo/'))
 HERE = xbmc.translatePath(os.path.join('special://home/addons/plugin.program.Devil666/'))
 PASSCODE = ADDON.getSetting('passcode')
 PASSWORD = ADDON.getSetting('password')
 u_tube = 'http://www.youtube.com'
 online_movielist = ADDON.getSetting('online_movielist')
 online_m3u = ADDON.getSetting('online_m3u')
+online_PLP = ADDON.getSetting('online_PLP')
+online_LiveTV = ADDON.getSetting('online_LiveTV')
 m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
 
@@ -111,7 +113,7 @@ def Home_Menu(PASSCODE, PASSWORD):
                 if os.path.exists(HERE):
                     if sys_Check.system_Check(PASSWORD, PASSCODE):
         
-                        modules.addDir('Live TV','',14,ART+'icon.png',FANART,'')
+                        modules.addDir('Live TV',u_tube,48,ART+'LiveFootball.png',FANART,'')						
                         modules.addDir('Sports Centre','',2,ART+'icon.png',FANART,'')
                         modules.addDir('Movies','',1,ART+'icon.png',FANART,'')
                         modules.addDir('TV Shows','',5,ART+'icon.png',FANART,'')
@@ -150,8 +152,6 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
 						modules.addDir('All Movies A-Z',u_tube,46,ART+'LiveFootball.png',FANART,'')						
-						modules.addDir('Movies By Year','',21,ART+'MoviesIcon.png',FANART,'')
-						modules.addDir('Coming Soon','',26,ART+'MoviesIcon.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -183,8 +183,6 @@ def TV_Shows(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						Recent_Url = Decode('aHR0cDovL2JhY2syYmFzaWNzLngxMGhvc3QuY29tL2JhY2syYmFzaWNzL3Rlc3QvcmVjZW50ZXBpc29kZXMucGhw')
-						modules.addDir('Recent Episodes',Recent_Url,400,ART+'MoviesIcon.png',FANART,'')
 						modules.addDir('All Shows','',23,ART+'MoviesIcon.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
@@ -252,7 +250,6 @@ def Sports_Channels(PASSCODE, PASSWORD): # add this into ()
 					
 						modules.addDir('UK Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'LiveFootball.png',FANART,'')						
-						#modules.addDir('Test',u_tube,44,ART+'LiveFootball.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -324,7 +321,7 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Live Premier League',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdFRYSllTSWpMM3JPNkVP'),8,ART+'LiveFootball.png',FANART,'')
+						modules.addDir('Premier League',u_tube,47,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('ROW Football',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0FsbEZvb3RiYWxsLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('NFL',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVTcG9ydHMvTGl2ZU5GTC5waHA='),42,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('Rugby',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVSdWdieS54bWw='),8,ART+'LiveFootball.png',FANART,'')						
@@ -1719,6 +1716,24 @@ def m3u_onlinemovie():
 		except:
 			pass
 
+def m3u_PLP():		
+	content = make_request(online_PLP)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+
+def m3u_LiveTV():		
+	content = make_request(online_LiveTV)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+
 def m3u_playlist(name, url, thumb):	
 	name = re.sub('\s+', ' ', name).strip()			
 	url = url.replace('"', ' ').replace('&amp;', '&').strip()
@@ -1927,6 +1942,8 @@ elif mode == 43		: Sports_Channels(PASSCODE, PASSWORD)
 elif mode == 44		: m3u_online()
 elif mode == 45		: play_video(url)
 elif mode == 46		: m3u_onlinemovie()
+elif mode == 47		: m3u_PLP()
+elif mode == 48		: m3u_LiveTV()
 
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
