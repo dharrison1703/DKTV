@@ -56,6 +56,7 @@ online_PLP = ADDON.getSetting('online_PLP')
 online_LiveTV = ADDON.getSetting('online_LiveTV')
 m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
+DCPWC = ADDON.getSetting('Donators Code')
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -113,7 +114,7 @@ def Home_Menu(PASSCODE, PASSWORD):
                 if os.path.exists(HERE):
                     if sys_Check.system_Check(PASSWORD, PASSCODE):
         
-                        modules.addDir('Live TV',u_tube,48,ART+'LiveFootball.png',FANART,'')						
+                        modules.addDir('Live TV',u_tube,48,ART+'icon.png',FANART,'')						
                         modules.addDir('Sports Centre','',2,ART+'icon.png',FANART,'')
                         modules.addDir('Movies','',1,ART+'icon.png',FANART,'')
                         modules.addDir('TV Shows','',5,ART+'icon.png',FANART,'')
@@ -151,7 +152,7 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('All Movies A-Z',u_tube,46,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('All Movies A-Z',u_tube,46,ART+'icon.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -172,6 +173,37 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 		input_Failed = False
 	else: pass
 
+def Premium_TV(PASSCODE, PASSWORD): # add this into ()
+    
+	input_Failed = False
+    
+	if PASSWORD != '':
+		if PASSCODE != '':
+			if os.path.exists(SKIN):
+				if os.path.exists(HERE):
+					if sys_Check.system_Check(PASSWORD, PASSCODE):
+					
+						modules.addDir('Premium TV','',49,ART+'icon.png',FANART,'')						
+						
+					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
+				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
+		else:
+			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
+			input_Failed = True
+	else:
+		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
+		input_Failed = True
+	
+	if input_Failed:
+		code_Input()
+		pass_Input()
+		PASSCODE = ADDON.getSetting('passcode')
+		PASSWORD = ADDON.getSetting('password')
+		Premium_TV(PASSCODE, PASSWORD) #This line will change depending on where you are mate
+		input_Failed = False
+	else: pass
+
 
 def TV_Shows(PASSCODE, PASSWORD): # add this into ()
     
@@ -183,7 +215,7 @@ def TV_Shows(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('All Shows','',23,ART+'MoviesIcon.png',FANART,'')
+						modules.addDir('All Shows','',23,ART+'icon.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -215,7 +247,7 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Sports Channels','',43,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('Sports Channels','',43,ART+'icon.png',FANART,'')						
 						modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
 						modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
 						
@@ -248,8 +280,8 @@ def Sports_Channels(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('UK Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
-						modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('UK Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'icon.png',FANART,'')						
+						modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'icon.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -323,8 +355,8 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 					
 						modules.addDir('Premier League',u_tube,47,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('ROW Football',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0FsbEZvb3RiYWxsLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
-						modules.addDir('NFL',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVTcG9ydHMvTGl2ZU5GTC5waHA='),42,ART+'LiveFootball.png',FANART,'')						
-						modules.addDir('Rugby',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVSdWdieS54bWw='),8,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('NFL',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVTcG9ydHMvTGl2ZU5GTC5waHA='),42,ART+'icon.png',FANART,'')						
+						modules.addDir('Rugby',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVSdWdieS54bWw='),8,ART+'icon.png',FANART,'')						
 						modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
@@ -1786,6 +1818,391 @@ def add_link1(name, url, mode, iconimage, fanart):
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#********** Portals **********
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def addPortal(portal):
+
+
+	if portal['url'] == '':
+		return;
+
+	url = build_url({
+		'mode': 'genres', 
+		'portal' : json.dumps(portal)
+		});
+	
+	cmd = 'XBMC.RunPlugin(' + base_url + '?mode=cache&stalker_url=' + portal['url'] + ')';
+	ccd = 'XBMC.RunPlugin(' + base_url + '?mode=53)';
+	
+	li = xbmcgui.ListItem(portal['name'], iconImage=ART+'icon.png')
+	li.addContextMenuItems([ ('Clear Cache', cmd), ('Clear Cached Data', ccd) ]);
+	
+
+	xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True);
+	
+	
+def build_url(query):
+	return base_url + '?' + urllib.urlencode(query)
+
+
+def homeLevel():
+	global portal_1, portal_2, portal_3, portal_4, portal_5, portal_6, portal_7, portal_8, portal_9, portal_10, go;
+	
+	#todo - check none portal
+
+	if go:
+		addPortal(portal_1);
+		addPortal(portal_2);
+		addPortal(portal_3);
+		addPortal(portal_4);
+		addPortal(portal_5);
+		addPortal(portal_6);
+	
+		xbmcplugin.endOfDirectory(addon_handle);
+	
+	AUTO_VIEW('504')
+
+def genreLevel():
+	
+	try:
+		data = load_channels.getGenres(portal['mac'], portal['url'], portal['serial'], addondir);
+		
+	except Exception as e:
+		xbmcgui.Dialog().notification(addonname, str(e), xbmcgui.NOTIFICATION_ERROR );
+		
+		return;
+
+	data = data['genres'];
+		
+	url = build_url({
+		'mode': 'vod', 
+		'portal' : json.dumps(portal)
+	});
+			
+	li = xbmcgui.ListItem('VoD', iconImage='DefaultVideo.png')
+	xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True);
+	
+	
+	for id, i in data.iteritems():
+
+		title 	= i["title"];
+		
+		url = build_url({
+			'mode': 'channels', 
+			'genre_id': id, 
+			'genre_name': title.title(), 
+			'portal' : json.dumps(portal)
+			});
+			
+		if id == '10':
+			iconImage = 'OverlayLocked.png';
+		else:
+			iconImage = 'DefaultVideo.png';
+			
+		li = xbmcgui.ListItem(title.title(), iconImage=iconImage)
+		xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True);
+		
+
+	xbmcplugin.endOfDirectory(addon_handle);
+
+def vodLevel():
+	
+	try:
+		data = load_channels.getVoD(portal['mac'], portal['url'], portal['serial'], addondir);
+		
+	except Exception as e:
+		xbmcgui.Dialog().notification(addonname, str(e), xbmcgui.NOTIFICATION_ERROR );
+		return;
+	
+	
+	data = data['vod'];
+	
+		
+	for i in data:
+		name 	= i["name"];
+		cmd 	= i["cmd"];
+		logo 	= i["logo"];
+		
+		
+		if logo != '':
+			logo_url = portal['url'] + logo;
+		else:
+			logo_url = 'DefaultVideo.png';
+				
+				
+		url = build_url({
+				'mode': 'play', 
+				'cmd': cmd, 
+				'tmp' : '0', 
+				'title' : name.encode("utf-8"),
+				'genre_name' : 'VoD',
+				'logo_url' : logo_url, 
+				'portal' : json.dumps(portal)
+				});
+			
+
+		li = xbmcgui.ListItem(name, iconImage=logo_url, thumbnailImage=logo_url)
+		li.setInfo(type='Video', infoLabels={ "Title": name })
+
+		xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li)
+	
+	xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_UNSORTED);
+	xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);
+	xbmcplugin.endOfDirectory(addon_handle);
+
+def channelLevel():
+	stop=False;
+		
+	try:
+		data = load_channels.getAllChannels(portal['mac'], portal['url'], portal['serial'], addondir);
+		
+	except Exception as e:
+		xbmcgui.Dialog().notification(addonname, str(e), xbmcgui.NOTIFICATION_ERROR );
+		return;
+	
+	
+	data = data['channels'];
+	genre_name 	= args.get('genre_name', None);
+	
+	genre_id_main = args.get('genre_id', None);
+	genre_id_main = genre_id_main[0];
+	
+	if genre_id_main == '10' and portal['parental'] == 'true':
+		result = xbmcgui.Dialog().input('Parental', hashlib.md5(portal['password'].encode('utf-8')).hexdigest(), type=xbmcgui.INPUT_PASSWORD, option=xbmcgui.PASSWORD_VERIFY);
+		if result == '':
+			stop = True;
+
+	
+	if stop == False:
+		for i in data.values():
+			
+			name 		= i["name"];
+			cmd 		= i["cmd"];
+			tmp 		= i["tmp"];
+			number 		= i["number"];
+			genre_id 	= i["genre_id"];
+			logo 		= i["logo"];
+		
+			if genre_id_main == '*' and genre_id == '10' and portal['parental'] == 'true':
+				continue;
+		
+		
+			if genre_id_main == genre_id or genre_id_main == '*':
+		
+				if logo != '':
+					logo_url = portal['url'] + '/stalker_portal/misc/logos/320/' + logo;
+				else:
+					logo_url = 'DefaultVideo.png';
+				
+				
+				url = build_url({
+					'mode': 'play', 
+					'cmd': cmd, 
+					'tmp' : tmp, 
+					'title' : name.encode("utf-8"),
+					'genre_name' : genre_name,
+					'logo_url' : logo_url,  
+					'portal' : json.dumps(portal)
+					});
+			
+
+				li = xbmcgui.ListItem(name, iconImage=logo_url, thumbnailImage=logo_url);
+				li.setInfo(type='Video', infoLabels={ 
+					'title': name,
+					'count' : number
+					});
+
+				xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li);
+		
+		xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_PLAYLIST_ORDER);
+		xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);
+		xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_PROGRAM_COUNT);
+		
+		
+		xbmcplugin.endOfDirectory(addon_handle);
+
+def playLevel():
+	
+	dp = xbmcgui.DialogProgressBG();
+	dp.create('Channel', 'Loading ...');
+	
+	title 	= args['title'][0];
+	cmd 	= args['cmd'][0];
+	tmp 	= args['tmp'][0];
+	genre_name 	= args['genre_name'][0];
+	logo_url 	= args['logo_url'][0];
+	
+	try:
+		if genre_name != 'VoD':
+			url = load_channels.retriveUrl(portal['mac'], portal['url'], portal['serial'], cmd, tmp);
+		else:
+			url = load_channels.retriveVoD(portal['mac'], portal['url'], portal['serial'], cmd);
+
+	
+	except Exception as e:
+		dp.close();
+		xbmcgui.Dialog().notification(addonname, str(e), xbmcgui.NOTIFICATION_ERROR );
+		return;
+
+	
+	dp.update(80);
+	
+	title = title.decode("utf-8");
+	
+	title += ' (' + portal['name'] + ')';
+	
+#	li = xbmcgui.ListItem(title, iconImage=logo_url); <modified 9.0.19
+	li = xbmcgui.ListItem(title, iconImage=logo_url, thumbnailImage=logo_url);
+	li.setInfo('video', {'Title': title, 'Genre': genre_name});
+	xbmc.Player().play(item=url, listitem=li);
+	
+	dp.update(100);
+	
+	dp.close();
+
+
+mode = args.get('mode', None);
+portal =  args.get('portal', None)
+
+
+if portal is None:
+	portal_1 = config.portalConfig('1');
+	portal_2 = config.portalConfig('2');
+	portal_3 = config.portalConfig('3');
+	portal_4 = config.portalConfig('4');
+	portal_5 = config.portalConfig('5');
+	portal_6 = config.portalConfig('6');
+
+else:
+	portal = json.loads(portal[0]);
+
+#  Modification to force outside call to portal_1 (9.0.19)
+
+	portal_2 = config.portalConfig('2');
+	portal_3 = config.portalConfig('3');
+	portal_4 = config.portalConfig('4');
+	portal_5 = config.portalConfig('5');
+	portal_6 = config.portalConfig('6');
+	if not ( portal['name'] == portal_2['name'] or portal['name'] == portal_3['name'] or portal['name'] == portal_4['name'] or portal['name'] == portal_5['name'] or portal['name'] == portal_6['name']) :
+		portal = config.portalConfig('1');
+
+if mode is None:
+	Premium_TV(PASSCODE, PASSWORD);
+
+elif mode[0] == 'cache':	
+	stalker_url = args.get('stalker_url', None);
+	stalker_url = stalker_url[0];	
+	load_channels.clearCache(stalker_url, addondir);
+
+elif mode[0] == 'genres':
+	genreLevel();
+		
+elif mode[0] == 'vod':
+	vodLevel();
+
+elif mode[0] == 'channels':
+	channelLevel();
+	
+elif mode[0] == 'play':
+	playLevel();
+	
+elif mode[0] == 'server':
+	port = addon.getSetting('server_port');
+	
+	action =  args.get('action', None);
+	action = action[0];
+	
+	dp = xbmcgui.DialogProgressBG();
+	dp.create('IPTV', 'Just A Second ...');
+	
+	if action == 'start':
+	
+		if server.serverOnline():
+			xbmcgui.Dialog().notification(addonname, 'Server already started.\nPort: ' + str(port), xbmcgui.NOTIFICATION_INFO );
+		else:
+			server.startServer();
+			time.sleep(5);
+			if server.serverOnline():
+				xbmcgui.Dialog().notification(addonname, 'Server started.\nPort: ' + str(port), xbmcgui.NOTIFICATION_INFO );
+			else:
+				xbmcgui.Dialog().notification(addonname, 'Server not started. Wait one moment and try again. ', xbmcgui.NOTIFICATION_ERROR );
+				
+	else:
+		if server.serverOnline():
+			server.stopServer();
+			time.sleep(5);
+			xbmcgui.Dialog().notification(addonname, 'Server stopped.', xbmcgui.NOTIFICATION_INFO );
+		else:
+			xbmcgui.Dialog().notification(addonname, 'Server is already stopped.', xbmcgui.NOTIFICATION_INFO );
+			
+	dp.close();
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#********** Test Area **********
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def addPortal(portal):
+
+
+	if portal['url'] == '':
+		return;
+
+	url = build_url({
+		'mode': 'genres', 
+		'portal' : json.dumps(portal)
+		});
+	
+	cmd = 'XBMC.RunPlugin(' + base_url + '?mode=cache&stalker_url=' + portal['url'] + ')';
+	ccd = 'XBMC.RunPlugin(' + base_url + '?mode=53)';
+	
+	li = xbmcgui.ListItem(portal['name'], iconImage=ART+'icon.png')
+	li.addContextMenuItems([ ('Clear Cache', cmd), ('Clear Cached Data', ccd) ]);
+	
+
+	xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True);
+
+def PremiumTVMenu():
+	global portal_1, portal_2, portal_3, portal_4, portal_5, portal_6, go;
+
+	if go:
+		modules.AddTestDir('Clear Cached Data - WILL REMOVE PASSCODE AND PASSWORD', '', 50, ART+'icon.png', description="", isFolder=False, background='')
+		addPortal(portal_1);
+		addPortal(portal_2);
+		addPortal(portal_3);
+		addPortal(portal_4);
+		addPortal(portal_5);
+		addPortal(portal_6);
+		xbmcplugin.endOfDirectory(addon_handle);
+
+def ClearCachedData():
+	print 'Clear Cache Started'
+	try: os.remove(ADDON_DATA + Decode('aHR0cF9tdzFfaXB0djY2X3R2'))
+	except: pass
+
+	try: os.remove(ADDON_DATA + Decode('aHR0cF9tdzFfaXB0djY2X3R2LWdlbnJlcw=='))
+	except: pass
+
+	try: os.remove(ADDON_DATA + Decode('aHR0cF9wb3J0YWxfaXB0dnByaXZhdGVzZXJ2ZXJfdHY='))
+	except: pass
+
+	try: os.remove(ADDON_DATA + Decode('aHR0cF9wb3J0YWxfaXB0dnByaXZhdGVzZXJ2ZXJfdHYtZ2VucmVz'))
+	except: pass
+
+	try: os.remove(ADDON_DATA + Decode('aHR0cF9wb3J0YWxfaXB0dnJvY2tldF90dg=='))
+	except: pass
+
+	try: os.remove(ADDON_DATA + Decode('aHR0cF9wb3J0YWxfaXB0dnJvY2tldF90di1nZW5yZXM='))
+	except: pass
+
+	try: os.remove(ADDON_DATA + Decode('c2V0dGluZ3MueG1s'))
+	except: pass
+
+	print 'Clear Cache Ended'
+
+	dialog = xbmcgui.Dialog()
+	dialog.ok("Cached Data Cleared", "All Done, Cached Data Has Now Been Cleared.")
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON SWITCH **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1944,6 +2361,9 @@ elif mode == 45		: play_video(url)
 elif mode == 46		: m3u_onlinemovie()
 elif mode == 47		: m3u_PLP()
 elif mode == 48		: m3u_LiveTV()
+elif mode == 49		: PremiumTVMenu()
+elif mode == 50		: ClearCachedData()
+elif mode == 51		: Premium_TV(PASSCODE, PASSWORD)
 
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
