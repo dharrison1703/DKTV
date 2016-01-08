@@ -1847,17 +1847,12 @@ def build_url(query):
 
 
 def homeLevel():
-	global portal_1, portal_2, portal_3, portal_4, portal_5, portal_6, portal_7, portal_8, portal_9, portal_10, go;
+	global portal_1, go;
 	
 	#todo - check none portal
 
 	if go:
 		addPortal(portal_1);
-		addPortal(portal_2);
-		addPortal(portal_3);
-		addPortal(portal_4);
-		addPortal(portal_5);
-		addPortal(portal_6);
 	
 		xbmcplugin.endOfDirectory(addon_handle);
 	
@@ -2068,24 +2063,11 @@ portal =  args.get('portal', None)
 
 if portal is None:
 	portal_1 = config.portalConfig('1');
-	portal_2 = config.portalConfig('2');
-	portal_3 = config.portalConfig('3');
-	portal_4 = config.portalConfig('4');
-	portal_5 = config.portalConfig('5');
-	portal_6 = config.portalConfig('6');
 
 else:
 	portal = json.loads(portal[0]);
 
-#  Modification to force outside call to portal_1 (9.0.19)
-
-	portal_2 = config.portalConfig('2');
-	portal_3 = config.portalConfig('3');
-	portal_4 = config.portalConfig('4');
-	portal_5 = config.portalConfig('5');
-	portal_6 = config.portalConfig('6');
-	if not ( portal['name'] == portal_2['name'] or portal['name'] == portal_3['name'] or portal['name'] == portal_4['name'] or portal['name'] == portal_5['name'] or portal['name'] == portal_6['name']) :
-		portal = config.portalConfig('1');
+	portal = config.portalConfig('1');
 
 if mode is None:
 	Premium_TV(PASSCODE, PASSWORD);
@@ -2141,37 +2123,13 @@ elif mode[0] == 'server':
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Test Area **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def addPortal(portal):
-
-
-	if portal['url'] == '':
-		return;
-
-	url = build_url({
-		'mode': 'genres', 
-		'portal' : json.dumps(portal)
-		});
-	
-	cmd = 'XBMC.RunPlugin(' + base_url + '?mode=cache&stalker_url=' + portal['url'] + ')';
-	ccd = 'XBMC.RunPlugin(' + base_url + '?mode=53)';
-	
-	li = xbmcgui.ListItem(portal['name'], iconImage=ART+'icon.png')
-	li.addContextMenuItems([ ('Clear Cache', cmd), ('Clear Cached Data', ccd) ]);
-	
-
-	xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True);
 
 def PremiumTVMenu():
-	global portal_1, portal_2, portal_3, portal_4, portal_5, portal_6, go;
+	global portal_1, go;
 
 	if go:
-		modules.AddTestDir('Clear Cached Data - WILL REMOVE PASSCODE AND PASSWORD', '', 50, ART+'icon.png', description="", isFolder=False, background='')
+		modules.AddTestDir('Clear Cached Data - Will Delete Passcode - Retype in Addon Settings', '', 50, ART+'icon.png', description="", isFolder=False, background='')
 		addPortal(portal_1);
-		addPortal(portal_2);
-		addPortal(portal_3);
-		addPortal(portal_4);
-		addPortal(portal_5);
-		addPortal(portal_6);
 		xbmcplugin.endOfDirectory(addon_handle);
 
 def ClearCachedData():
