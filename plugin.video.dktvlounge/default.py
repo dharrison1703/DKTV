@@ -57,6 +57,12 @@ online_LiveTV = ADDON.getSetting('online_LiveTV')
 m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
 DCPWC = ADDON.getSetting('Donators Code')
+directory = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/')
+destinaddons = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/addons.ini')
+destinsets = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/settings.xml')
+destinf1 = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.i4atv/http_mw1_iptv66_tv-genres')
+destinf2 = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.i4atv/http_mw1_iptv66_tv')
+destmw1dir = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dktvlounge/')
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -104,43 +110,14 @@ def pass_Input():
 	else: pass
 	#xbmc.sleep(500)
 	
-def Home_Menu(PASSCODE, PASSWORD):
-    
-    input_Failed = False
-    
-    if PASSWORD != '':
-        if PASSCODE != '':
-            if os.path.exists(SKIN):
-                if os.path.exists(HERE):
-                    if sys_Check.system_Check(PASSWORD, PASSCODE):
-        
-                        modules.addDir('Live TV',u_tube,48,ART+'icon.png',FANART,'')						
-                        modules.addDir('Sports Centre','',2,ART+'icon.png',FANART,'')
-                        modules.addDir('Movies','',1,ART+'icon.png',FANART,'')
-                        modules.addDir('TV Shows','',5,ART+'icon.png',FANART,'')
-                        #modules.addDir('Soaps','http://uksoapshare.blogspot.co.uk/',30,ART+'TvShows.png',FANART,'')
-                    
-                    else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
-                else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
-            else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
-        else:
-            eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
-            input_Failed = True
-    else: 
-        eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
-        input_Failed = True
-    
-    if input_Failed:
-        code_Input()
-        pass_Input()
-        PASSCODE = ADDON.getSetting('passcode')
-        PASSWORD = ADDON.getSetting('password')
-        Home_Menu(PASSCODE, PASSWORD)
-        input_Failed = False
-    else: pass
+def Home_Menu():
+	modules.addDir('Premium TV','',51,ART+'icon.png',FANART,'')
+	modules.addDir('Live TV',u_tube,48,ART+'icon.png',FANART,'')
+	modules.addDir('Sports Centre','',2,ART+'icon.png',FANART,'')
+	modules.addDir('Movies','',1,ART+'icon.png',FANART,'')
+	modules.addDir('TV Shows','',5,ART+'icon.png',FANART,'')
+	#modules.addDir('Test','',14,ART+'TvShows.png',FANART,'')
 
-
-    
 	
 def Movies(PASSCODE, PASSWORD): # add this into ()
     
@@ -173,36 +150,11 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 		input_Failed = False
 	else: pass
 
-def Premium_TV(PASSCODE, PASSWORD): # add this into ()
-    
-	input_Failed = False
-    
-	if PASSWORD != '':
-		if PASSCODE != '':
-			if os.path.exists(SKIN):
-				if os.path.exists(HERE):
-					if sys_Check.system_Check(PASSWORD, PASSCODE):
-					
-						modules.addDir('Premium TV','',49,ART+'icon.png',FANART,'')						
+def Premium_TV(): # add this into ()
+	modules.addDir('Premium TV','',49,ART+'icon.png',FANART,'')
+	modules.addDir('Ivue Intergration','',52,ART+'icon.png',FANART,'')
+		
 						
-					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
-				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
-			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
-		else:
-			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
-			input_Failed = True
-	else:
-		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
-		input_Failed = True
-	
-	if input_Failed:
-		code_Input()
-		pass_Input()
-		PASSCODE = ADDON.getSetting('passcode')
-		PASSWORD = ADDON.getSetting('password')
-		Premium_TV(PASSCODE, PASSWORD) #This line will change depending on where you are mate
-		input_Failed = False
-	else: pass
 
 
 def TV_Shows(PASSCODE, PASSWORD): # add this into ()
@@ -2070,7 +2022,7 @@ else:
 	portal = config.portalConfig('1');
 
 if mode is None:
-	Premium_TV(PASSCODE, PASSWORD);
+	pass;
 
 elif mode[0] == 'cache':	
 	stalker_url = args.get('stalker_url', None);
@@ -2159,6 +2111,29 @@ def ClearCachedData():
 
 	dialog = xbmcgui.Dialog()
 	dialog.ok("Cached Data Cleared", "All Done, Cached Data Has Now Been Cleared.")
+
+def Ivue():
+	if not os.path.exists(directory):
+		dialog.ok(addonname, 'Please makesure you have ivue tv guide installed and you have run it at least once then use this function to enable integration')
+		dialog.notification(addonname, 'please install and run ivue tv guide at least once', xbmcgui.NOTIFICATION_ERROR );
+	
+	if os.path.exists(directory):
+		try: 
+			os.makedirs(destmw1dir)
+		except OSError:
+			if not os.path.isdir(destmw1dir):
+				raise
+			
+		addonsini = urllib.URLopener()
+		addonsini.retrieve("http://devilsoriginbuild.x10host.com/addon/Ivue/addons.ini", destinaddons)
+		addonsini = urllib.URLopener()
+		addonsini.retrieve("http://devilsoriginbuild.x10host.com/addon/Ivue/settings.xml", destinsets)
+		addonsini = urllib.URLopener()
+		addonsini.retrieve("http://devilsoriginbuild.x10host.com/addon/Ivue/http_mw1_iptv66_tv", destinf2)
+		addonsini = urllib.URLopener()
+		addonsini.retrieve("http://devilsoriginbuild.x10host.com/addon/Ivue/http_mw1_iptv66_tv-genres", destinf1)
+		modules.addDir('[COLOR green]*** Complete Now Go Back To Ivue ***[/COLOR]','',0,ICON,'',FANART)
+	xbmc.executebuiltin('Container.SetViewMode(50)')
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON SWITCH **********
@@ -2250,7 +2225,7 @@ print "Regexs: "+str(regexs)
 
 
 
-if mode == None		: Home_Menu(PASSCODE, PASSWORD)
+if mode == None		: Home_Menu()
 elif mode == 1		: Movies(PASSCODE, PASSWORD)
 elif mode == 2		: Sports_Centre(PASSCODE, PASSWORD)
 elif mode == 3		: get_All_Rows(url)
@@ -2321,7 +2296,9 @@ elif mode == 47		: m3u_PLP()
 elif mode == 48		: m3u_LiveTV()
 elif mode == 49		: PremiumTVMenu()
 elif mode == 50		: ClearCachedData()
-elif mode == 51		: Premium_TV(PASSCODE, PASSWORD)
+elif mode == 51		: Premium_TV()
+elif mode == 52		: Ivue()
+
 
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)

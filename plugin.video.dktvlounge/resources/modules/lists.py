@@ -150,7 +150,7 @@ def List_LiveTVFull(Cat_Name):
     if Cat_Name == 'USA Channels': cat_id = '10'
     if Cat_Name == 'Other': cat_id = '11'
 
-    html=OPEN_URL(Decode('aHR0cDovL3VrdHZub3cuZGVzaXN0cmVhbXMudHYvRGVzaVN0cmVhbXMvaW5kZXgyMDIucGhwP3RhZz1nZXRfYWxsX2NoYW5uZWwmdXNlcm5hbWU9YnlwYXNz'))
+    html=OPEN_URL(Decode('aHR0cDovL2VudGVydGFpbm1lbnRsaXN0cy54MTBob3N0LmNvbS9qc29uLz91c2VybmFtZT1pbnNpZGU0bmRyb2lkJnBhc3N3b3JkPWluc2lkZTRuZHJvaWQ='))
     match = re.compile('"id":".+?","name":"(.+?)","img":"(.+?)","stream_url3":".+?","cat_id":"(.+?)","stream_url2":".+?","stream_url":".+?"}',re.DOTALL).findall(html)
     print 'Len Match: >>>' + str(len(match))
     for name,img, CatNO in match:
@@ -164,7 +164,7 @@ def List_LiveTVFull(Cat_Name):
 	xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);
 
 def LiveTVFull(Search_Name):
-    html=OPEN_URL(Decode('aHR0cDovL3VrdHZub3cuZGVzaXN0cmVhbXMudHYvRGVzaVN0cmVhbXMvaW5kZXgyMDIucGhwP3RhZz1nZXRfYWxsX2NoYW5uZWwmdXNlcm5hbWU9YnlwYXNz'))
+    html=OPEN_URL(Decode('aHR0cDovL2VudGVydGFpbm1lbnRsaXN0cy54MTBob3N0LmNvbS9qc29uLz91c2VybmFtZT1pbnNpZGU0bmRyb2lkJnBhc3N3b3JkPWluc2lkZTRuZHJvaWQ='))
     match = re.compile('"id":".+?","name":"'+Search_Name+'","img":"(.+?)","stream_url3":"(.+?)","cat_id":".+?","stream_url2":"(.+?)","stream_url":"(.+?)"}',re.DOTALL).findall(html)
     for img,url,url2,url3 in match:
 		Image = 'http://uktvnow.desistreams.tv/' + (img).replace('\\','')
