@@ -23,7 +23,7 @@ def getPass_Set():
 	randomSets = [1,2,3]
 	randomSet = 1 #random.choice(randomSets) # this decides which set below it will use making it like this randomSet = 2 #random.choice(randomSets) so you hash the last bit out and put the number of set you want to try
 	if randomSet == 1:
-		passSet1 = ['MDA6MUE6Nzg6MDA6MDA6MjU=','MDA6MUE6Nzg6MDA6MDA6NDA=','MDA6MUE6Nzg6MDA6MDA6MDU=','MDA6MUE6Nzg6MTU6MTU6MTU=','MDA6MUE6Nzg6NTU6NTU6MDA=','MDA6MUE6Nzg6MDY6MDY6MDY=','MDA6MUE6Nzg6MTU6MTU6MTU=','MDA6MUE6Nzg6NTU6NTU6MDA=','MDA6MUE6Nzg6MDY6MDY6MDY='] # these macs only work with the url below. aaa i get you now mate
+		passSet1 = ['MDA6MUE6Nzg6MDA6MDA6MjU=','MDA6MUE6Nzg6MDA6MDA6NDA=','MDA6MUE6Nzg6Mjc6Mjc6Mjc=','MDA6MUE6Nzg6MTU6MTU6MTU=','MDA6MUE6Nzg6NTU6NTU6MDA=','MDA6MUE6Nzg6MDY6MDY6MDY='] # these macs only work with the url below. aaa i get you now mate
 		port_Url = 'aHR0cDovL3BvcnRhbC5pcHR2cHJpdmF0ZXNlcnZlci50dg==' # this in each one is a diff url
 		rand_Mac = random.choice(passSet1) # chooses random mac
 		setDet = [port_Url,rand_Mac] # puts portal url and choosen mac in list

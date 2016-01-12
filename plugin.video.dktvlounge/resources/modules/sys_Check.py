@@ -5,7 +5,7 @@ file_Check = os.path
 Decode = base64.decodestring
 
 def system_Check(sys_Password, sys_Passcode):
-	auth_URL = Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1NlY3VyaXR5L3NlY3VyaXR5LnBocD8=')+'passcode='+sys_Passcode+'&password='+sys_Password
+	auth_URL = Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9zZWN1cml0eS9zZWN1cml0eS5waHA/')+'passcode='+sys_Passcode+'&password='+sys_Password
 	print auth_URL
 	finalise_Sum = open_URL(auth_URL)
 	auth_Result = re.compile(Decode('PGgxPiguKz8pPC9oMT48aDI+KC4rPyk8L2gyPjxoMz4oLis/KTwvaDM+PGg0PiguKz8pPC9oND4='),re.DOTALL).findall(finalise_Sum)

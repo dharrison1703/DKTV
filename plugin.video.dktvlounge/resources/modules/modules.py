@@ -59,7 +59,7 @@ def addDir(name,url,mode,iconimage,fanart,description):
         else:
             ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
-
+		
 def AddTestDir(name, url, mode, iconimage, description="", isFolder=True, background=None):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
 

@@ -150,8 +150,6 @@ def Category(name, url):
 	loaded_Channels = 0
 	progress_Marker = 0
 	
-	
-	
 	WBLN_Message = 'Wont Be Long Now'
 	dp.create('Loading Channels','','',WBLN_Message)
 	
@@ -229,29 +227,10 @@ def Category(name, url):
 					DataList.append(description)
 			
 			title = DataList[0]
-			#url = DataList[1]
 			mode = int(DataList[1])
 			icon = DataList[2]
 			fanart = DataList[3]
-			'''
-			html=OPEN_URL(Guide_URL)
-			match = re.compile('<div class="div-epg-channel-name">(.+?)</div>.+?<a qt-title="(.+?)"',re.DOTALL).findall(html)
-			info = 'No Data Currently Available'
-			for name, whatson in match:
-				if 'HD' in name:
-					name = name.replace ('HD', '')
-				if 'hd' in name:
-					name = name.replace ('hd', '')
-				if '//' in name:
-					name = name.replace ('//', ' ')
-				
-				channel = str(title)
-				
-				if channel in name:
-					info = whatson
-				else:
-					pass
-			'''
+			
 			info = 'No Available Data'
 			if len(UrlList) == 1:
 				urllink = UrlList[0]
@@ -262,8 +241,7 @@ def Category(name, url):
 			
 			progress_Marker = progress_Marker + calc_Progress
 			loaded_Channels = loaded_Channels + 1
-	
-		#progress_Marker = 0
+
 		dp.close()
 		modules.setView('tvshows', 'Media info 3')
 	

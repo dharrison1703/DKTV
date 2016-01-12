@@ -39,23 +39,17 @@ def addList(name,url,mode,iconimage):
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
 		
-def TESTCATS2():
-    html=OPEN_URL('http://devil666wizard.x10host.com/addon/movieurl/URL.php')
-    match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
-    for url,image,name in match:
-        addList(name,url,22,image)
-
 def TESTCATS3():
-    html=OPEN_URL('http://devil666wizard.x10host.com/addon/movieurl/URLShows.php')
+    html=OPEN_URL(Decode9('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9VUkxTaG93cy5waHA='))
     match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
     for url,image,name in match:
         addList(name,url,22,image)
 
-def TESTCATS4():
-    html=OPEN_URL(Decode('aHR0cDovL2JhY2syYmFzaWNzLngxMGhvc3QuY29tL2JhY2syYmFzaWNzL3Rlc3QvcmVjZW50ZXBpc29kZXMucGhw'))
+def TESTCATS2():
+    html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS9JQm9iT2RjME1sNnNRa0NG'))
     match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
     for url,image,name in match:
-        addList(name,url,28,image)
+        addList(name,url,22,image)
 		
 def OPEN_URL(url):
 		req = urllib2.Request(url)
@@ -69,19 +63,19 @@ def LISTS(url):
     html=OPEN_URL(url)
     match = re.compile('&nbsp;<a href="(.+?)">(.+?)</a>').findall(html)
     for url,name in match:
-        addDir3(name,url,18,'http://devil666wizard.x10host.com/BackgroundArt/Icon.png')
+        addDir3(name,url,18,'http://devilsoriginbuild.com/addon/Icon.png')
         
 def LISTS2(url):
     html=OPEN_URL(url)
     match = re.compile('"playlist">(.+?)</span></div><div><iframe src="(.+?)"').findall(html)
     for name,url in match:
-        addDir3(name,url,19,'http://devil666wizard.x10host.com/BackgroundArt/Icon.png')
+        addDir3(name,url,19,'http://devilsoriginbuild.com/addon/Icon.png')
         
 def LISTS3(url):
     html=OPEN_URL(url)
     match = re.compile("url: '(.+?)',").findall(html)
     for url in match:
-        addDir4('STREAM',url,16,'http://devil666wizard.x10host.com/BackgroundArt/Icon.png')
+        addDir4('STREAM',url,16,'http://devilsoriginbuild.com/addon/Icon.png')
 
 def TestPlayUrl(name, url, iconimage=None):
     print '--- Playing "{0}". {1}'.format(name, url)
@@ -90,18 +84,23 @@ def TestPlayUrl(name, url, iconimage=None):
     xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
 
 def Build_MenuMovies():
-	url1 = Decode('aHR0cDovL2RsLmZpbG1paGEuY29tL01vdmllcy8yMDE0Lw==')
-	url2 = Decode('aHR0cDovL2RsLmZpbG1paGEuY29tL01vdmllcy8yMDEzLw==')
-	url3 = Decode('aHR0cDovL2RsLmZpbG1paGEuY29tL01vdmllcy8yMDEyLw==')
+	url1 = Decode('aHR0cDovL2RsMi5teTk4bXVzaWMuY29tL0RhdGEvRmlsbS84Ljk0Lw==')
+	url2 = Decode('aHR0cDovL2RsMi5teTk4bXVzaWMuY29tL0RhdGEvRmlsbS85Ljk0Lw==')
+	url3 = Decode('aHR0cDovL2RsMi5teTk4bXVzaWMuY29tL0RhdGEvRmlsbS8xMC45NC8=')
 	streams.ParseURL(url1)
 	streams.ParseURL(url2)
 	streams.ParseURL(url3)
+	xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);
 	
 def Build_MenuTrailers():
 	url1 = Decode('aHR0cDovL2RsLmZpbG1paGEuY29tL0NvbWluZ1Nvb24vMjAxNS8=')
 	url2 = Decode('aHR0cDovL2RsLmZpbG1paGEuY29tL0NvbWluZ1Nvb24vMjAxNi8=')
 	streams.ParseURL(url1)
 	streams.ParseURL(url2)
+	
+def Build_MenuTVshows():
+	url1 = Decode('aHR0cDovL2RsMi5teTk4bXVzaWMuY29tL0RhdGEvU2VyaWFsLw==')
+	streams.ParseURL(url1)
 
 def Live(url):
         xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_TITLE )

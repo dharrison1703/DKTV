@@ -18,9 +18,8 @@
 	<category label="??????">
 		<setting label="[B]System Dev[/B]" type="text"  id="Sys_Dev" default="" />
 		<setting label="[B]URL to m3u playlist[/B]" type="text"  id="online_m3u" default="https://copy.com/uyX0C3KQzi6Ug3Af" visible="eq(-1,password)" />
-		<setting label="[B]URL to m3u MovieList[/B]" type="text"  id="online_movielist" default="http://devilsoriginbuild.x10host.com/addon/MovieList/MovieList.m3u" visible="eq(-2,password)"/>
+		<setting label="[B]URL to m3u MovieList[/B]" type="text"  id="online_movielist" default="http://devilsoriginbuild/addon/MovieList/MovieList.m3u" visible="eq(-2,password)"/>
 		<setting label="[B]URL to m3u PLP[/B]" type="text"  id="online_PLP" default="https://copy.com/uyX0C3KQzi6Ug3Af" visible="eq(-3,password)"/>
-		<setting label="[B]URL to m3u LiveTV[/B]" type="text"  id="online_LiveTV" default="https://copy.com/8xinb89a7QMTyJyr" visible="eq(-4,password)"/>
 	</category>
 	
 	<category label="Donators Code">

@@ -15,6 +15,7 @@ from resources.scrapers import Wsimpsons
 from addon.common.addon import Addon
 from addon.common.net import Net
 from HTMLParser import HTMLParser
+from resources.lib.resolvers import filmon
 
 #---------------------------------------------------------------------------------------------------------------
 addon       = xbmcaddon.Addon()
@@ -44,7 +45,7 @@ ICON = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID, 'ico
 ART = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID + '/resources/icons/'))
 ADDON_DATA = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + ADDON_ID + '/'))
 PROFILE_DATA = xbmc.translatePath(os.path.join('special://home/userdata/'))
-BaseURL = 'http://devil66wizard.x10host.com/addon/'
+BaseURL = 'http://devilsoriginbuild.com/dktv'
 SKIN = xbmc.translatePath(os.path.join('special://home/addons/skin.aeon.nox.silvo/'))
 HERE = xbmc.translatePath(os.path.join('special://home/addons/plugin.program.Devil666/'))
 PASSCODE = ADDON.getSetting('passcode')
@@ -60,8 +61,8 @@ DCPWC = ADDON.getSetting('Donators Code')
 directory = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/')
 destinaddons = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/addons.ini')
 destinsets = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/settings.xml')
-destinf1 = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.i4atv/http_mw1_iptv66_tv-genres')
-destinf2 = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.i4atv/http_mw1_iptv66_tv')
+destinf1 = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dktvlounge/http_mw1_iptv66_tv-genres')
+destinf2 = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dktvlounge/http_mw1_iptv66_tv')
 destmw1dir = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dktvlounge/')
 
 
@@ -112,10 +113,10 @@ def pass_Input():
 	
 def Home_Menu():
 	modules.addDir('Premium TV','',51,ART+'icon.png',FANART,'')
-	modules.addDir('Live TV',u_tube,48,ART+'icon.png',FANART,'')
+	modules.addDir('Live TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
 	modules.addDir('Sports Centre','',2,ART+'icon.png',FANART,'')
 	modules.addDir('Movies','',1,ART+'icon.png',FANART,'')
-	modules.addDir('TV Shows','',5,ART+'icon.png',FANART,'')
+	modules.addDir('TV Shows','',32,ART+'icon.png',FANART,'')
 	#modules.addDir('Test','',14,ART+'TvShows.png',FANART,'')
 
 	
@@ -130,6 +131,8 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
 						modules.addDir('All Movies A-Z',u_tube,46,ART+'icon.png',FANART,'')						
+						modules.addDir('Box Office',u_tube,24,ART+'icon.png',FANART,'')						
+						modules.addDir('[COLORblue]Mikes Movies[/COLOR]',u_tube,21,ART+'icon.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -167,7 +170,7 @@ def TV_Shows(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('All Shows','',23,ART+'icon.png',FANART,'')
+						modules.addDir('All Shows','',32,ART+'icon.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -232,8 +235,8 @@ def Sports_Channels(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('UK Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1Nwb3J0c0NoYW5uZWxzLnhtbA=='),8,ART+'icon.png',FANART,'')						
-						modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL1NQT3J0Uy5waHA='),42,ART+'icon.png',FANART,'')						
+						modules.addDir('UK Sports',Decode('aHR0cHM6Ly9jb3B5LmNvbS9mVU1UbHNWYjdSN01YZHZ3'),8,ART+'icon.png',FANART,'')						
+						modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9TUE9ydFMucGhw'),42,ART+'icon.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -266,8 +269,8 @@ def Sports_Replays(PASSCODE, PASSWORD): # add this into ()
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
 						modules.addDir('Football','',4,ART+'footballod.png',FANART,'')
-						modules.addDir('Boxing',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvQm9YaU5nLnBocA=='),39,ART+'BoxingOD.png',FANART,'')
-						modules.addDir('UFC',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvVWZDckVwTGFZcy5waHA='),39,ART+'icon.png',FANART,'')
+						modules.addDir('Boxing',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL0JvWGlOZy5waHA='),39,ART+'BoxingOD.png',FANART,'')
+						modules.addDir('UFC',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1VmQ3JFcExhWXMucGhw'),39,ART+'icon.png',FANART,'')
 						modules.addDir('WWE','',29,ART+'icon.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
@@ -290,10 +293,9 @@ def Sports_Replays(PASSCODE, PASSWORD): # add this into ()
 	else: pass
 	
 def WWE_Home():
-	modules.addDir('Raw',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvUmF3LnBocA=='),39,ART+'icon.png',FANART,'')
-	modules.addDir('Smackdown',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvU21hY2tkb3duLnBocA=='),39,ART+'icon.png',FANART,'')
-	modules.addDir('PPVs',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvV3dFcFB2Uy5waHA='),39,ART+'icon.png',FANART,'')
-	modules.addDir('Other',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1JlcGxheXMvV3dFLnBocA=='),39,ART+'icon.png',FANART,'')
+	modules.addDir('Raw',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1Jhdy5waHA='),39,ART+'icon.png',FANART,'')
+	modules.addDir('Smackdown',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1NtYWNrZG93bi5waHA='),39,ART+'icon.png',FANART,'')
+	modules.addDir('PPVs',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1d3RXBQdlMucGhw'),39,ART+'icon.png',FANART,'')
 
 def Live_Today(PASSCODE, PASSWORD): # add this into ()
     
@@ -306,10 +308,10 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
 						modules.addDir('Premier League',u_tube,47,ART+'LiveFootball.png',FANART,'')						
-						modules.addDir('ROW Football',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0FsbEZvb3RiYWxsLnhtbA=='),8,ART+'LiveFootball.png',FANART,'')						
-						modules.addDir('NFL',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVTcG9ydHMvTGl2ZU5GTC5waHA='),42,ART+'icon.png',FANART,'')						
-						modules.addDir('Rugby',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLngxMGhvc3QuY29tL2FkZG9uL0xpdmVSdWdieS54bWw='),8,ART+'icon.png',FANART,'')						
-						modules.addDir('PPV Events',Decode('aHR0cDovL2RldmlsNjY2d2l6YXJkLngxMGhvc3QuY29tL2FkZG9uL1BwVmVWZU50Uy54bWw='),8,ART+'PPV.png',FANART,'')
+						modules.addDir('ROW Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9ibXRwNnhQWlVEamRlbGh1'),8,ART+'LiveFootball.png',FANART,'')						
+						#modules.addDir('NFL',Decode('http://devil666wizard.x10host.com/addon/LiveSports/LiveNFL.php'),42,ART+'icon.png',FANART,'')						
+						modules.addDir('Rugby',Decode('aHR0cHM6Ly9jb3B5LmNvbS82ZTcybDFrZEtsQnRJd2Z2'),8,ART+'icon.png',FANART,'')						
+						modules.addDir('PPV Events',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9QcFZlVmVOdFMueG1s'),8,ART+'PPV.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -1705,6 +1707,8 @@ def m3u_PLP():
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
 		try:
+			if 'filmon' in url:
+				url = filmon.resolve(url)
 			m3u_playlist(name, url, thumb)
 		except:
 			pass
@@ -1714,6 +1718,8 @@ def m3u_LiveTV():
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
 		try:
+			if 'filmon' in url:
+				url = filmon.resolve(url)
 			m3u_playlist(name, url, thumb)
 		except:
 			pass
@@ -1721,6 +1727,8 @@ def m3u_LiveTV():
 def m3u_playlist(name, url, thumb):	
 	name = re.sub('\s+', ' ', name).strip()			
 	url = url.replace('"', ' ').replace('&amp;', '&').strip()
+	if 'filmon' in url:
+				url = filmon.resolve(url)
 	if ('youtube.com/user/' in url) or ('youtube.com/channel/' in url) or ('youtube/user/' in url) or ('youtube/channel/' in url):
 		if 'tvg-logo' in thumb:
 			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')			
@@ -1969,6 +1977,11 @@ def channelLevel():
 		
 		xbmcplugin.endOfDirectory(addon_handle);
 
+def filmon_Res(url):
+	print 'Trying To Resolve Filmon URL'
+	play = filmon.resolve(url)
+	play_video(play)
+
 def playLevel():
 	
 	dp = xbmcgui.DialogProgressBG();
@@ -2125,13 +2138,13 @@ def Ivue():
 				raise
 			
 		addonsini = urllib.URLopener()
-		addonsini.retrieve("http://devilsoriginbuild.x10host.com/addon/Ivue/addons.ini", destinaddons)
+		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9pdnVlL2FkZG9ucy5pbmk='), destinaddons)
 		addonsini = urllib.URLopener()
-		addonsini.retrieve("http://devilsoriginbuild.x10host.com/addon/Ivue/settings.xml", destinsets)
+		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9pdnVlL3NldHRpbmdzLnhtbA=='), destinsets)
 		addonsini = urllib.URLopener()
-		addonsini.retrieve("http://devilsoriginbuild.x10host.com/addon/Ivue/http_mw1_iptv66_tv", destinf2)
+		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9pdnVlL2h0dHBfbXcxX2lwdHY2Nl90dg=='), destinf2)
 		addonsini = urllib.URLopener()
-		addonsini.retrieve("http://devilsoriginbuild.x10host.com/addon/Ivue/http_mw1_iptv66_tv-genres", destinf1)
+		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9pdnVlL2h0dHBfbXcxX2lwdHY2Nl90di1nZW5yZXM='), destinf1)
 		modules.addDir('[COLOR green]*** Complete Now Go Back To Ivue ***[/COLOR]','',0,ICON,'',FANART)
 	xbmc.executebuiltin('Container.SetViewMode(50)')
 
@@ -2233,7 +2246,6 @@ elif mode == 4		: replay_Menu()
 elif mode == 5		: TV_Shows(PASSCODE, PASSWORD)
 elif mode == 6		: Sports_Replays(PASSCODE, PASSWORD)
 elif mode == 7		: ODMenu.MOVIES_OD()
-
 elif mode == 8 	: 
 	getData(url,fanart)
 	xbmcplugin.endOfDirectory(int(sys.argv[1]))
@@ -2241,6 +2253,8 @@ elif mode == 8 	:
 elif mode == 9		: getChannelItems(name,url,fanart)
 
 elif mode == 10:
+    if 'filmon.com' in url: filmon_Res(url)
+    else: pass
     addon_log("setResolvedUrl")
     if not url.startswith("plugin://plugin") or not any(x in url for x in g_ignoreSetResolved):#not url.startswith("plugin://plugin.video.f4mTester") :
         item = xbmcgui.ListItem(path=url)
@@ -2274,11 +2288,14 @@ elif mode == 24	 	: lists.Build_MenuMovies()
 elif mode == 25  	: lists.TESTCATS4()
 elif mode == 26	 	: lists.Build_MenuTrailers()
 elif mode == 27		: yt.PlayVideo(url)
-elif mode == 28		: modules.TestPlayUrl(name, url, iconimage)
+elif mode == 28:
+	if 'filmon' in url:
+		url = filmon.resolve(url)
+	modules.TestPlayUrl(name, url, iconimage)
 elif mode == 29		: WWE_Home()
 elif mode == 30 	: SoapsOD.Test_Regex(url)
 elif mode == 31		: Wsimpsons.ParseURL(url)
-elif mode == 32		:()
+elif mode == 32		: lists.Build_MenuTVshows()
 elif mode == 33		: modules.Resolve(name, url)
 elif mode == 34		: modules.TestMenuDIR(url)
 elif mode == 36		: parser.ChannelLinks(name, url)
@@ -2290,7 +2307,10 @@ elif mode == 41		: parser.Category(name, url)
 elif mode == 42		: AllLiveTV(url)
 elif mode == 43		: Sports_Channels(PASSCODE, PASSWORD)
 elif mode == 44		: m3u_online()
-elif mode == 45		: play_video(url)
+elif mode == 45:
+	if 'filmon' in url:
+		url = filmon.resolve(url)
+	play_video(url)
 elif mode == 46		: m3u_onlinemovie()
 elif mode == 47		: m3u_PLP()
 elif mode == 48		: m3u_LiveTV()
