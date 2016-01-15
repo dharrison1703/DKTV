@@ -58,9 +58,9 @@ online_LiveTV = ADDON.getSetting('online_LiveTV')
 m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
 DCPWC = ADDON.getSetting('Donators Code')
-directory = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/')
-destinaddons = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/addons.ini')
-destinsets = xbmc.translatePath('special://home/userdata/addon_data/script.tvguidetecbox/settings.xml')
+directoryr = xbmc.translatePath('special://home/userdata/addon_data/script.renegadestv/')
+destinaddonsr = xbmc.translatePath('special://home/userdata/addon_data/script.renegadestv/addons2.ini')
+destinsetsr = xbmc.translatePath('special://home/userdata/addon_data/script.renegadestv/settings.xml')
 destinf1 = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dktvlounge/http_mw1_iptv66_tv-genres')
 destinf2 = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dktvlounge/http_mw1_iptv66_tv')
 destmw1dir = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dktvlounge/')
@@ -155,7 +155,7 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 
 def Premium_TV(): # add this into ()
 	modules.addDir('Premium TV','',49,ART+'icon.png',FANART,'')
-	modules.addDir('Ivue Intergration','',52,ART+'icon.png',FANART,'')
+	modules.addDir('Renegades Intergration','',53,ART+'icon.png',FANART,'')
 		
 						
 
@@ -2125,27 +2125,27 @@ def ClearCachedData():
 	dialog = xbmcgui.Dialog()
 	dialog.ok("Cached Data Cleared", "All Done, Cached Data Has Now Been Cleared.")
 
-def Ivue():
-	if not os.path.exists(directory):
-		dialog.ok(addonname, 'Please makesure you have ivue tv guide installed and you have run it at least once then use this function to enable integration')
-		dialog.notification(addonname, 'please install and run ivue tv guide at least once', xbmcgui.NOTIFICATION_ERROR );
+def Reneg():
+	if not os.path.exists(directoryr):
+		dialog.ok(addonname, 'Please makesure you have renegades tv guide installed and you have run it at least once then use this function to enable integration')
+		dialog.notification(addonname, 'please install and run renegades tv guide at least once', xbmcgui.NOTIFICATION_ERROR );
 	
-	if os.path.exists(directory):
+	if os.path.exists(directoryr):
 		try: 
 			os.makedirs(destmw1dir)
 		except OSError:
 			if not os.path.isdir(destmw1dir):
 				raise
-			
+				
+		addonsinir = urllib.URLopener()
+		addonsinir.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZW5lZ2FkZXMvYWRkb25zMi5pbmk='), destinaddonsr)
+		addonsinir = urllib.URLopener()
+		addonsinir.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZW5lZ2FkZXMvc2V0dGluZ3MueG1s'), destinsetsr)
 		addonsini = urllib.URLopener()
-		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9pdnVlL2FkZG9ucy5pbmk='), destinaddons)
+		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZW5lZ2FkZXMvaHR0cF9tdzFfaXB0djY2X3R2'), destinf2)
 		addonsini = urllib.URLopener()
-		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9pdnVlL3NldHRpbmdzLnhtbA=='), destinsets)
-		addonsini = urllib.URLopener()
-		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9pdnVlL2h0dHBfbXcxX2lwdHY2Nl90dg=='), destinf2)
-		addonsini = urllib.URLopener()
-		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9pdnVlL2h0dHBfbXcxX2lwdHY2Nl90di1nZW5yZXM='), destinf1)
-		modules.addDir('[COLOR green]*** Complete Now Go Back To Ivue ***[/COLOR]','',0,ICON,'',FANART)
+		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZW5lZ2FkZXMvaHR0cF9tdzFfaXB0djY2X3R2LWdlbnJlcw=='), destinf1)
+		modules.addDir('[COLOR green]*** Intergration Complete Go To Renegades ***[/COLOR]','0',0,ICON,'',FANART)
 	xbmc.executebuiltin('Container.SetViewMode(50)')
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2317,7 +2317,7 @@ elif mode == 48		: m3u_LiveTV()
 elif mode == 49		: PremiumTVMenu()
 elif mode == 50		: ClearCachedData()
 elif mode == 51		: Premium_TV()
-elif mode == 52		: Ivue()
+elif mode == 53		: Reneg()
 
 
 elif mode == 400 	: lists.Live(url)
