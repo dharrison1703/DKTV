@@ -15,7 +15,7 @@ from resources.scrapers import Wsimpsons
 from addon.common.addon import Addon
 from addon.common.net import Net
 from HTMLParser import HTMLParser
-from resources.lib.resolvers import filmon
+from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast
 
 #---------------------------------------------------------------------------------------------------------------
 addon       = xbmcaddon.Addon()
@@ -112,8 +112,7 @@ def pass_Input():
 	#xbmc.sleep(500)
 	
 def Home_Menu():
-	modules.addDir('Premium TV','',51,ART+'icon.png',FANART,'')
-	modules.addDir('Live TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
+	modules.addDir('Live TV','',51,ART+'icon.png',FANART,'')
 	modules.addDir('Sports Centre','',2,ART+'icon.png',FANART,'')
 	modules.addDir('Movies','',1,ART+'icon.png',FANART,'')
 	modules.addDir('TV Shows','',32,ART+'icon.png',FANART,'')
@@ -131,6 +130,7 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
 						modules.addDir('All Movies A-Z',u_tube,46,ART+'icon.png',FANART,'')						
+						modules.addDir('Movies By Year',u_tube,54,ART+'icon.png',FANART,'')						
 						modules.addDir('Box Office',u_tube,24,ART+'icon.png',FANART,'')						
 						modules.addDir('[COLORblue]Mikes Movies[/COLOR]',u_tube,21,ART+'icon.png',FANART,'')						
 						
@@ -153,7 +153,8 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 		input_Failed = False
 	else: pass
 
-def Premium_TV(): # add this into ()
+def Live_TV(): # add this into ()
+	modules.addDir('Live TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
 	modules.addDir('Premium TV','',49,ART+'icon.png',FANART,'')
 	modules.addDir('Renegades Intergration','',53,ART+'icon.png',FANART,'')
 		
@@ -1981,6 +1982,16 @@ def filmon_Res(url):
 	print 'Trying To Resolve Filmon URL'
 	play = filmon.resolve(url)
 	play_video(play)
+	
+def streamlive_Res(url):
+	print 'Trying To Resolve StreamLive URL'
+	play = streamlive.resolve(url)
+	play_video(play)
+
+def ibrod_Res(url):
+	print 'Trying To Resolve Ibrod URL'
+	play = miplayer.resolve(url)
+	play_video(play)
 
 def playLevel():
 	
@@ -2246,19 +2257,19 @@ elif mode == 4		: replay_Menu()
 elif mode == 5		: TV_Shows(PASSCODE, PASSWORD)
 elif mode == 6		: Sports_Replays(PASSCODE, PASSWORD)
 elif mode == 7		: ODMenu.MOVIES_OD()
-elif mode == 8 	: 
+elif mode == 8 		: 
 	getData(url,fanart)
 	xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 elif mode == 9		: getChannelItems(name,url,fanart)
 
 elif mode == 10:
-    if 'filmon.com' in url: filmon_Res(url)
-    else: pass
-    addon_log("setResolvedUrl")
-    if not url.startswith("plugin://plugin") or not any(x in url for x in g_ignoreSetResolved):#not url.startswith("plugin://plugin.video.f4mTester") :
-        item = xbmcgui.ListItem(path=url)
-        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
+    if 'filmon.com' in url: 
+		url = filmon_Res(url)
+    if 'streamlive' in url: 
+		url = streamlive_Res(url)
+    if 'miplayer' in url:
+		url = ibrod_Res(url)
     else:
         print 'Not setting setResolvedUrl'
         xbmc.executebuiltin('XBMC.RunPlugin('+url+')')
@@ -2281,6 +2292,7 @@ elif mode == 17  	: LISTS(url)
 elif mode == 18  	: LISTS2(url)
 elif mode == 19  	: LISTS3(url)
 elif mode == 20  	: lists.Lists()
+elif mode == 54  	: lists.TESTCATS1()
 elif mode == 21  	: lists.TESTCATS2()
 elif mode == 22  	: streams.ParseURL(url)
 elif mode == 23  	: lists.TESTCATS3()
@@ -2291,6 +2303,12 @@ elif mode == 27		: yt.PlayVideo(url)
 elif mode == 28:
 	if 'filmon' in url:
 		url = filmon.resolve(url)
+	if 'miplayer' in url:
+		url = miplayer.resolve(url)
+	if 'hdcast.org' in url:
+		url = hdcastorg.resolve(url)
+	if 'streamlive' in url:
+		url = streamlive.resolve(url)
 	modules.TestPlayUrl(name, url, iconimage)
 elif mode == 29		: WWE_Home()
 elif mode == 30 	: SoapsOD.Test_Regex(url)
@@ -2310,13 +2328,17 @@ elif mode == 44		: m3u_online()
 elif mode == 45:
 	if 'filmon' in url:
 		url = filmon.resolve(url)
+	if 'miplayer' in url:
+		url = miplayer.resolve(url)
+	if 'streamlive' in url:
+		url = streamlive.resolve(url)
 	play_video(url)
 elif mode == 46		: m3u_onlinemovie()
 elif mode == 47		: m3u_PLP()
 elif mode == 48		: m3u_LiveTV()
 elif mode == 49		: PremiumTVMenu()
 elif mode == 50		: ClearCachedData()
-elif mode == 51		: Premium_TV()
+elif mode == 51		: Live_TV()
 elif mode == 53		: Reneg()
 
 

@@ -39,14 +39,20 @@ def addList(name,url,mode,iconimage):
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
 		
-def TESTCATS3():
-    html=OPEN_URL(Decode9('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9VUkxTaG93cy5waHA='))
+def TESTCATS1():
+    html=OPEN_URL(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9tb3ZpZWxpc3QvTW92aWVMaXN0LnBocA=='))
     match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
     for url,image,name in match:
         addList(name,url,22,image)
-
+		
 def TESTCATS2():
     html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS9JQm9iT2RjME1sNnNRa0NG'))
+    match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
+    for url,image,name in match:
+        addList(name,url,22,image)
+		
+def TESTCATS3():
+    html=OPEN_URL(Decode9('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9VUkxTaG93cy5waHA='))
     match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
     for url,image,name in match:
         addList(name,url,22,image)
