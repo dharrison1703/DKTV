@@ -15,7 +15,7 @@ from resources.scrapers import Wsimpsons
 from addon.common.addon import Addon
 from addon.common.net import Net
 from HTMLParser import HTMLParser
-from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast
+from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast
 
 #---------------------------------------------------------------------------------------------------------------
 addon       = xbmcaddon.Addon()
@@ -1993,6 +1993,16 @@ def ibrod_Res(url):
 	play = miplayer.resolve(url)
 	play_video(play)
 
+def finecast_Res(url):
+	print 'Trying To Resolve finecast URL'
+	play = finecast.resolve(url)
+	play_video(play)
+
+def hdcastorg_Res(url):
+	print 'Trying To Resolve hdcastorg URL'
+	play = hdcastorg.resolve(url)
+	play_video(play)
+
 def playLevel():
 	
 	dp = xbmcgui.DialogProgressBG();
@@ -2264,15 +2274,34 @@ elif mode == 8 		:
 elif mode == 9		: getChannelItems(name,url,fanart)
 
 elif mode == 10:
-    if 'filmon.com' in url: 
-		url = filmon_Res(url)
-    if 'streamlive' in url: 
-		url = streamlive_Res(url)
-    if 'miplayer' in url:
-		url = ibrod_Res(url)
+    try:
+		if 'hdcast' in url:
+			url = hdcastorg_Res(url)
+			print 'HDCase Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'filmon.com' in url: 
+			url = filmon_Res(url)
+			print 'FilmOn Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'streamlive' in url: 
+			url = streamlive_Res(url)
+			print 'streamlive Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'miplayer' in url:
+			url = ibrod_Res(url)
+			print 'ibrod Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'finecast' in url:
+			url = finecast_Res(url)
+			print 'finecast Resolver Returned: ' + str(url)
+    except: pass
     else:
         print 'Not setting setResolvedUrl'
-        xbmc.executebuiltin('XBMC.RunPlugin('+url+')')
+        xbmc.executebuiltin('XBMC.RunPlugin('+str(url)+')')
 
 elif mode == 11:
     addon_log("getRegexParsed")
@@ -2301,14 +2330,33 @@ elif mode == 25  	: lists.TESTCATS4()
 elif mode == 26	 	: lists.Build_MenuTrailers()
 elif mode == 27		: yt.PlayVideo(url)
 elif mode == 28:
-	if 'filmon' in url:
-		url = filmon.resolve(url)
-	if 'miplayer' in url:
-		url = miplayer.resolve(url)
-	if 'hdcast.org' in url:
-		url = hdcastorg.resolve(url)
-	if 'streamlive' in url:
-		url = streamlive.resolve(url)
+    try:
+		if 'hdcast' in url:
+			url = hdcastorg_Res(url)
+			print 'HDCase Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'filmon.com' in url: 
+			url = filmon_Res(url)
+			print 'FilmOn Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'streamlive' in url: 
+			url = streamlive_Res(url)
+			print 'streamlive Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'miplayer' in url:
+			url = ibrod_Res(url)
+			print 'ibrod Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'finecast' in url:
+			url = finecast_Res(url)
+			print 'finecast Resolver Returned: ' + str(url)
+    except: pass
+    else:
+        print 'Not setting setResolvedUrl'
 	modules.TestPlayUrl(name, url, iconimage)
 elif mode == 29		: WWE_Home()
 elif mode == 30 	: SoapsOD.Test_Regex(url)
