@@ -15,7 +15,7 @@ from resources.scrapers import Wsimpsons
 from addon.common.addon import Addon
 from addon.common.net import Net
 from HTMLParser import HTMLParser
-from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast
+from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast, finecast2
 
 #---------------------------------------------------------------------------------------------------------------
 addon       = xbmcaddon.Addon()
@@ -310,9 +310,9 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 					
 						modules.addDir('Premier League',u_tube,47,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('ROW Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9ibXRwNnhQWlVEamRlbGh1'),8,ART+'LiveFootball.png',FANART,'')						
-						#modules.addDir('NFL',Decode('http://devil666wizard.x10host.com/addon/LiveSports/LiveNFL.php'),42,ART+'icon.png',FANART,'')						
 						modules.addDir('Rugby',Decode('aHR0cHM6Ly9jb3B5LmNvbS82ZTcybDFrZEtsQnRJd2Z2'),8,ART+'icon.png',FANART,'')						
 						modules.addDir('PPV Events',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9QcFZlVmVOdFMueG1s'),8,ART+'PPV.png',FANART,'')
+						modules.addDir('Other Live',Decode('aHR0cHM6Ly9jb3B5LmNvbS9vUkRoQ1FFVkpjcWs2QVlt'),8,ART+'icon.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -1998,6 +1998,11 @@ def finecast_Res(url):
 	play = finecast.resolve(url)
 	play_video(play)
 
+def finecast2_Res(url):
+	print 'Trying To Resolve finecast2 URL'
+	play = finecast2.resolve(url)
+	play_video(play)
+
 def hdcastorg_Res(url):
 	print 'Trying To Resolve hdcastorg URL'
 	play = hdcastorg.resolve(url)
@@ -2295,9 +2300,14 @@ elif mode == 10:
 			print 'ibrod Resolver Returned: ' + str(url)
     except: pass
     try:
-		if 'finecast' in url:
+		if 'embed4' in url:
 			url = finecast_Res(url)
 			print 'finecast Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'embed3' in url:
+			url = finecast2_Res(url)
+			print 'finecast2 Resolver Returned: ' + str(url)
     except: pass
     else:
         print 'Not setting setResolvedUrl'

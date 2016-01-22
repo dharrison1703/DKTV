@@ -26,7 +26,7 @@ from resources.lib.libraries import client
 def resolve(url):
     try:
         page = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-        page = 'http://www.hdcast.org/embedlive2.php?u=%s&vw=670&vh=390' % page
+        page = 'http://www.hdcast.org/embedlive1.php?u=%s&vw=670&vh=390' % page
 
         try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
         except: referer = page
