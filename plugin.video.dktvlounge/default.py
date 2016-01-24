@@ -46,7 +46,8 @@ ART = xbmc.translatePath(os.path.join('special://home/addons/' + ADDON_ID + '/re
 ADDON_DATA = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + ADDON_ID + '/'))
 PROFILE_DATA = xbmc.translatePath(os.path.join('special://home/userdata/'))
 BaseURL = 'http://devilsoriginbuild.com/dktv'
-SKIN = xbmc.translatePath(os.path.join('special://home/addons/skin.aeon.nox.silvo/'))
+SKIN = xbmc.translatePath(os.path.join('special://home/addons/skin.aeon.nox.5/'))
+SKIN2 = xbmc.translatePath(os.path.join('special://home/addons/skin.aeon.nox.silvo/'))
 HERE = xbmc.translatePath(os.path.join('special://home/addons/plugin.program.Devil666/'))
 PASSCODE = ADDON.getSetting('passcode')
 PASSWORD = ADDON.getSetting('password')
@@ -125,7 +126,7 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
     
 	if PASSWORD != '':
 		if PASSCODE != '':
-			if os.path.exists(SKIN):
+			if os.path.exists(SKIN) or os.path.exists(SKIN2):
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
@@ -155,6 +156,7 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 
 def Live_TV(): # add this into ()
 	modules.addDir('Live TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
+	modules.addDir('Kids TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS94c0lJNFhrUk1jQkJsNHN0'),8,ART+'icon.png',FANART,'')
 	modules.addDir('Premium TV','',49,ART+'icon.png',FANART,'')
 	modules.addDir('Renegades Intergration','',53,ART+'icon.png',FANART,'')
 		
@@ -167,7 +169,7 @@ def TV_Shows(PASSCODE, PASSWORD): # add this into ()
     
 	if PASSWORD != '':
 		if PASSCODE != '':
-			if os.path.exists(SKIN):
+			if os.path.exists(SKIN) or os.path.exists(SKIN2):
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
@@ -199,7 +201,7 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
     
 	if PASSWORD != '':
 		if PASSCODE != '':
-			if os.path.exists(SKIN):
+			if os.path.exists(SKIN) or os.path.exists(SKIN2):
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
@@ -232,7 +234,7 @@ def Sports_Channels(PASSCODE, PASSWORD): # add this into ()
     
 	if PASSWORD != '':
 		if PASSCODE != '':
-			if os.path.exists(SKIN):
+			if os.path.exists(SKIN) or os.path.exists(SKIN2):
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
@@ -265,7 +267,7 @@ def Sports_Replays(PASSCODE, PASSWORD): # add this into ()
     
 	if PASSWORD != '':
 		if PASSCODE != '':
-			if os.path.exists(SKIN):
+			if os.path.exists(SKIN) or os.path.exists(SKIN2):
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
@@ -304,11 +306,11 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
     
 	if PASSWORD != '':
 		if PASSCODE != '':
-			if os.path.exists(SKIN):
+			if os.path.exists(SKIN) or os.path.exists(SKIN2):
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Premier League',u_tube,47,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('Premier League',Decode('aHR0cHM6Ly9jb3B5LmNvbS9EeDk4SUNJZElJOVZKdVFN'),8,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('ROW Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9ibXRwNnhQWlVEamRlbGh1'),8,ART+'LiveFootball.png',FANART,'')						
 						modules.addDir('Rugby',Decode('aHR0cHM6Ly9jb3B5LmNvbS82ZTcybDFrZEtsQnRJd2Z2'),8,ART+'icon.png',FANART,'')						
 						modules.addDir('PPV Events',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9QcFZlVmVOdFMueG1s'),8,ART+'PPV.png',FANART,'')
