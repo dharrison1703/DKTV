@@ -205,7 +205,7 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Sports Channels','',43,ART+'icon.png',FANART,'')						
+						modules.addDir('Sports Channels',Decode('aHR0cHM6Ly9jb3B5LmNvbS9mVU1UbHNWYjdSN01YZHZ3'),8,ART+'icon.png',FANART,'')						
 						modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
 						modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
 						
@@ -225,38 +225,6 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 		PASSCODE = ADDON.getSetting('passcode')
 		PASSWORD = ADDON.getSetting('password')
 		Sports_Centre(PASSCODE, PASSWORD) #This line will change depending on where you are mate
-		input_Failed = False
-	else: pass
-	
-def Sports_Channels(PASSCODE, PASSWORD): # add this into ()
-    
-	input_Failed = False
-    
-	if PASSWORD != '':
-		if PASSCODE != '':
-			if os.path.exists(SKIN) or os.path.exists(SKIN2):
-				if os.path.exists(HERE):
-					if sys_Check.system_Check(PASSWORD, PASSCODE):
-					
-						modules.addDir('UK Sports',Decode('aHR0cHM6Ly9jb3B5LmNvbS9mVU1UbHNWYjdSN01YZHZ3'),8,ART+'icon.png',FANART,'')						
-						modules.addDir('All Sports',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9TUE9ydFMucGhw'),42,ART+'icon.png',FANART,'')						
-						
-					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
-				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
-			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
-		else:
-			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
-			input_Failed = True
-	else:
-		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
-		input_Failed = True
-	
-	if input_Failed:
-		code_Input()
-		pass_Input()
-		PASSCODE = ADDON.getSetting('passcode')
-		PASSWORD = ADDON.getSetting('password')
-		Sports_Channels(PASSCODE, PASSWORD) #This line will change depending on where you are mate
 		input_Failed = False
 	else: pass
 
