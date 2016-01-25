@@ -2279,9 +2279,16 @@ elif mode == 10:
 			url = finecast2_Res(url)
 			print 'finecast2 Resolver Returned: ' + str(url)
     except: pass
+    addon_log("setResolvedUrl")
+    try:
+        if not url.startswith("plugin://plugin") or not any(x in url for x in g_ignoreSetResolved):#not url.startswith("plugin://plugin.video.f4mTester") :
+            item = xbmcgui.ListItem(path=url)
+            xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
+            print 'Replays Returned: ' + str(url)
+    except: pass
     else:
         print 'Not setting setResolvedUrl'
-        xbmc.executebuiltin('XBMC.RunPlugin('+str(url)+')')
+        xbmc.executebuiltin('XBMC.RunPlugin('+url+')')
 
 elif mode == 11:
     addon_log("getRegexParsed")
