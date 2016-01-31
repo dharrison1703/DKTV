@@ -15,7 +15,7 @@ from resources.scrapers import Wsimpsons
 from addon.common.addon import Addon
 from addon.common.net import Net
 from HTMLParser import HTMLParser
-from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast, finecast2
+from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast, finecast2, shadownet
 
 #---------------------------------------------------------------------------------------------------------------
 addon       = xbmcaddon.Addon()
@@ -157,7 +157,7 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 def Live_TV(): # add this into ()
 	modules.addDir('Live TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
 	modules.addDir('Kids TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS94c0lJNFhrUk1jQkJsNHN0'),8,ART+'icon.png',FANART,'')
-	modules.addDir('Premium TV','',49,ART+'icon.png',FANART,'')
+	modules.addDir('DKTV Portal','',49,ART+'icon.png',FANART,'')
 	modules.addDir('Renegades Intergration','',53,ART+'icon.png',FANART,'')
 		
 						
@@ -1978,6 +1978,11 @@ def hdcastorg_Res(url):
 	play = hdcastorg.resolve(url)
 	play_video(play)
 
+def shadownet_Res(url):
+	print 'Trying To Resolve shadownet URL'
+	play = shadownet.resolve(url)
+	play_video(play)
+
 def playLevel():
 	
 	dp = xbmcgui.DialogProgressBG();
@@ -2278,6 +2283,11 @@ elif mode == 10:
 		if 'embed3' in url:
 			url = finecast2_Res(url)
 			print 'finecast2 Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'sdw-net' in url:
+			url = shadownet_Res(url)
+			print 'shadownet Resolver Returned; ' + str(url)
     except: pass
     addon_log("setResolvedUrl")
     try:
