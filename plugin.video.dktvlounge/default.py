@@ -155,10 +155,17 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 	else: pass
 
 def Live_TV(): # add this into ()
-	modules.addDir('Live TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
+	modules.addDir('Live TV','',52,ART+'icon.png',FANART,'')
 	modules.addDir('Kids TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS94c0lJNFhrUk1jQkJsNHN0'),8,ART+'icon.png',FANART,'')
 	modules.addDir('DKTV Portal','',49,ART+'icon.png',FANART,'')
 	modules.addDir('Renegades Intergration','',53,ART+'icon.png',FANART,'')
+		
+def Live_TV_Cats(): # add this into ()
+	modules.addDir('All Channels',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
+	modules.addDir('UK TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS8zVllKUFd2ZHVGRUl6Y1Bu'),8,'http://icons.iconarchive.com/icons/custom-icon-design/flag-3/256/United-Kingdom-flag-icon.png',FANART,'')
+	modules.addDir('USA TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9IcTgyYzRDU1VtZk9mZHpw'),8,'http://www.iconarchive.com/download/i5736/custom-icon-design/flag-3/United-States-Flag.ico',FANART,'')
+	modules.addDir('Sports TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9xQVZLN1hZRGkwM200RUl6'),8,'https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png',FANART,'')
+	modules.addDir('News TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9veGVVdXZqSW40WFBjcVdr'),8,'http://icons.iconarchive.com/icons/pelfusion/folded-flat/512/News-icon.png',FANART,'')
 		
 						
 
@@ -2384,6 +2391,7 @@ elif mode == 48		: m3u_LiveTV()
 elif mode == 49		: PremiumTVMenu()
 elif mode == 50		: ClearCachedData()
 elif mode == 51		: Live_TV()
+elif mode == 52		: Live_TV_Cats()
 elif mode == 53		: Reneg()
 
 
