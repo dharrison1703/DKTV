@@ -130,10 +130,10 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('All Movies A-Z',u_tube,46,ART+'icon.png',FANART,'')						
+						modules.addDir('New Releases',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9tb3ZpZWxpc3QvTW92aWVMaXN0LnBocA=='),39,ART+'icon.png',FANART,'')
 						modules.addDir('Movies By Year',u_tube,54,ART+'icon.png',FANART,'')						
 						modules.addDir('Box Office',u_tube,24,ART+'icon.png',FANART,'')						
-						modules.addDir('[COLORblue]Mikes Movies[/COLOR]',u_tube,21,ART+'icon.png',FANART,'')						
+						modules.addDir('All Movies A-Z',u_tube,46,ART+'icon.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
 				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
@@ -213,7 +213,7 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
 						modules.addDir('Sports Channels',Decode('aHR0cHM6Ly9jb3B5LmNvbS9mVU1UbHNWYjdSN01YZHZ3'),8,ART+'icon.png',FANART,'')						
-						modules.addDir('Sports Replays','',6,ART+'SportsReplays.png',FANART,'')
+						modules.addDir('Sports Replays','',6,ART+'icon.png',FANART,'')
 						modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
@@ -246,8 +246,8 @@ def Sports_Replays(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Football','',4,ART+'footballod.png',FANART,'')
-						modules.addDir('Boxing',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL0JvWGlOZy5waHA='),39,ART+'BoxingOD.png',FANART,'')
+						modules.addDir('Football','',4,ART+'icon.png',FANART,'')
+						modules.addDir('Boxing',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL0JvWGlOZy5waHA='),39,ART+'icon.png',FANART,'')
 						modules.addDir('UFC',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1VmQ3JFcExhWXMucGhw'),39,ART+'icon.png',FANART,'')
 						modules.addDir('WWE','',29,ART+'icon.png',FANART,'')
 						
@@ -271,9 +271,9 @@ def Sports_Replays(PASSCODE, PASSWORD): # add this into ()
 	else: pass
 	
 def WWE_Home():
-	modules.addDir('Raw',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1Jhdy5waHA='),39,ART+'icon.png',FANART,'')
-	modules.addDir('Smackdown',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1NtYWNrZG93bi5waHA='),39,ART+'icon.png',FANART,'')
-	modules.addDir('PPVs',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1d3RXBQdlMucGhw'),39,ART+'icon.png',FANART,'')
+	modules.addDir('Raw',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1Jhdy5waHA='),39,'http://coolspotters.com/files/photos/820618/wwe-raw-profile.jpg',FANART,'')
+	modules.addDir('Smackdown',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1NtYWNrZG93bi5waHA='),39,'http://s1.ticketm.net/tm/en-us/dbimages/182567a.jpg',FANART,'')
+	modules.addDir('PPVs',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1d3RXBQdlMucGhw'),39,'http://madonsports.com/wp-content/uploads/2015/12/WWE-TLC-13-December-2015-All-Matches-Prediction-Results.jpg',FANART,'')
 
 def Live_Today(PASSCODE, PASSWORD): # add this into ()
     
@@ -285,10 +285,10 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Premier League',Decode('aHR0cHM6Ly9jb3B5LmNvbS9EeDk4SUNJZElJOVZKdVFN'),8,ART+'LiveFootball.png',FANART,'')						
-						modules.addDir('ROW Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9ibXRwNnhQWlVEamRlbGh1'),8,ART+'LiveFootball.png',FANART,'')						
+						modules.addDir('Premier League',Decode('aHR0cHM6Ly9jb3B5LmNvbS9EeDk4SUNJZElJOVZKdVFN'),8,ART+'icon.png',FANART,'')						
+						modules.addDir('ROW Football',Decode('aHR0cHM6Ly9jb3B5LmNvbS9ibXRwNnhQWlVEamRlbGh1'),8,ART+'icon.png',FANART,'')						
 						modules.addDir('Rugby',Decode('aHR0cHM6Ly9jb3B5LmNvbS82ZTcybDFrZEtsQnRJd2Z2'),8,ART+'icon.png',FANART,'')						
-						modules.addDir('PPV Events',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9QcFZlVmVOdFMueG1s'),8,ART+'PPV.png',FANART,'')
+						modules.addDir('PPV Events',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9QcFZlVmVOdFMueG1s'),8,ART+'icon.png',FANART,'')
 						modules.addDir('Other Live',Decode('aHR0cHM6Ly9jb3B5LmNvbS9vUkRoQ1FFVkpjcWs2QVlt'),8,ART+'icon.png',FANART,'')						
 						
 					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))

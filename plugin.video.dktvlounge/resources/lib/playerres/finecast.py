@@ -22,29 +22,26 @@ def resolve(url):
             try: unpacked += jsunpack.unpack(i)
             except: pass
         result += unpacked
-
+   
         var = re.compile('var\s(.+?)\s*=\s*(?:\'|\"|\s*)(.+?)(?:\'|\"|\s*);').findall(result)
-        print 'JAVASCRIPT ************************'
-        print str(var)
-
+        
         try:
             url = re.compile('file\s*:\s*(.+?)\n').findall(result)
-            print 'compile'
-            print str(url)
+
             url = [i.split("'") for i in url]
             url = [[x.replace('+','').replace(',','') for x in i if not x == ''] for i in url]
             url = [[x.replace(x,[v[1] for v in var if v[0] == x][0]) if len([v[1] for v in var if v[0] == x]) > 0 else x for x in i] for i in url]
             url = [''.join(i) for i in url]
-
+            
             url = [i for i in url if i.startswith('rtmp') or '.m3u8' in i]
             url = random.choice(url)
-            print 'RANDOM'
-            print str(url)
-            if url.startswith('rtmp'): url += ' swfUrl=http://www.finecast.tv/player6/jwplayer.flash.swf flashver=WIN\2020,0,0,228 live=1 timeout=14 swfVfy=1 pageUrl=http://www.finecast.tv/'
-            if 'rtmp://a+"."+b+"."+c+":"+d/' in url: url = url.replace('rtmp://a+"."+b+"."+c+":"+d/','rtmp://play.finecast.tv:1935/')
-            elif 'http://a+"."+b+"."+c/' in url: url = url.replace('http://a+"."+b+"."+c/','http://play.finecast.tv/')
-            else: pass
-            print 'JAVASCRIPT ************************'
+          
+            dummy = ' swfUrl=http://www.finecast.tv/player6/jwplayer.flash.swf flashver=WIN\2020,0,0,228 live=1 timeout=14 swfVfy=1 pageUrl=http://www.finecast.tv/'
+            if url.startswith('rtmp://'):
+                url = 'rtmp://play.finecast.tv:1935/live/?'+url.split('?')[1]+ str(dummy)
+            else:
+                url = 'http://play.finecast.tv/live/'+url.split('live/')[1]+ str(dummy)
+                pass
             return url
         
         except:
@@ -53,10 +50,6 @@ def resolve(url):
         result = re.sub(r"'(.+?)'", r'\1', result)
         x = re.findall('\[(.+?)\].join\(""\)',result)
         auth, auth2 = re.findall('\[.+?\].join\(""\).+?\+\s*(.+?).join\(""\).+?document.getElementById\("(.+?)"\).innerHTML\);',result)[0]
-        print 'AUTH & AUTH2'
-        print str(auth)
-        print '--------------------------------------------------------------------------------------'
-        print str(auth2)
         for v in var:
             if v[0] == auth:
                 auth = re.findall('\[(.+?)\]',v[1])[0]
@@ -71,7 +64,6 @@ def resolve(url):
         url = rtmp + '/' + file + ' swfUrl=http://www.finecast.tv/player6/jwplayer.flash.swf flashver=WIN\2020,0,0,228 live=1 timeout=14 swfVfy=1 pageUrl=http://www.finecast.tv/'
 
         
-
         return url
     except:
         return
