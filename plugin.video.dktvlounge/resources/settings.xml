@@ -10,6 +10,10 @@
 		<setting id="default-view" type="number" label="Default View" default="500" enable="!eq(-1,false)"/>
 	</category>
 	
+	<category label="Metadata">
+		<setting id="enable_meta" type="bool" label="Enable Metadata" default="true"/>
+	</category>
+
 	<category label="System Details">
 		<setting id="password" label="Password" type="text" option="hidden"  enable="!eq(-1,)" default="" />
 		<setting id="passcode" label="Passcode" type="text" option="hidden"  enable="!eq(-1,)" default="" />
