@@ -116,8 +116,7 @@ def Home_Menu():
 	modules.addDir('Live TV','',51,ART+'icon.png',FANART,'')
 	modules.addDir('Sports Centre','',2,ART+'icon.png',FANART,'')
 	modules.addDir('Movies','',1,ART+'icon.png',FANART,'')
-	modules.addDir('TV Shows','',32,ART+'icon.png',FANART,'')
-	#modules.addDir('Test','',14,ART+'TvShows.png',FANART,'')
+	modules.addDir('RetroMan','',57,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 
 	
 def Movies(PASSCODE, PASSWORD): # add this into ()
@@ -167,40 +166,6 @@ def Live_TV_Cats(): # add this into ()
 	modules.addDir('Sports TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9xQVZLN1hZRGkwM200RUl6'),8,'https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png',FANART,'')
 	modules.addDir('News TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9veGVVdXZqSW40WFBjcVdr'),8,'http://icons.iconarchive.com/icons/pelfusion/folded-flat/512/News-icon.png',FANART,'')
 		
-						
-
-
-def TV_Shows(PASSCODE, PASSWORD): # add this into ()
-    
-	input_Failed = False
-    
-	if PASSWORD != '':
-		if PASSCODE != '':
-			if os.path.exists(SKIN) or os.path.exists(SKIN2):
-				if os.path.exists(HERE):
-					if sys_Check.system_Check(PASSWORD, PASSCODE):
-					
-						modules.addDir('All Shows','',32,ART+'icon.png',FANART,'')
-						
-					else: eval(Decode('c3lzX0NoZWNrLmZhaWxlZF9WZXJpZmljYXRpb24oKQ=='))
-				else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
-			else: eval(Decode('c3lzX0NoZWNrLmluY29ycmVjdF9TeXN0ZW0oKQ=='))
-		else:
-			eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzY29kZSgp'))
-			input_Failed = True
-	else:
-		eval(Decode('c3lzX0NoZWNrLm5vX1N5c19QYXNzd29yZCgp'))
-		input_Failed = True
-	
-	if input_Failed:
-		code_Input()
-		pass_Input()
-		PASSCODE = ADDON.getSetting('passcode')
-		PASSWORD = ADDON.getSetting('password')
-		TV_Shows(PASSCODE, PASSWORD) #This line will change depending on where you are mate
-		input_Failed = False
-	else: pass
-
 	
 def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
     
@@ -274,6 +239,21 @@ def WWE_Home():
 	modules.addDir('Raw',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1Jhdy5waHA='),39,'http://coolspotters.com/files/photos/820618/wwe-raw-profile.jpg',FANART,'')
 	modules.addDir('Smackdown',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1NtYWNrZG93bi5waHA='),39,'http://s1.ticketm.net/tm/en-us/dbimages/182567a.jpg',FANART,'')
 	modules.addDir('PPVs',Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZXBsYXlzL1d3RXBQdlMucGhw'),39,'http://madonsports.com/wp-content/uploads/2015/12/WWE-TLC-13-December-2015-All-Matches-Prediction-Results.jpg',FANART,'')
+
+def RetroMan_OD():
+	modules.addDir('Movies','',58,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('TV Shows',u_tube,55,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('Music',u_tube,56,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+
+def RetroMan_movies():
+	modules.addDir('Top 50 Movies',Decode('aHR0cHM6Ly9jb3B5LmNvbS9JQm9iT2RjME1sNnNRa0NG'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('2016',Decode('aHR0cHM6Ly9jb3B5LmNvbS9ISTJkSk53c0NRQXF5VDdJ'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('2015',Decode('aHR0cHM6Ly9jb3B5LmNvbS9BSE42SU1CYXA5QVI3bHhG'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('2014',Decode('aHR0cHM6Ly9jb3B5LmNvbS82eFFiN0ZmSENRTndoSVRi'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('2013',Decode('aHR0cHM6Ly9jb3B5LmNvbS83OEpwQUt0ek1jSUk0elh6'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('2012',Decode('aHR0cHM6Ly9jb3B5LmNvbS9PVXdZOU5iSGdKTDlOYlJX'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('2011',Decode('aHR0cHM6Ly9jb3B5LmNvbS9WdEd1NHpqeEZ0TUNvMlU4'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('2010',Decode('aHR0cHM6Ly9jb3B5LmNvbS9WdEd1NHpqeEZ0TUNvMlU4'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 
 def Live_Today(PASSCODE, PASSWORD): # add this into ()
     
@@ -2251,7 +2231,6 @@ elif mode == 1		: Movies(PASSCODE, PASSWORD)
 elif mode == 2		: Sports_Centre(PASSCODE, PASSWORD)
 elif mode == 3		: get_All_Rows(url)
 elif mode == 4		: replay_Menu()
-elif mode == 5		: TV_Shows(PASSCODE, PASSWORD)
 elif mode == 6		: Sports_Replays(PASSCODE, PASSWORD)
 elif mode == 7		: ODMenu.MOVIES_OD()
 elif mode == 8 		: 
@@ -2327,6 +2306,8 @@ elif mode == 19  	: LISTS3(url)
 elif mode == 20  	: lists.Lists()
 elif mode == 54  	: lists.TESTCATS1()
 elif mode == 21  	: lists.TESTCATS2()
+elif mode == 55  	: lists.TESTCATS4()
+elif mode == 56  	: lists.TESTCATS5()
 elif mode == 22  	: streams.ParseURL(url)
 elif mode == 23  	: lists.TESTCATS3()
 elif mode == 24	 	: lists.Build_MenuMovies()
@@ -2393,6 +2374,8 @@ elif mode == 50		: ClearCachedData()
 elif mode == 51		: Live_TV()
 elif mode == 52		: Live_TV_Cats()
 elif mode == 53		: Reneg()
+elif mode == 57		: RetroMan_OD()
+elif mode == 58		: RetroMan_movies()
 
 
 elif mode == 400 	: lists.Live(url)

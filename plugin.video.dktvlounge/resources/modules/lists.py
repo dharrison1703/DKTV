@@ -40,13 +40,25 @@ def addList(name,url,mode,iconimage):
         return ok
 		
 def TESTCATS1():
-    html=OPEN_URL(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9tb3ZpZWxpc3QvTW92aWVMaXN0LnBocA=='))
+    html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS8xeDZmNkQzTUo3TGFYZW43'))
+    match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
+    for url,image,name in match:
+        addList(name,url,22,image)
+		
+def TESTCATS4():
+    html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS9XdlI4M3RNVVFPeml1dGIw'))
+    match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
+    for url,image,name in match:
+        addList(name,url,22,image)
+		
+def TESTCATS5():
+    html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS9PeGJpSGFKSHBnRmVQVjYy'))
     match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
     for url,image,name in match:
         addList(name,url,22,image)
 		
 def TESTCATS2():
-    html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS9JQm9iT2RjME1sNnNRa0NG'))
+    html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS8xeDZmNkQzTUo3TGFYZW43'))
     match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
     for url,image,name in match:
         addList(name,url,22,image)
