@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
+    Specto Add-on
     Copyright (C) 2015 lambda
 
     This program is free software: you can redistribute it and/or modify
@@ -107,8 +107,6 @@ class source:
                 is_alive = [x.is_alive() for x in threads]
                 if all(x == False for x in is_alive): break
                 time.sleep(0.5)
-
-
             return self.sources
         except:
             return self.sources
