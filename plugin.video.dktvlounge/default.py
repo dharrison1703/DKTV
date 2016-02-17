@@ -243,9 +243,15 @@ def WWE_Home():
 def RetroMan_OD():
 	modules.addDir('Movies','',58,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 	modules.addDir('TV Shows',u_tube,55,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('Stand Up',Decode('aHR0cHM6Ly9jb3B5LmNvbS9IT0xHNlBRRm5rWFVISGYy'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('Sports Replays',Decode('aHR0cHM6Ly9jb3B5LmNvbS9QRDZJa3JVSkJhUFVyUEp4'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 	modules.addDir('Music',u_tube,56,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('Soaps',Decode('aHR0cHM6Ly9jb3B5LmNvbS9nREF0bE5XS2t2MGo3VDYw'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('Documentaries',u_tube,61,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('Other',Decode('aHR0cHM6Ly9jb3B5LmNvbS84SndYTDJCb0xjYVUwMm5Z'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 
 def RetroMan_movies():
+	modules.addDir('Movie Collections',u_tube,60,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 	modules.addDir('Top 50 Movies',Decode('aHR0cHM6Ly9jb3B5LmNvbS9JQm9iT2RjME1sNnNRa0NG'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 	modules.addDir('2016',Decode('aHR0cHM6Ly9jb3B5LmNvbS9ISTJkSk53c0NRQXF5VDdJ'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 	modules.addDir('2015',Decode('aHR0cHM6Ly9jb3B5LmNvbS9BSE42SU1CYXA5QVI3bHhG'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
@@ -254,6 +260,10 @@ def RetroMan_movies():
 	modules.addDir('2012',Decode('aHR0cHM6Ly9jb3B5LmNvbS9PVXdZOU5iSGdKTDlOYlJX'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 	modules.addDir('2011',Decode('aHR0cHM6Ly9jb3B5LmNvbS9WdEd1NHpqeEZ0TUNvMlU4'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 	modules.addDir('2010',Decode('aHR0cHM6Ly9jb3B5LmNvbS9WdEd1NHpqeEZ0TUNvMlU4'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+
+def RetroMan_Documentaries():
+	modules.addDir('All Documentaries',u_tube,59,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
+	modules.addDir('Requested Documentaries',Decode('aHR0cHM6Ly9jb3B5LmNvbS9FMzB5Y2ZtQ1Zyekh3SXdo'),39,'http://vignette2.wikia.nocookie.net/skylanders/images/b/b1/Granite_Crusher_Promo.jpg/revision/latest?cb=20121008023755',FANART,'')
 
 def Live_Today(PASSCODE, PASSWORD): # add this into ()
     
@@ -2308,6 +2318,9 @@ elif mode == 54  	: lists.TESTCATS1()
 elif mode == 21  	: lists.TESTCATS2()
 elif mode == 55  	: lists.TESTCATS4()
 elif mode == 56  	: lists.TESTCATS5()
+elif mode == 59  	: lists.TESTCATS6()
+elif mode == 60  	: lists.TESTCATS7()
+elif mode == 61  	: RetroMan_Documentaries()
 elif mode == 22  	: streams.ParseURL(url)
 elif mode == 23  	: lists.TESTCATS3()
 elif mode == 24	 	: lists.Build_MenuMovies()

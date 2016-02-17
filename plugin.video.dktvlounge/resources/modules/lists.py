@@ -57,6 +57,18 @@ def TESTCATS5():
     for url,image,name in match:
         addList(name,url,22,image)
 		
+def TESTCATS6():
+    html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS8xNlVMbjQzenVmSFp4ZjRU'))
+    match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
+    for url,image,name in match:
+        addList(name,url,22,image)
+		
+def TESTCATS7():
+    html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS9VZG1ZOGhmWG1UZ1ZvRzhh'))
+    match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
+    for url,image,name in match:
+        addList(name,url,22,image)
+		
 def TESTCATS2():
     html=OPEN_URL(Decode('aHR0cHM6Ly9jb3B5LmNvbS8xeDZmNkQzTUo3TGFYZW43'))
     match = re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /></a><br><b>(.+?)</b>').findall(html)
