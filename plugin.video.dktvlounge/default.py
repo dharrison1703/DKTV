@@ -16,6 +16,8 @@ from addon.common.addon import Addon
 from addon.common.net import Net
 from HTMLParser import HTMLParser
 from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast, finecast2, shadownet
+from resources.lib.indexers import footballReplay
+
 
 #---------------------------------------------------------------------------------------------------------------
 addon       = xbmcaddon.Addon()
@@ -305,13 +307,15 @@ def Live_Today(PASSCODE, PASSWORD): # add this into ()
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def replay_Menu():
-	modules.addDir('Shows',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9zaG93Lw=='),3,'https://upload.wikimedia.org/wikipedia/en/8/84/Match_of_the_Day.png',FANART,'')
-	modules.addDir('Premier League',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9wcmVtaWVyLWxlYWd1ZS8='),3,'https://footballseasons.files.wordpress.com/2013/05/premier-league.png',FANART,'')
-	modules.addDir('Champions League',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jaGFtcGlvbnMtbGVhZ3VlLw=='),3,'http://www.ecursuri.ro/images/teste/test-champions-league.jpg',FANART,'')
-	modules.addDir('La Liga',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9sYS1saWdhLw=='),3,'http://1.bp.blogspot.com/-c6kQ40ryhyo/U19cUlz25sI/AAAAAAAABak/qtn5chSFZm0/s1600/la-liga-logo_display_image.png',FANART,'')
-	modules.addDir('Bundesliga',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9idW5kZXNsaWdhLw=='),3,'http://m.img.brothersoft.com/iphone/189/518670189_icon175x175.jpg',FANART,'')
-	modules.addDir('Serie A',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9zZXJpZS1hLw=='),3,'http://files.jcriccione.it/200000223-2484526782/serie%20a.png',FANART,'')
-	modules.addDir('Ligue 1',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9saWd1ZS0xLw=='),3,'http://a1.mzstatic.com/us/r30/Purple5/v4/37/c7/44/37c744ae-5824-42b7-6ce0-5f471f52baab/icon180x180.jpeg',FANART,'')
+	modules.addDir('Shows',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9zaG93Lw=='),62,'https://upload.wikimedia.org/wikipedia/en/8/84/Match_of_the_Day.png',FANART,'')
+	modules.addDir('Premier League',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9wcmVtaWVyLWxlYWd1ZS8='),62,'https://footballseasons.files.wordpress.com/2013/05/premier-league.png',FANART,'')
+	modules.addDir('Champions League',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jaGFtcGlvbnMtbGVhZ3VlLw=='),62,'http://www.ecursuri.ro/images/teste/test-champions-league.jpg',FANART,'')
+	modules.addDir('La Liga',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9sYS1saWdhLw=='),62,'http://1.bp.blogspot.com/-c6kQ40ryhyo/U19cUlz25sI/AAAAAAAABak/qtn5chSFZm0/s1600/la-liga-logo_display_image.png',FANART,'')
+	modules.addDir('Bundesliga',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9idW5kZXNsaWdhLw=='),62,'http://m.img.brothersoft.com/iphone/189/518670189_icon175x175.jpg',FANART,'')
+	modules.addDir('Major League Soccer',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9tbHMv'),62,'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/MLS_logo.svg/2000px-MLS_logo.svg.png',FANART,'')
+	modules.addDir('Serie A',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9zZXJpZS1hLw=='),62,'http://files.jcriccione.it/200000223-2484526782/serie%20a.png',FANART,'')
+	modules.addDir('Ligue 1',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9saWd1ZS0xLw=='),62,'http://a1.mzstatic.com/us/r30/Purple5/v4/37/c7/44/37c744ae-5824-42b7-6ce0-5f471f52baab/icon180x180.jpeg',FANART,'')
+	modules.addDir('Eredivisie',Decode('aHR0cDovL3d3dy5mdWxsbWF0Y2hlc2FuZHNob3dzLmNvbS9jYXRlZ29yeS9uZXRoZXJsYW5kcw=='),62,'http://www.vriendenloterij.nl/upload/84cd6ed9-526e-42b0-9d3f-62d856986b24_eredivisielogo.jpg',FANART,'')
 
 #_________________________________________________________________________________________________________________________________________________________
 
@@ -2389,7 +2393,8 @@ elif mode == 52		: Live_TV_Cats()
 elif mode == 53		: Reneg()
 elif mode == 57		: RetroMan_OD()
 elif mode == 58		: RetroMan_movies()
-
+elif mode == 62		: go = footballReplay.footballIndexer(url); go.getRowItems()
+elif mode == 63		: go = footballReplay.videoIndexer(url, name); go.findVideos()
 
 elif mode == 400 	: lists.Live(url)
 elif mode == 404 	: lists.TestPlayUrl(name, url, iconimage)
