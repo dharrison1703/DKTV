@@ -15,7 +15,7 @@ from resources.scrapers import Wsimpsons
 from addon.common.addon import Addon
 from addon.common.net import Net
 from HTMLParser import HTMLParser
-from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast, finecast2, shadownet
+from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast, finecast2, shadownet, stream4free
 from resources.lib.indexers import footballReplay
 
 
@@ -167,6 +167,7 @@ def Live_TV_Cats(): # add this into ()
 	modules.addDir('USA TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9IcTgyYzRDU1VtZk9mZHpw'),8,'http://www.iconarchive.com/download/i5736/custom-icon-design/flag-3/United-States-Flag.ico',FANART,'')
 	modules.addDir('Sports TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9xQVZLN1hZRGkwM200RUl6'),8,'https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png',FANART,'')
 	modules.addDir('News TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9veGVVdXZqSW40WFBjcVdr'),8,'http://icons.iconarchive.com/icons/pelfusion/folded-flat/512/News-icon.png',FANART,'')
+	modules.addDir('24/7 Shows',Decode('aHR0cHM6Ly9jb3B5LmNvbS9UN1JRTnlqQVVYT0lraVJG'),8,'https://copy.com/EMRH7BMOLzjsYFdn',FANART,'')
 		
 	
 def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
@@ -1984,6 +1985,11 @@ def shadownet_Res(url):
 	play = shadownet.resolve(url)
 	play_video(play)
 
+def stream4free_Res(url):
+	print 'Trying To Resolve stream4free URL'
+	play = stream4free.resolve(url)
+	play_video(play)
+
 def playLevel():
 	
 	dp = xbmcgui.DialogProgressBG();
@@ -2288,6 +2294,11 @@ elif mode == 10:
 		if 'sdw-net' in url:
 			url = shadownet_Res(url)
 			print 'shadownet Resolver Returned; ' + str(url)
+    except: pass
+    try:
+		if 'stream4free' in url:
+			url = stream4free_Res(url)
+			print 'stream4free Resolver Returned; ' + str(url)
     except: pass
     addon_log("setResolvedUrl")
     try:
