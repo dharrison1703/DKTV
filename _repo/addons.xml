@@ -15,7 +15,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.dktvlounge" name="DKTV Lounge" version="7.0.0" provider-name="Devils Origin Builds">
+<addon id="plugin.video.dktvlounge" name="DKTV Lounge" version="7.1.1" provider-name="Devils Origin Builds">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />

@@ -15,7 +15,7 @@ from resources.scrapers import Wsimpsons
 from addon.common.addon import Addon
 from addon.common.net import Net
 from HTMLParser import HTMLParser
-from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast, finecast2, shadownet, stream4free
+from resources.lib.playerres import filmon, miplayer, streamlive, hdcastorg, hdcast, finecast, finecast2, shadownet, stream4free, zerocast, castalba
 from resources.lib.indexers import footballReplay
 
 
@@ -180,7 +180,7 @@ def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
 				if os.path.exists(HERE):
 					if sys_Check.system_Check(PASSWORD, PASSCODE):
 					
-						modules.addDir('Sports Channels',Decode('aHR0cHM6Ly9jb3B5LmNvbS9mVU1UbHNWYjdSN01YZHZ3'),8,ART+'icon.png',FANART,'')						
+						modules.addDir('Sports Channels',Decode('aHR0cHM6Ly9jb3B5LmNvbS9xQVZLN1hZRGkwM200RUl6'),8,ART+'icon.png',FANART,'')						
 						modules.addDir('Sports Replays','',6,ART+'icon.png',FANART,'')
 						modules.addDir('Live Events','',40,ART+'icon.png',FANART,'')
 						
@@ -1990,6 +1990,16 @@ def stream4free_Res(url):
 	play = stream4free.resolve(url)
 	play_video(play)
 
+def zerocast_Res(url):
+	print 'Trying To Resolve zerocast URL'
+	play = zerocast.resolve(url)
+	play_video(play)
+
+def castalba_Res(url):
+	print 'Trying To Resolve castalba URL'
+	play = castalba.resolve(url)
+	play_video(play)
+
 def playLevel():
 	
 	dp = xbmcgui.DialogProgressBG();
@@ -2299,6 +2309,16 @@ elif mode == 10:
 		if 'stream4free' in url:
 			url = stream4free_Res(url)
 			print 'stream4free Resolver Returned; ' + str(url)
+    except: pass
+    try:
+		if 'zerocast' in url:
+			url = zerocast_Res(url)
+			print 'zerocast Resolver Returned; ' + str(url)
+    except: pass
+    try:
+		if 'castalba' in url:
+			url = castalba_Res(url)
+			print 'castalba Resolver Returned; ' + str(url)
     except: pass
     addon_log("setResolvedUrl")
     try:
