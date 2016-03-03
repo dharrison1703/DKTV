@@ -15,7 +15,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.dktvlounge" name="DKTV Lounge" version="9.1.1" provider-name="Devils Origin Builds">
+<addon id="plugin.video.dktvlounge" name="DKTV Lounge" version="10.0.0" provider-name="Devils Origin Builds">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -25,6 +25,7 @@
 	<import addon="script.module.urlresolver"/>
 	<import addon="script.module.requests" />
 	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="script.module.liveresolver"  />
 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -100,5 +101,24 @@
             <description>Keep Your DKTV Build Upto Date</description>
             <platform>all</platform>
     </extension>
+</addon>
+
+<addon id="script.module.liveresolver"
+     name="LiveResolver"
+     version="0.1.50"
+     provider-name="natko1412">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" />
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.requests"/>
+    <import addon="script.module.addon.common" version="2.0.0" />
+
+  </requires>
+  <extension point="xbmc.python.module" library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">Resolve common live video host URL's to be playable in XBMC/Kodi + find links embeded in sites.</summary>
+    <description lang="en"></description>
+  </extension>
 </addon>
 </addons>

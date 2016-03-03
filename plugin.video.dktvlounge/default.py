@@ -2,6 +2,7 @@ import xbmc, xbmcgui, xbmcplugin, xbmcaddon, os, sys, control, Plp
 import time, urllib, urllib2, base64
 import re, urlparse, json, hashlib, CNF_Studio_Indexer
 import urlresolver
+import liveresolver
 
 import server, config, load_channels
 
@@ -158,8 +159,6 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 def Live_TV(): # add this into ()
 	modules.addDir('Live TV','',52,ART+'icon.png',FANART,'')
 	modules.addDir('Kids TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS94c0lJNFhrUk1jQkJsNHN0'),8,ART+'icon.png',FANART,'')
-	modules.addDir('DKTV Portal','',49,ART+'icon.png',FANART,'')
-	modules.addDir('Renegades Intergration','',53,ART+'icon.png',FANART,'')
 		
 def Live_TV_Cats(): # add this into ()
 	modules.addDir('All Channels',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
@@ -379,20 +378,6 @@ def clean_And_Build_Item(item_Data):
 	
 	addLink('http:' + Play_Link, Name, Image,'','','','','',None,'',1)
 #_________________________________________________________________________________________________________________________________________________________
-
-
-
-
-
-	
-#--------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#********** Movies **********
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** Structure **********
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1749,207 +1734,6 @@ def add_link1(name, url, mode, iconimage, fanart):
 	liz.setProperty('IsPlayable', 'true') 
 	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz)  
 
-
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#********** Portals **********
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-def addPortal(portal):
-
-
-	if portal['url'] == '':
-		return;
-
-	url = build_url({
-		'mode': 'genres', 
-		'portal' : json.dumps(portal)
-		});
-	
-	cmd = 'XBMC.RunPlugin(' + base_url + '?mode=cache&stalker_url=' + portal['url'] + ')';
-	ccd = 'XBMC.RunPlugin(' + base_url + '?mode=53)';
-	
-	li = xbmcgui.ListItem(portal['name'], iconImage=ART+'icon.png')
-	li.addContextMenuItems([ ('Clear Cache', cmd), ('Clear Cached Data', ccd) ]);
-	
-
-	xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True);
-	
-	
-def build_url(query):
-	return base_url + '?' + urllib.urlencode(query)
-
-
-def homeLevel():
-	global portal_1, go;
-	
-	#todo - check none portal
-
-	if go:
-		addPortal(portal_1);
-	
-		xbmcplugin.endOfDirectory(addon_handle);
-	
-	AUTO_VIEW('504')
-
-def genreLevel():
-	
-	try:
-		data = load_channels.getGenres(portal['mac'], portal['url'], portal['serial'], addondir);
-		
-	except Exception as e:
-		xbmcgui.Dialog().notification(addonname, str(e), xbmcgui.NOTIFICATION_ERROR );
-		
-		return;
-
-	data = data['genres'];
-		
-	url = build_url({
-		'mode': 'vod', 
-		'portal' : json.dumps(portal)
-	});
-			
-	li = xbmcgui.ListItem('VoD', iconImage='DefaultVideo.png')
-	xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True);
-	
-	
-	for id, i in data.iteritems():
-
-		title 	= i["title"];
-		
-		url = build_url({
-			'mode': 'channels', 
-			'genre_id': id, 
-			'genre_name': title.title(), 
-			'portal' : json.dumps(portal)
-			});
-			
-		if id == '10':
-			iconImage = 'OverlayLocked.png';
-		else:
-			iconImage = 'DefaultVideo.png';
-			
-		li = xbmcgui.ListItem(title.title(), iconImage=iconImage)
-		xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True);
-		
-
-	xbmcplugin.endOfDirectory(addon_handle);
-
-def vodLevel():
-	
-	try:
-		data = load_channels.getVoD(portal['mac'], portal['url'], portal['serial'], addondir);
-		
-	except Exception as e:
-		xbmcgui.Dialog().notification(addonname, str(e), xbmcgui.NOTIFICATION_ERROR );
-		return;
-	
-	
-	data = data['vod'];
-	
-		
-	for i in data:
-		name 	= i["name"];
-		cmd 	= i["cmd"];
-		logo 	= i["logo"];
-		
-		
-		if logo != '':
-			logo_url = portal['url'] + logo;
-		else:
-			logo_url = 'DefaultVideo.png';
-				
-				
-		url = build_url({
-				'mode': 'play', 
-				'cmd': cmd, 
-				'tmp' : '0', 
-				'title' : name.encode("utf-8"),
-				'genre_name' : 'VoD',
-				'logo_url' : logo_url, 
-				'portal' : json.dumps(portal)
-				});
-			
-
-		li = xbmcgui.ListItem(name, iconImage=logo_url, thumbnailImage=logo_url)
-		li.setInfo(type='Video', infoLabels={ "Title": name })
-
-		xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li)
-	
-	xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_UNSORTED);
-	xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);
-	xbmcplugin.endOfDirectory(addon_handle);
-
-def channelLevel():
-	stop=False;
-		
-	try:
-		data = load_channels.getAllChannels(portal['mac'], portal['url'], portal['serial'], addondir);
-		
-	except Exception as e:
-		xbmcgui.Dialog().notification(addonname, str(e), xbmcgui.NOTIFICATION_ERROR );
-		return;
-	
-	
-	data = data['channels'];
-	genre_name 	= args.get('genre_name', None);
-	
-	genre_id_main = args.get('genre_id', None);
-	genre_id_main = genre_id_main[0];
-	
-	if genre_id_main == '10' and portal['parental'] == 'true':
-		result = xbmcgui.Dialog().input('Parental', hashlib.md5(portal['password'].encode('utf-8')).hexdigest(), type=xbmcgui.INPUT_PASSWORD, option=xbmcgui.PASSWORD_VERIFY);
-		if result == '':
-			stop = True;
-
-	
-	if stop == False:
-		for i in data.values():
-			
-			name 		= i["name"];
-			cmd 		= i["cmd"];
-			tmp 		= i["tmp"];
-			number 		= i["number"];
-			genre_id 	= i["genre_id"];
-			logo 		= i["logo"];
-		
-			if genre_id_main == '*' and genre_id == '10' and portal['parental'] == 'true':
-				continue;
-		
-		
-			if genre_id_main == genre_id or genre_id_main == '*':
-		
-				if logo != '':
-					logo_url = portal['url'] + '/stalker_portal/misc/logos/320/' + logo;
-				else:
-					logo_url = 'DefaultVideo.png';
-				
-				
-				url = build_url({
-					'mode': 'play', 
-					'cmd': cmd, 
-					'tmp' : tmp, 
-					'title' : name.encode("utf-8"),
-					'genre_name' : genre_name,
-					'logo_url' : logo_url,  
-					'portal' : json.dumps(portal)
-					});
-			
-
-				li = xbmcgui.ListItem(name, iconImage=logo_url, thumbnailImage=logo_url);
-				li.setInfo(type='Video', infoLabels={ 
-					'title': name,
-					'count' : number
-					});
-
-				xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li);
-		
-		xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_PLAYLIST_ORDER);
-		xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);
-		xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_PROGRAM_COUNT);
-		
-		
-		xbmcplugin.endOfDirectory(addon_handle);
-
 def filmon_Res(url):
 	print 'Trying To Resolve Filmon URL'
 	play = filmon.resolve(url)
@@ -1967,7 +1751,7 @@ def ibrod_Res(url):
 
 def finecast_Res(url):
 	print 'Trying To Resolve finecast URL'
-	play = finecast.resolve(url)
+	play = liveresolver.resolve(url)
 	play_video(play)
 
 def finecast2_Res(url):
@@ -1977,6 +1761,11 @@ def finecast2_Res(url):
 
 def hdcastorg_Res(url):
 	print 'Trying To Resolve hdcastorg URL'
+	play = hdcastorg.resolve(url)
+	play_video(play)
+
+def hdcast_Res(url):
+	print 'Trying To Resolve hdcast URL'
 	play = hdcastorg.resolve(url)
 	play_video(play)
 
@@ -1999,172 +1788,6 @@ def castalba_Res(url):
 	print 'Trying To Resolve castalba URL'
 	play = castalba.resolve(url)
 	play_video(play)
-
-def playLevel():
-	
-	dp = xbmcgui.DialogProgressBG();
-	dp.create('Channel', 'Loading ...');
-	
-	title 	= args['title'][0];
-	cmd 	= args['cmd'][0];
-	tmp 	= args['tmp'][0];
-	genre_name 	= args['genre_name'][0];
-	logo_url 	= args['logo_url'][0];
-	
-	try:
-		if genre_name != 'VoD':
-			url = load_channels.retriveUrl(portal['mac'], portal['url'], portal['serial'], cmd, tmp);
-		else:
-			url = load_channels.retriveVoD(portal['mac'], portal['url'], portal['serial'], cmd);
-
-	
-	except Exception as e:
-		dp.close();
-		xbmcgui.Dialog().notification(addonname, str(e), xbmcgui.NOTIFICATION_ERROR );
-		return;
-
-	
-	dp.update(80);
-	
-	title = title.decode("utf-8");
-	
-	title += ' (' + portal['name'] + ')';
-	
-#	li = xbmcgui.ListItem(title, iconImage=logo_url); <modified 9.0.19
-	li = xbmcgui.ListItem(title, iconImage=logo_url, thumbnailImage=logo_url);
-	li.setInfo('video', {'Title': title, 'Genre': genre_name});
-	xbmc.Player().play(item=url, listitem=li);
-	
-	dp.update(100);
-	
-	dp.close();
-
-
-mode = args.get('mode', None);
-portal =  args.get('portal', None)
-
-
-if portal is None:
-	portal_1 = config.portalConfig('1');
-
-else:
-	portal = json.loads(portal[0]);
-
-	portal = config.portalConfig('1');
-
-if mode is None:
-	pass;
-
-elif mode[0] == 'cache':	
-	stalker_url = args.get('stalker_url', None);
-	stalker_url = stalker_url[0];	
-	load_channels.clearCache(stalker_url, addondir);
-
-elif mode[0] == 'genres':
-	genreLevel();
-		
-elif mode[0] == 'vod':
-	vodLevel();
-
-elif mode[0] == 'channels':
-	channelLevel();
-	
-elif mode[0] == 'play':
-	playLevel();
-	
-elif mode[0] == 'server':
-	port = addon.getSetting('server_port');
-	
-	action =  args.get('action', None);
-	action = action[0];
-	
-	dp = xbmcgui.DialogProgressBG();
-	dp.create('IPTV', 'Just A Second ...');
-	
-	if action == 'start':
-	
-		if server.serverOnline():
-			xbmcgui.Dialog().notification(addonname, 'Server already started.\nPort: ' + str(port), xbmcgui.NOTIFICATION_INFO );
-		else:
-			server.startServer();
-			time.sleep(5);
-			if server.serverOnline():
-				xbmcgui.Dialog().notification(addonname, 'Server started.\nPort: ' + str(port), xbmcgui.NOTIFICATION_INFO );
-			else:
-				xbmcgui.Dialog().notification(addonname, 'Server not started. Wait one moment and try again. ', xbmcgui.NOTIFICATION_ERROR );
-				
-	else:
-		if server.serverOnline():
-			server.stopServer();
-			time.sleep(5);
-			xbmcgui.Dialog().notification(addonname, 'Server stopped.', xbmcgui.NOTIFICATION_INFO );
-		else:
-			xbmcgui.Dialog().notification(addonname, 'Server is already stopped.', xbmcgui.NOTIFICATION_INFO );
-			
-	dp.close();
-
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#********** Test Area **********
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-def PremiumTVMenu():
-	global portal_1, go;
-
-	if go:
-		modules.AddTestDir('Clear Cached Data - Will Delete Passcode - Retype in Addon Settings', '', 50, ART+'icon.png', description="", isFolder=False, background='')
-		addPortal(portal_1);
-		xbmcplugin.endOfDirectory(addon_handle);
-
-def ClearCachedData():
-	print 'Clear Cache Started'
-	try: os.remove(ADDON_DATA + Decode('aHR0cF9tdzFfaXB0djY2X3R2'))
-	except: pass
-
-	try: os.remove(ADDON_DATA + Decode('aHR0cF9tdzFfaXB0djY2X3R2LWdlbnJlcw=='))
-	except: pass
-
-	try: os.remove(ADDON_DATA + Decode('aHR0cF9wb3J0YWxfaXB0dnByaXZhdGVzZXJ2ZXJfdHY='))
-	except: pass
-
-	try: os.remove(ADDON_DATA + Decode('aHR0cF9wb3J0YWxfaXB0dnByaXZhdGVzZXJ2ZXJfdHYtZ2VucmVz'))
-	except: pass
-
-	try: os.remove(ADDON_DATA + Decode('aHR0cF9wb3J0YWxfaXB0dnJvY2tldF90dg=='))
-	except: pass
-
-	try: os.remove(ADDON_DATA + Decode('aHR0cF9wb3J0YWxfaXB0dnJvY2tldF90di1nZW5yZXM='))
-	except: pass
-
-	try: os.remove(ADDON_DATA + Decode('c2V0dGluZ3MueG1s'))
-	except: pass
-
-	print 'Clear Cache Ended'
-
-	dialog = xbmcgui.Dialog()
-	dialog.ok("Cached Data Cleared", "All Done, Cached Data Has Now Been Cleared.")
-
-def Reneg():
-	if not os.path.exists(directoryr):
-		dialog.ok(addonname, 'Please makesure you have renegades tv guide installed and you have run it at least once then use this function to enable integration')
-		dialog.notification(addonname, 'please install and run renegades tv guide at least once', xbmcgui.NOTIFICATION_ERROR );
-	
-	if os.path.exists(directoryr):
-		try: 
-			os.makedirs(destmw1dir)
-		except OSError:
-			if not os.path.isdir(destmw1dir):
-				raise
-				
-		addonsinir = urllib.URLopener()
-		addonsinir.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZW5lZ2FkZXMvYWRkb25zMi5pbmk='), destinaddonsr)
-		addonsinir = urllib.URLopener()
-		addonsinir.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZW5lZ2FkZXMvc2V0dGluZ3MueG1s'), destinsetsr)
-		addonsini = urllib.URLopener()
-		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZW5lZ2FkZXMvaHR0cF9tdzFfaXB0djY2X3R2'), destinf2)
-		addonsini = urllib.URLopener()
-		addonsini.retrieve(Decode('aHR0cDovL2Rldmlsc29yaWdpbmJ1aWxkLmNvbS9hZGRvbi9yZW5lZ2FkZXMvaHR0cF9tdzFfaXB0djY2X3R2LWdlbnJlcw=='), destinf1)
-		modules.addDir('[COLOR green]*** Intergration Complete Go To Renegades ***[/COLOR]','0',0,ICON,'',FANART)
-	xbmc.executebuiltin('Container.SetViewMode(50)')
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #********** ADDON SWITCH **********
@@ -2274,6 +1897,11 @@ elif mode == 10:
 		if 'hdcast' in url:
 			url = hdcastorg_Res(url)
 			print 'HDCase Resolver Returned: ' + str(url)
+    except: pass
+    try:
+		if 'hdcast.me' in url:
+			url = hdcast_Res(url)
+			print 'hdcast.me Resolver Returned: ' + str(url)
     except: pass
     try:
 		if 'filmon.com' in url: 
