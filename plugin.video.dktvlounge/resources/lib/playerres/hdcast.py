@@ -9,7 +9,7 @@ def resolve(url):
     try:
         id = urlparse.parse_qs(urlparse.urlparse(url).query)['id'][0]
 
-        pageUrl = 'http://hdcast.me/embedplayer.php?width=640&height=480&id=%s&autoplay=true' % id
+        pageUrl = 'http://hdcast.me/embedplayer.php?width=640&height=480&id=%s&autoplay=true&strech=exactfit' % id
 
         result = client.request(pageUrl, referer=url)
 
