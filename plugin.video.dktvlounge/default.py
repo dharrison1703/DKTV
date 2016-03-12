@@ -157,18 +157,15 @@ def Movies(PASSCODE, PASSWORD): # add this into ()
 	else: pass
 
 def Live_TV(): # add this into ()
-	modules.addDir('Live TV','',52,ART+'icon.png',FANART,'')
-	modules.addDir('Kids TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS94c0lJNFhrUk1jQkJsNHN0'),8,ART+'icon.png',FANART,'')
-		
-def Live_TV_Cats(): # add this into ()
-	modules.addDir('All Channels',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,ART+'icon.png',FANART,'')
-	modules.addDir('UK TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS8zVllKUFd2ZHVGRUl6Y1Bu'),8,'http://icons.iconarchive.com/icons/custom-icon-design/flag-3/256/United-Kingdom-flag-icon.png',FANART,'')
-	modules.addDir('USA TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9IcTgyYzRDU1VtZk9mZHpw'),8,'http://www.iconarchive.com/download/i5736/custom-icon-design/flag-3/United-States-Flag.ico',FANART,'')
-	modules.addDir('Sports TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9xQVZLN1hZRGkwM200RUl6'),8,'https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png',FANART,'')
-	modules.addDir('News TV',Decode('aHR0cHM6Ly9jb3B5LmNvbS9veGVVdXZqSW40WFBjcVdr'),8,'http://icons.iconarchive.com/icons/pelfusion/folded-flat/512/News-icon.png',FANART,'')
+	modules.addDir('All Channels',Decode('aHR0cHM6Ly9jb3B5LmNvbS9LdGc2YkZkTzB2S0UzSzQz'),8,'http://icons.iconarchive.com/icons/rade8/snow-e2-aqua/128/Drop-Box-icon.png',FANART,'')
+	modules.addDir('Entertainment',Decode('aHR0cHM6Ly9jb3B5LmNvbS8zVllKUFd2ZHVGRUl6Y1Bu'),8,'http://icons.iconarchive.com/icons/rade8/snow-e2-aqua/128/Online-Network-icon.png',FANART,'')
+	modules.addDir('Sports',Decode('aHR0cHM6Ly9jb3B5LmNvbS9xQVZLN1hZRGkwM200RUl6'),8,'http://icons.iconarchive.com/icons/rade8/snow-e2-aqua/128/Games-Soccer-icon.png',FANART,'')
+	modules.addDir('Movies',Decode('aHR0cHM6Ly9jb3B5LmNvbS92NmxjckRsZ0VMR3NSdEtR'),8,'http://icons.iconarchive.com/icons/rade8/snow-e2-aqua/128/Movies-icon.png',FANART,'')
+	modules.addDir('Documentary',Decode('aHR0cHM6Ly9jb3B5LmNvbS9veGVVdXZqSW40WFBjcVdr'),8,'http://icons.iconarchive.com/icons/rade8/snow-e2-aqua/128/Pictures-alternative-icon.png',FANART,'')
+	modules.addDir('Kids',Decode('aHR0cHM6Ly9jb3B5LmNvbS9IcTgyYzRDU1VtZk9mZHpw'),8,'http://icons.iconarchive.com/icons/rade8/snow-e2-aqua/128/Games-Shine-Sprite-icon.png',FANART,'')
 	modules.addDir('24/7 Shows',Decode('aHR0cHM6Ly9jb3B5LmNvbS9UN1JRTnlqQVVYT0lraVJG'),8,'https://copy.com/EMRH7BMOLzjsYFdn',FANART,'')
-		
-	
+
+
 def Sports_Centre(PASSCODE, PASSWORD): # add this into ()
     
 	input_Failed = False
