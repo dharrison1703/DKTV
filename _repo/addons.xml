@@ -61,14 +61,14 @@
   </extension>
 </addon>
 
-    <addon id="repository.DKTV" name="DKTV Repo" version="0.1.0" provider-name="DKTV">
+    <addon id="repository.DKTV" name="DKTV Repo" version="1.1.0" provider-name="DKTV">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
         <extension point="xbmc.addon.repository" name="DKTV Repo">
-            <info compressed="false">https://raw.github.com/dharrison1703/DKTV/master/_repo/addons.xml</info>
-            <checksum>https://raw.github.com/dharrison1703/DKTV/master/_repo/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.github.com/dharrison1703/DKTV/master/_repo/</datadir>
+            <info compressed="false">http://devilsoriginbuild.com/addon/RepoUpdate/_repo/addons.xml</info>
+            <checksum>http://devilsoriginbuild.com/addon/RepoUpdate/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">http://devilsoriginbuild.com/addon/RepoUpdate/_repo/</datadir>
             <hashes>false</hashes>
         </extension>
         <extension point="xbmc.addon.metadata">
